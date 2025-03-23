@@ -1,0 +1,41 @@
+:root {
+  --primary-color: #13bc27;
+  --secondary-color: #106d21;
+  --bg-color: #def4df;
+  --txt-color: #595f59;
+  --line-color: #d9d9d9;
+  --bg-green: #def4df;
+  --light-bg: #2a983e;
+}
+#program1 {
+  height: 50vh;
+  background-image: url(../img/program1.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+#program1 div {
+  background-color: rgb(0, 0, 0, 0.4);
+  height: 100%;
+}
+#program2 {
+  background-color: var(--bg-color);
+}
+#program2 span {
+  color: var(--primary-color);
+  font-size: 5em;
+}
+.view-more {
+  border: 1px solid var(--primary-color);
+  width: max-content;
+  border-radius: 10px;
+  padding: 10px 20px;
+  background-color: var(--primary-color);
+  color: white;
+  transition: 0.3s ease;
+}
+
+.view-more:hover {
+  background-color: white;
+  color: var(--primary-color);
+}

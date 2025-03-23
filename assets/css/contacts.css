@@ -1,0 +1,37 @@
+:root {
+  --primary-color: #13bc27;
+  --secondary-color: #106d21;
+  --bg-color: #def4df;
+  --txt-color: #595f59;
+  --line-color: #d9d9d9;
+  --bg-green: #def4df;
+  --light-bg: #2a983e;
+}
+.icons {
+  padding: 15px;
+  border-radius: 50%;
+  border-style: dotted;
+  border-width: 3px;
+}
+#contact2 {
+  background-color: var(--light-bg);
+  color: white;
+}
+#contact3 {
+  background-color: var(--bg-color);
+}
+.closeFaq {
+  display: none;
+}
+.faq-p {
+  transition: 1s ease;
+}
+.faq-icon::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+}

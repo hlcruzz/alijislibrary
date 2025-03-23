@@ -1,0 +1,59 @@
+:root {
+  --primary-color: #13bc27;
+  --secondary-color: #106d21;
+  --bg-color: #def4df;
+  --txt-color: #595f59;
+  --line-color: #d9d9d9;
+  --bg-green: #def4df;
+  --light-bg: #2a983e;
+}
+
+#main-cont {
+  background-image: url(../img/alijis-campus.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.shadow {
+  background-color: rgb(0, 0, 0, 0.4);
+}
+.content {
+  width: 500px;
+  animation: fade 1.5s ease-in-out;
+}
+@keyframes fade {
+  from {
+    opacity: 0;
+    transform: translateY(-200px);
+  }
+}
+input {
+  padding: 10;
+  border: none;
+  outline: none;
+  width: 100%;
+}
+input + label {
+  position: absolute;
+  left: 10;
+  top: 10;
+  background-color: white;
+  transition: 0.3s ease;
+  padding: 0;
+  cursor: auto;
+  font-weight: 600;
+}
+input:focus + label,
+input:not(:placeholder-shown) + label {
+  top: -20;
+  color: var(--light-bg);
+}
+@media (max-width: 600px) {
+  .content {
+    width: 100%;
+    padding: 0;
+  }
+  .shadow {
+    background-color: white;
+  }
+}

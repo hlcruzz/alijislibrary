@@ -1,0 +1,12 @@
+:root {
+  --primary-color: #13bc27;
+  --secondary-color: #106d21;
+  --bg-color: #def4df;
+  --txt-color: #595f59;
+  --line-color: #d9d9d9;
+  --bg-green: #def4df;
+  --light-bg: #2a983e;
+}
+#about1 {
+  background-color: var(--bg-green);
+}

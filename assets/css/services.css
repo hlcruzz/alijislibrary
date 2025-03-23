@@ -1,0 +1,45 @@
+:root {
+  --primary-color: #13bc27;
+  --secondary-color: #106d21;
+  --bg-color: #def4df;
+  --txt-color: #595f59;
+  --line-color: #d9d9d9;
+  --bg-green: #def4df;
+  --light-bg: #2a983e;
+}
+
+.menu-head {
+  transition: 0.3s ease;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 20px;
+  color: white;
+}
+.menu-head:hover {
+  background-color: #13bc27;
+}
+.menu-head:not(:hover) {
+  color: black;
+}
+
+.cont {
+  transition: 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.cont:nth-child(n) {
+  display: none;
+}
+.cont:nth-child(1) {
+  display: flex;
+}
+.text {
+  max-height: 0;
+  transition: 1s ease;
+  overflow: hidden;
+}
+
+.arrow {
+  transition: all 0.3s ease;
+}

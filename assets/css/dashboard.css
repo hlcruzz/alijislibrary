@@ -1,0 +1,118 @@
+:root {
+  --primary-color: #13bc27;
+  --secondary-color: #106d21;
+  --bg-color: #def4df;
+  --txt-color: #595f59;
+  --line-color: #d9d9d9;
+  --bg-green: #def4df;
+  --light-bg: #2a983e;
+  --default-bs-dark: #212529;
+  --bg-darkmode: #1a3c34;
+}
+body {
+  scroll-behavior: smooth;
+}
+.navText {
+  display: none !important;
+  white-space: nowrap;
+}
+.openCloseMenu:nth-child(3) {
+  display: none;
+}
+a.menu-links {
+  transition: 0.5s ease;
+  border-radius: 10px;
+}
+#logout {
+  background-color: transparent;
+}
+[data-bs-theme="light"] a.menu-links,
+[data-bs-theme="light"] a.admin-cont {
+  color: black;
+}
+
+[data-bs-theme="dark"] a.menu-links,
+[data-bs-theme="dark"] a.admin-cont {
+  color: white;
+}
+
+[data-bs-theme="dark"] a.menu-links:hover {
+  background-color: #66c28e;
+  color: var(--default-bs-dark);
+}
+[data-bs-theme="dark"] a.menu-links:hover .menu-icon {
+  color: var(--secondary-color);
+}
+
+[data-bs-theme="light"] a.menu-links:hover {
+  background-color: #66c28e;
+  color: white;
+}
+[data-bs-theme="dark"] #logout:hover,
+[data-bs-theme="light"] #logout:hover {
+  background-color: #66c28e;
+}
+.switch-cont {
+  width: 50px;
+  height: 25px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+#theme-input {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: 0.5s ease;
+}
+#theme-input::before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  border-radius: 12px;
+  background-color: rgb(173, 173, 173);
+  z-index: 1;
+}
+
+.theme-switch {
+  position: absolute;
+  z-index: 2;
+  height: 120%;
+  border-radius: 50%;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  right: 55%;
+  transition: 0.5s ease;
+
+  background-color: var(--bg-color);
+  color: var(--primary-color);
+}
+#theme-input:checked + .theme-switch {
+  right: -1;
+  background-color: var(--txt-color);
+  color: var(--primary-color);
+}
+
+[data-bs-theme="dark"] #upbar {
+  background-color: var(--default-bs-dark);
+}
+[data-bs-theme="light"] #upbar {
+  background-color: white;
+}
+.rate {
+  color: var(--primary-color);
+}
+[data-bs-theme="light"] .content {
+  background-color: var(--bg-green);
+}
+[data-bs-theme="dark"] .content {
+  background-color: var(--bg-darkmode);
+}
+
+[data-bs-theme="light"] .total-head {
+  color: var(--txt-color);
+}

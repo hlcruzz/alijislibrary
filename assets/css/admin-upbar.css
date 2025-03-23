@@ -1,0 +1,34 @@
+:root {
+  --primary-color: #13bc27;
+  --secondary-color: #106d21;
+  --bg-color: #def4df;
+  --txt-color: #595f59;
+  --line-color: #d9d9d9;
+  --bg-green: #def4df;
+  --light-bg: #2a983e;
+  --default-bs-dark: #212529;
+  --bg-darkmode: #1a3c34;
+}
+table td {
+  vertical-align: middle;
+  white-space: nowrap;
+}
+#notif-cont {
+  transition: 0.5s ease;
+}
+
+.notif-link::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  top: 0;
+}
+
+[data-bs-theme="light"] #notif-cont {
+  background-color: white;
+}
+[data-bs-theme="dark"] #notif-cont {
+  background-color: var(--default-bs-dark);
+}
