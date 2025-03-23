@@ -7,7 +7,7 @@
   --bg-green: #def4df;
   --light-bg: #2a983e;
   --default-bs-dark: #212529;
-  --bg-darkmode: #1a3c34;
+  --bg-darkmode: #9dc4bb;
 }
 body {
   scroll-behavior: smooth;
@@ -27,8 +27,9 @@ a.menu-links {
   background-color: transparent;
 }
 [data-bs-theme="light"] a.menu-links,
-[data-bs-theme="light"] a.admin-cont {
-  color: black;
+[data-bs-theme="light"] a.admin-cont,
+.navText {
+  color: white;
 }
 
 [data-bs-theme="dark"] a.menu-links,
@@ -38,7 +39,7 @@ a.menu-links {
 
 [data-bs-theme="dark"] a.menu-links:hover {
   background-color: #66c28e;
-  color: var(--default-bs-dark);
+  color: var(--secondary-color);
 }
 [data-bs-theme="dark"] a.menu-links:hover .menu-icon {
   color: var(--secondary-color);
@@ -110,7 +111,7 @@ a.menu-links {
   background-color: var(--bg-green);
 }
 [data-bs-theme="dark"] .content {
-  background-color: var(--bg-darkmode);
+  background-color: #154b3e;
 }
 
 [data-bs-theme="light"] .total-head {

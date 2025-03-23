@@ -1,27 +1,22 @@
 <?php if (!empty($page)) { ?>
-    <style>
-        <?php
-        switch ($page) {
-            case "index":
-                echo ".links:nth-child(1)::before {width: 100%;}";
-                break;
-            case "about":
-                echo ".links:nth-child(2)::before {width: 100%;}";
-                break;
-            case "programs":
-                echo ".links:nth-child(3)::before {width: 100%;}";
-                break;
-            case "services":
-                echo ".links:nth-child(4)::before {width: 100%;}";
-                break;
-            case "contacts":
-                echo ".links:nth-child(5)::before {width: 100%;}";
-                break;
-            default:
-                echo null;
-        }
-        ?>
-    </style>
+<style>
+<?php switch ($page) {
+    case "index": echo ".links:nth-child(1)::before {width: 100%;}";
+    break;
+    case "about": echo ".links:nth-child(2)::before {width: 100%;}";
+    break;
+    case "programs": echo ".links:nth-child(3)::before {width: 100%;}";
+    break;
+    case "services": echo ".links:nth-child(4)::before {width: 100%;}";
+    break;
+    case "contacts": echo ".links:nth-child(5)::before {width: 100%;}";
+    break;
+    default:
+        echo null;
+}
+
+?>
+</style>
 <?php } ?>
 <!-- Navigation Bar -->
 <div class="container-fluid nav-container position-sticky top-0 bg-white" style="z-index: 10">
@@ -29,18 +24,18 @@
     <div class="container-lg d-none d-lg-block p-3">
         <div class="d-flex align-items-center row-cols-2">
             <div class="d-flex align-items-center gap-3 col-6">
-                <img src="assets/img/logo.png" style="width: 80px" alt="" />
+                <img src="assets/img/logo.png" style="width: 50px" alt="" />
                 <div class="dflex flex-column">
-                    <h1 class="m-0 fs-3">Alijis Campus Library</h1>
-                    <p class="m-0 fs-6 text-success">Learning Resource Center</p>
+                    <h1 class="m-0 fs-5">Alijis Campus Library</h1>
+                    <p class="m-0 text-success" style="font-size: smaller;">Learning Resource Center</p>
                 </div>
             </div>
-            <div class="d-flex justify-content-between align-items-center col-6">
-                <a class="links text-decoration-none text-dark fw-medium fs-5" href="/">Home</a>
-                <a class="links text-decoration-none text-dark fw-medium fs-5" href="/about">About Us</a>
-                <a class="links text-decoration-none text-dark fw-medium fs-5" href="/program">Programs</a>
-                <a class="links text-decoration-none text-dark fw-medium fs-5" href="/services">Services</a>
-                <a class="links text-decoration-none text-dark fw-medium fs-5" href="/contacts">Contacts</a>
+            <div class="d-flex justify-content-between align-items-center col-6" style="white-space: nowrap;">
+                <a class="links text-decoration-none text-dark fw-medium fs-6" href="/">Home</a>
+                <a class="links text-decoration-none text-dark fw-medium fs-6" href="/about">About Us</a>
+                <a class="links text-decoration-none text-dark fw-medium fs-6" href="/program">Programs</a>
+                <a class="links text-decoration-none text-dark fw-medium fs-6" href="/services">Services</a>
+                <a class="links text-decoration-none text-dark fw-medium fs-6" href="/contacts">Contacts</a>
             </div>
         </div>
     </div>

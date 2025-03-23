@@ -71,7 +71,8 @@
 
     </div>
     <div class="container-fluid text-center p-0" id="low-footer">
-        <p class="text-white m-0 p-0 p-3">Copyright &copy; 2025 CHMSU Alijis Library. All Rights Reserved</p>
+        <p class="text-white m-0 p-0 p-3" style="font-size: smaller;">Copyright &copy; 2025 CHMSU Alijis Library. All
+            Rights Reserved</p>
     </div>
 </footer>
 <script src="./assets/js/navbar.js"></script>

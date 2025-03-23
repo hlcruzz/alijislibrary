@@ -1,13 +1,13 @@
 <div class="container-fluid border border-start-0 p-3 position-sticky top-0 z-1" id="upbar">
     <div class="d-flex justify-content-between align-items-center gap-4">
-        <h1 class="fs-3 ms-4 p-0 m-0">Admin Dashboard</h1>
+        <h1 class="fs-5 ms-4 p-0 m-0">Admin Dashboard</h1>
         <div class="d-flex align-items-center gap-4 position-relative">
             <div class="position-relative" style="height: max-content;">
-                <span class="material-symbols-outlined fs-1" role="button" id="notif-icon">
+                <span class="material-symbols-outlined fs-2" role="button" id="notif-icon">
                     notifications
                 </span>
                 <small class="position-absolute text-light border border-danger text-center bg-danger"
-                    style="right:-10;bottom:-5; min-width: 25px; border-radius: 50%; font-size: smaller;"
+                    style="right:-5;bottom:-10; min-width: 20px; border-radius: 50%; font-size: smaller;"
                     id="totalIsReadFeedbacks">
                 </small>
             </div>
@@ -18,7 +18,7 @@
                             <tr>
                                 <th colspan="3">
                                     <div class="ps-3 pe-2 d-flex align-items-center justify-content-between">
-                                        <h1 class="p-0 m-0 fs-3">Notifications</h1>
+                                        <h1 class="p-0 m-0 fs-5">Notifications</h1>
                                     </div>
                                 </th>
                             </tr>

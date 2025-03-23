@@ -18,9 +18,23 @@ import {
   fetchNewsByCondition,
   fetchNewsImgById,
 } from "./router/index-route.js";
-import { checkCookie, darkTheme, lightTheme, sideMenu, setCookie } from "./utils/cookies.js";
+import {
+  checkCookie,
+  darkTheme,
+  lightTheme,
+  sideMenu,
+  setCookie,
+} from "./utils/cookies.js";
 import { setSession } from "./utils/session.js";
-import { seePassword, adminNotifCont, timeAgo, showLoading, checkAdminLogin, sliceText, dataTable } from "./assets/js/admin.js";
+import {
+  seePassword,
+  adminNotifCont,
+  timeAgo,
+  showLoading,
+  checkAdminLogin,
+  sliceText,
+  dataTable,
+} from "./assets/js/admin.js";
 $(document).ready(function () {
   ClickEvents();
   FetchEvents();
@@ -44,14 +58,16 @@ function ClickEvents() {
     const feedbackEmail = $("#feedbackEmail").val();
     const feedbackMsg = $("#feedbackMsg").val();
 
-    submitFeedback(feedbackName, feedbackEmail, feedbackMsg).then((response) => {
-      if (response == 1) {
-        alert("Feedback Submitted");
-        $("#contactForm").trigger("reset");
-      } else {
-        alert(response);
+    submitFeedback(feedbackName, feedbackEmail, feedbackMsg).then(
+      (response) => {
+        if (response == 1) {
+          alert("Feedback Submitted");
+          $("#contactForm").trigger("reset");
+        } else {
+          alert(response);
+        }
       }
-    });
+    );
   });
 
   $("#theme-input").on("click", function () {
@@ -85,14 +101,16 @@ function ClickEvents() {
     const feedbackEmail = $("#feedbackEmail").val();
     const feedbackMsg = $("#feedbackMsg").val();
 
-    submitFeedback(feedbackName, feedbackEmail, feedbackMsg).then((response) => {
-      if (response == 1) {
-        alert("Feedback Submitted");
-        $("#contactForm").trigger("reset");
-      } else {
-        alert(response);
+    submitFeedback(feedbackName, feedbackEmail, feedbackMsg).then(
+      (response) => {
+        if (response == 1) {
+          alert("Feedback Submitted");
+          $("#contactForm").trigger("reset");
+        } else {
+          alert(response);
+        }
       }
-    });
+    );
   });
 
   let notifLimit = 10;
@@ -163,7 +181,9 @@ function ClickEvents() {
   //DELETE NEWS BY ID
   $(document).on("click", ".deleteNews", function () {
     const id = $(this).attr("data-id");
-    const confirmDelete = confirm("Are you sure you want to delete this library news?");
+    const confirmDelete = confirm(
+      "Are you sure you want to delete this library news?"
+    );
 
     if (confirmDelete) {
       deleteNewsById(id).then((response) => {
@@ -180,7 +200,9 @@ function ClickEvents() {
   //DELETE NEWS IMG BY ID
   $(document).on("click", ".deleteNewsImg", function () {
     const id = $(this).attr("data-id");
-    const confirmDelete = confirm("Are you sure you want to delete this image?");
+    const confirmDelete = confirm(
+      "Are you sure you want to delete this image?"
+    );
 
     if (confirmDelete) {
       deleteNewsImgById(id).then((response) => {
@@ -253,7 +275,9 @@ function FetchEvents() {
 
   setInterval(async () => {
     try {
-      const response = await fetchFeedbacks(sessionStorage.getItem("notifLimit"));
+      const response = await fetchFeedbacks(
+        sessionStorage.getItem("notifLimit")
+      );
       const data = JSON.parse(response);
       const tbody = $("#tbody-notification");
       tbody.empty();
@@ -263,7 +287,10 @@ function FetchEvents() {
 
         const textTime = timeAgo(element.feedbackTime);
         const isReadText = element.feedbackIsRead == 0 ? "" : "text-muted";
-        const isReadIcon = element.feedbackIsRead == 0 ? `<i class="fa-solid fa-circle text-primary position-absolute" style="font-size: 10px; top:10;"></i>` : "";
+        const isReadIcon =
+          element.feedbackIsRead == 0
+            ? `<i class="fa-solid fa-circle text-primary position-absolute" style="font-size: 10px; top:10;"></i>`
+            : "";
         const row = `
         <tr class="position-relative">
           <td class="ps-4" role="button">
@@ -272,7 +299,7 @@ function FetchEvents() {
               <img src="../assets/img/default.jpg" width="50px" style="border-radius: 50%;">
               <div>
                 <h1 class="p-0 m-0 fs-6 isReadText ${isReadText}">${element.feedbackName}</h1>
-                <small class="p-0 m-0 fs-6 fw-lighter ${isReadText}">${textLength}</small>
+                <small class="p-0 m-0 ${isReadText}">${textLength}</small>
               </div>
             </div>
           </td>
@@ -313,7 +340,8 @@ function FetchEvents() {
     //ADMIN TABLE
     data.forEach(function (element) {
       const img =
-        element.library_news_img_path == "" || element.library_news_img_path == null
+        element.library_news_img_path == "" ||
+        element.library_news_img_path == null
           ? ""
           : `
               <div>
@@ -332,8 +360,12 @@ function FetchEvents() {
           <td>${element.text_date}</td>
           <td>
               <div>
-                  <button class="editNews btn btn-success" data-id="${element.news_id}" data-bs-toggle="modal" data-bs-target="#editNewsModal"><i class="fa-solid fa-pen"></i></button>
-                  <button class="deleteNews btn btn-danger" data-id="${element.news_id}"><i class="fa-solid fa-trash"></i></button>
+                  <button class="editNews btn btn-success" data-id="${
+                    element.news_id
+                  }" data-bs-toggle="modal" data-bs-target="#editNewsModal"><i class="fa-solid fa-pen"></i></button>
+                  <button class="deleteNews btn btn-danger" data-id="${
+                    element.news_id
+                  }"><i class="fa-solid fa-trash"></i></button>
               </div>
           </td>
       </tr>
@@ -354,11 +386,11 @@ function FetchEvents() {
 
       const content = `
       <div>
-          <h1 class="fs-2">${subject}</h1>
-          <p class="text-dark-emphasis">${message}</p>
+          <h1 class="fs-5">${subject}</h1>
+          <p class="text-dark-emphasis" style="font-size: small;">${message}</p>
           <div class="news-date d-flex gap-2">
-              <span class="material-symbols-outlined"> arrow_right_alt </span>
-              <p>${date}</p>
+              <span class="material-symbols-outlined" style="font-size: smaller;"> arrow_right_alt </span>
+              <p style="font-size: smaller;">${date}</p>
           </div>
       </div>
       `;
@@ -393,8 +425,16 @@ function FetchEvents() {
     $("#newsLoading").show();
   }, 2000);
   setInterval(async () => {
-    const searchResult = sessionStorage.getItem("searchVal") == "" || sessionStorage.getItem("searchVal") == null ? "" : sessionStorage.getItem("searchVal");
-    const limitNews = sessionStorage.getItem("limitNews") == "" || sessionStorage.getItem("limitNews") == null ? "" : sessionStorage.getItem("limitNews");
+    const searchResult =
+      sessionStorage.getItem("searchVal") == "" ||
+      sessionStorage.getItem("searchVal") == null
+        ? ""
+        : sessionStorage.getItem("searchVal");
+    const limitNews =
+      sessionStorage.getItem("limitNews") == "" ||
+      sessionStorage.getItem("limitNews") == null
+        ? ""
+        : sessionStorage.getItem("limitNews");
     const response = await fetchNewsByCondition(searchResult, limitNews);
     const data = JSON.parse(response);
 
@@ -415,7 +455,10 @@ function FetchEvents() {
         for (let index = 0; index < Math.min(4, imageArray.length); index++) {
           const element = imageArray[index];
 
-          const hasReminder = imageArray.length - Math.min(4, imageArray.length) > 0 ? imageArray.length - Math.min(4, imageArray.length) : "";
+          const hasReminder =
+            imageArray.length - Math.min(4, imageArray.length) > 0
+              ? imageArray.length - Math.min(4, imageArray.length)
+              : "";
 
           const reminder =
             index === Math.min(4, imageArray.length) - 1 && hasReminder
@@ -450,7 +493,10 @@ function FetchEvents() {
         newsContainer.append(row);
       });
 
-      if (parseInt(sessionStorage.getItem("limitNews")) > parseInt(sessionStorage.getItem("newsRows"))) {
+      if (
+        parseInt(sessionStorage.getItem("limitNews")) >
+        parseInt(sessionStorage.getItem("newsRows"))
+      ) {
         $("#newsLoading").hide();
       }
     } else {
@@ -525,7 +571,12 @@ function ModalEvents() {
       $("#cancelReply").hide();
       $("#sendReply").hide();
       $("#submitReplyLoading").show();
-      submitReplyFeedback(feedbackId, feedbackName, feedbackEmail, feedbackReply).then((response) => {
+      submitReplyFeedback(
+        feedbackId,
+        feedbackName,
+        feedbackEmail,
+        feedbackReply
+      ).then((response) => {
         alert(response);
         location.reload();
       });
