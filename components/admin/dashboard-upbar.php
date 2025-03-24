@@ -1,6 +1,17 @@
 <div class="container-fluid border border-start-0 p-3 position-sticky top-0 z-1" id="upbar">
     <div class="d-flex justify-content-between align-items-center gap-4">
-        <h1 class="fs-5 ms-4 p-0 m-0">Admin Dashboard</h1>
+        <div class="d-flex">
+            <!-- <span >
+                chevron_right
+            </span> -->
+            <i class="fa-solid fa-bars openCloseMenu material-symbols-outlined  rounded-2 text-center" id="open-menu"
+                role="button"></i>
+
+            <i class="fa-solid fa-bars openCloseMenu material-symbols-outlined  rounded-2 text-center" id="close-menu"
+                role="button"></i>
+            <h1 class="fs-5 ms-4 p-0 m-0">Admin Dashboard</h1>
+        </div>
+
         <div class="d-flex align-items-center gap-4 position-relative">
             <div class="position-relative" style="height: max-content;">
                 <span class="material-symbols-outlined fs-2" role="button" id="notif-icon">

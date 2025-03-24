@@ -33,6 +33,9 @@ switch ($request) {
     case '/admin-feedbacks':
         require 'admin/feedbacks.php';
         break;
+    case '/admin-downloadables':
+        require 'admin/downloadable.php';
+        break;
     default:
         http_response_code(404);
         echo "Page not found!";

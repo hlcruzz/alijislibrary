@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $file_tmp_name = $_FILES['files']['tmp_name'][$key];
             $file_type = $_FILES['files']['type'][$key];
             $file_size = $_FILES['files']['size'][$key];
-            $pathToDb = "./assets/img/libraryNews/" . basename($file_name);
+            $pathToDb = "./assets/img/libraryNews/" . basename($file_name) == "./assets/img/libraryNews/" ? "" : "./assets/img/libraryNews/" . basename($file_name);
             $pathToFolder = "../assets/img/libraryNews/" . basename($file_name);
 
 

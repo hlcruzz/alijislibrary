@@ -7,7 +7,7 @@
     <?php include "./components/admin/admin-links.php" ?>
 
 </head>
-<?php $page = "library-news" ?>
+<?php $page = "downloadble" ?>
 <?php include "./components/admin/admin-modal.php" ?>
 
 <body data-bs-theme="" id="admin-body">
@@ -21,31 +21,19 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="d-flex justify-content-between align-items-center pb-4">
-                                <h1 class="fs-3 p-0 m-0">Library News</h1>
+                                <h1 class="fs-3 p-0 m-0">Downloadables</h1>
                                 <div class="d-flex gap-3 align-items-center">
-                                    <button type="button" data-bs-toggle="modal" data-bs-target="#addNewsModal"
+                                    <button type="button" data-bs-toggle="modal" data-bs-target="#addDownloadModal"
                                         class="btn btn-success d-flex align-items-center gap-2"><span
                                             class="material-symbols-outlined">
                                             add
-                                        </span> Add News </button>
+                                        </span> Add </button>
                                 </div>
                             </div>
                             <div class="card">
                                 <div class="card-body px-4">
-                                    <table id="table_news" class="table table-hover table-bordered">
-                                        <!-- <thead>
-                                            <tr>
-                                                <th>#</th>
-                                                <th>Img</th>
-                                                <th>Subject</th>
-                                                <th>Messsage</th>
-                                                <th>Date</th>
-                                                <th>Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
+                                    <table id="table_dwonloads" class="table table-hover table-bordered">
 
-                                        </tbody> -->
                                     </table>
                                 </div>
                             </div>

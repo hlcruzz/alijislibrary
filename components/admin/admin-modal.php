@@ -137,3 +137,30 @@
         </div>
     </div>
 </div>
+
+
+<div class="modal fade" id="addDownloadModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel"><i class="fa-solid fa-file-circle-plus"></i> Add
+                    Downloadable</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form id="downloadbleForm" enctype="multipart/form-data">
+                <div class="modal-body d-flex flex-column gap-2">
+                    <div class="form-group d-flex flex-column gap-2">
+                        <label for="">File Upload:</label>
+                        <input type="file" name="file" id="file" class="form-control"
+                            accept="application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,
+              application/msword,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-success">Add File</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,35 +1,32 @@
 <style>
-<?php switch ($page) {
-    case 'dashboard': echo ".menu-links:nth-child(1) {background-color: #66c28e;color: white;}";
-    break;
-    case 'library-news': echo ".menu-links:nth-child(2) {background-color: #66c28e;color: white;}";
-    break;
-    case 'feedbacks': echo ".menu-links:nth-child(3) {background-color: #66c28e;color: white;}";
-    break;
-    default:
-        # code... break;
-}
+    <?php switch ($page) {
+        case 'dashboard':
+            echo ".menu-links:nth-child(1) {background-color: #66c28e;color: white;}";
+            break;
+        case 'library-news':
+            echo ".menu-links:nth-child(2) {background-color: #66c28e;color: white;}";
+            break;
+        case 'feedbacks':
+            echo ".menu-links:nth-child(3) {background-color: #66c28e;color: white;}";
+            break;
+        case 'downloadble':
+            echo ".menu-links:nth-child(4) {background-color: #66c28e;color: white;}";
+            break;
+        default:
+        # code... break;downloadble
+    }
 
-?>
+    ?>
 </style>
-<div class=" vh-100 position-sticky top-0 z-2" style="background-color: #1a3c34">
+<div class="vh-100 position-sticky top-0 start-0 z-2 w-auto" style="background-color: #1a3c34">
     <div class="p-0 p-4 d-flex flex-column h-100">
-        <div class="d-flex align-items-center justify-content-center gap-3 mt-3 position-relative">
+        <div class="d-flex align-items-center justify-content-center gap-3 mt-3">
             <img src="/assets/img/logo.png" class="object-fit-contain" width="50px" height="50px" alt="">
             <div
                 class="navText w-100 d-flex justify-content-between align-items-center d-flex align-items-center justify-content-between w-100">
                 <h1 class="p-0 m-0 fs-6">Alijis Campus Library</h1>
             </div>
-            <span id="open-menu"
-                class="openCloseMenu material-symbols-outlined position-absolute z-5 bg-success text-light rounded-2 text-center"
-                style="right: -40;" role="button">
-                chevron_right
-            </span>
-            <span id="close-menu"
-                class="openCloseMenu material-symbols-outlined position-absolute z-5 bg-success text-light rounded-2 text-center"
-                style="right: -40;" role="button">
-                chevron_left
-            </span>
+
         </div>
         <div class="d-flex flex-column flex-grow-1 justify-content-between mt-5">
             <div class="d-flex flex-column gap-2">
@@ -75,7 +72,7 @@
             </div>
     </div>
     </a>
-    <a href="" class="menu-links p-3 text-decoration-none d-flex align-items-center gap-2">
+    <a href="/admin-downloadables" class="menu-links p-3 text-decoration-none d-flex align-items-center gap-2">
         <span class="material-symbols-outlined">
             download
         </span>

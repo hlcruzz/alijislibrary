@@ -13,38 +13,41 @@
     <?php include "./components/navbar.php" ?>
 
     <div class="container-fluid p-0">
-        <div class="container-lg d-flex justify-content-between pb-5" style="min-height: 90vh" id="home">
-            <div class="d-flex align-items-center align-items-lg-start d-lg-flex flex-column w-100 w-lg-auto">
-                <div class="flex-grow-1 d-flex justify-content-center flex-column w-lg-auto w-100 text-center text-lg-start align-items-center align-items-lg-start"
-                    id="text-cont1">
-                    <h1 class="fs-2">
-                        WELCOME TO OUR <br />
-                        ALIJIS CAMPUS LIBRARY
-                    </h1>
-                    <p class="fw-light fs-6">
-                        We are delighted to have you visit our library, a place where <br />
-                        knowledge, creativity, and curiosity thrive.
-                    </p>
-                    <div class="d-flex">
-                        <a href="#home2" class="browse">BROWSE</a>
-                        <a href="#home2" class="browse"><span class="material-symbols-outlined"> arrow_forward
-                            </span></a>
+        <div class="container-fluid">
+            <div class="container-lg d-flex justify-content-between pb-5" style="min-height: 90vh" id="home">
+                <div class="d-flex align-items-center align-items-lg-start d-lg-flex flex-column w-100 w-lg-auto">
+                    <div class="flex-grow-1 d-flex justify-content-center flex-column w-lg-auto w-100 text-center text-lg-start align-items-center align-items-lg-start"
+                        id="text-cont1">
+                        <h1 class="fs-2">
+                            WELCOME TO OUR <br />
+                            ALIJIS CAMPUS LIBRARY
+                        </h1>
+                        <p class="fw-light fs-6">
+                            We are delighted to have you visit our library, a place where <br />
+                            knowledge, creativity, and curiosity thrive.
+                        </p>
+                        <div class="d-flex">
+                            <a href="#home2" class="browse">BROWSE</a>
+                            <a href="#home2" class="browse"><span class="material-symbols-outlined"> arrow_forward
+                                </span></a>
+                        </div>
                     </div>
+                    <img src="assets/img/books1.png" class="w-50" alt="" />
                 </div>
-                <img src="assets/img/books1.png" class="w-50" alt="" />
-            </div>
-            <div class="w-55 d-none d-lg-flex align-items-end">
-                <div class="d-flex align-items-end h-100">
-                    <img src="assets/img/books2.png" style="width: 200px; position: relative; left: 100" alt="" />
-                    <img src="assets/img/avatar.png" style="height: 90%" alt="" />
+                <div class="w-55 d-none d-lg-flex align-items-end">
+                    <div class="d-flex align-items-end h-100">
+                        <img src="assets/img/books2.png" style="width: 200px; position: relative; left: 100" alt="" />
+                        <img src="assets/img/avatar.png" style="height: 90%" alt="" />
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="container-fluid pt-4 pb-4">
+
+        <div class="content-bg container-fluid pt-4 pb-4">
             <div class="container-lg d-flex justify-content-between align-items-end gap-5">
                 <img src="assets/img/books3.png" class="d-none d-xl-block" width="150px" alt="" />
                 <div class="w-100">
-                    <h1 class="text-center" id="whatsnew">What's New</h1>
+                    <h1 class="text-center" id="home2" style="color: #106d21;">What's New</h1>
                     <p class="text-center">Discover new books, updated collections, and features in our library. Explore
                         what's new today!</p>
 
@@ -138,7 +141,7 @@
                 <img src="assets/img/books4.png" class="d-none d-xl-block" width="200px" alt="" />
             </div>
         </div>
-        <div class="container-fluid">
+        <div class=" container-fluid">
             <div class="container-lg mt-5 mb-5">
                 <div class="row">
                     <div class="col col-12 col-lg-7 pe-0 pe-lg-5">
@@ -222,14 +225,14 @@
                         <div class="container-fluid border bg-dark  mt-5 position-relative" id="sched-cont">
                             <i class="fa-solid fa-bookmark position-absolute" id="banner"></i>
                             <span class="material-symbols-outlined" id="clock-icon"> nest_clock_farsight_analog </span>
-                            <h1 class="fs-4">Library Hours</h1>
+                            <h1 class="fs-4 text-light">Library Hours</h1>
 
                             <div class="d-flex flex-column gap-4">
-                                <div class="mt-5 d-flex flex-column">
+                                <div class="mt-5 d-flex flex-column text-light">
                                     <h2 class="fs-5">Regular Semester</h2>
                                     <p class="fs-6 ms-5">7:30 AM - 6:00 PM</p>
                                 </div>
-                                <div>
+                                <div class="text-light">
                                     <h2 class="fs-5">Summer Break</h2>
                                     <p class="fs-6 ms-5">8:00 AM - 5:00 PM</p>
                                 </div>
@@ -239,46 +242,10 @@
                 </div>
             </div>
         </div>
-        <div class="container-fluid">
-            <div class="container-lg">
-                <div class="text-center">
-                    <h1 class="fs-2">Online Services</h1>
-                    <p class="fs-6">Access downloadable forms and make reservations with ease!</p>
-                </div>
-                <div class="row">
-                    <div class="col col-12 col-md-6 col-xxl-4 p-0 p-3">
-                        <div class="card p-4">
-                            <img src="assets/img/download1.jpg" class="w-100 rounded-3"
-                                style="height: 300px; object-fit: cover" alt="" />
-                            <h1 class="fs-5 mt-3 pb-2">Suggest a Purchase Book</h1>
-                            <a href="assets/download/CHMSC-L-F08-books-recommended.doc" download
-                                class="btn btn-success d-flex text-decoration-none gap-1"
-                                style="width: max-content">Download <span class="material-symbols-outlined"> download
-                                </span></a>
-                        </div>
-                    </div>
-                    <div class="col col-12 col-md-6 col-xxl-4 p-0 p-3">
-                        <div class="card p-4">
-                            <img src="assets/img/download2.jpg" class="w-100 rounded-3"
-                                style="height: 300px; object-fit: cover" alt="" />
-                            <h1 class="fs-5 mt-3 pb-2">Recommendation Form</h1>
-                            <a href="" class="btn btn-success d-flex text-decoration-none gap-1"
-                                style="width: max-content">Download <span class="material-symbols-outlined"> download
-                                </span></a>
-                        </div>
-                    </div>
-                    <div class="col col-12 col-md-6 col-xxl-4 p-0 p-3">
-                        <div class="card p-4">
-                            <img src="assets/img/download3.jpg" class="w-100 rounded-3"
-                                style="height: 300px; object-fit: cover" alt="" />
-                            <h1 class="fs-5 mt-3 pb-2">AVRC Online Reservation Form</h1>
-                            <a href="assets/download/CHMSC-L-F16-AVR-REQUEST-FORM2.xlsx" download
-                                class="btn btn-success d-flex text-decoration-none gap-1"
-                                style="width: max-content">Download <span class="material-symbols-outlined"> download
-                                </span></a>
-                        </div>
-                    </div>
-                </div>
+        <div class="container-fluid content-bg">
+            <div class="container-lg pt-5" id="downloadsCont">
+
+
             </div>
             <div class="container-lg pb-5 mt-5">
                 <div class="text-center">

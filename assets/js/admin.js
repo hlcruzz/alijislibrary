@@ -89,23 +89,3 @@ export function checkAdminLogin(response) {
 export function sliceText(txt, limit) {
   return txt.length > limit ? txt.substr(0, limit) + "..." : txt;
 }
-export function dataTable(tableName) {
-  var table = tableName.DataTable({
-    scrollY: "600px",
-    scrollCollapse: true,
-    responsive: true,
-    columnDefs: [
-      {
-        targets: 0,
-        width: "10px",
-      },
-    ],
-  });
-
-  // Reverse the rows on initialization
-  var rows = table.rows().nodes().toArray(); // Get all rows
-  rows.reverse(); // Reverse the row order
-
-  // Append reversed rows to the table
-  table.clear().rows.add(rows).draw();
-}

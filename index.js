@@ -17,29 +17,19 @@ import {
   fetchNewsByLimit,
   fetchNewsByCondition,
   fetchNewsImgById,
+  addDownloadble,
+  fetchAllDownloadable,
+  deleteDownloadable,
 } from "./router/index-route.js";
-import {
-  checkCookie,
-  darkTheme,
-  lightTheme,
-  sideMenu,
-  setCookie,
-} from "./utils/cookies.js";
+import { checkCookie, darkTheme, lightTheme, sideMenu, setCookie } from "./utils/cookies.js";
 import { setSession } from "./utils/session.js";
-import {
-  seePassword,
-  adminNotifCont,
-  timeAgo,
-  showLoading,
-  checkAdminLogin,
-  sliceText,
-  dataTable,
-} from "./assets/js/admin.js";
+import { seePassword, adminNotifCont, timeAgo, showLoading, checkAdminLogin, sliceText } from "./assets/js/admin.js";
 $(document).ready(function () {
   ClickEvents();
   FetchEvents();
   ModalEvents();
   setCookie();
+  DataTable();
 });
 
 function ClickEvents() {
@@ -58,16 +48,14 @@ function ClickEvents() {
     const feedbackEmail = $("#feedbackEmail").val();
     const feedbackMsg = $("#feedbackMsg").val();
 
-    submitFeedback(feedbackName, feedbackEmail, feedbackMsg).then(
-      (response) => {
-        if (response == 1) {
-          alert("Feedback Submitted");
-          $("#contactForm").trigger("reset");
-        } else {
-          alert(response);
-        }
+    submitFeedback(feedbackName, feedbackEmail, feedbackMsg).then((response) => {
+      if (response == 1) {
+        alert("Feedback Submitted");
+        $("#contactForm").trigger("reset");
+      } else {
+        alert(response);
       }
-    );
+    });
   });
 
   $("#theme-input").on("click", function () {
@@ -101,16 +89,14 @@ function ClickEvents() {
     const feedbackEmail = $("#feedbackEmail").val();
     const feedbackMsg = $("#feedbackMsg").val();
 
-    submitFeedback(feedbackName, feedbackEmail, feedbackMsg).then(
-      (response) => {
-        if (response == 1) {
-          alert("Feedback Submitted");
-          $("#contactForm").trigger("reset");
-        } else {
-          alert(response);
-        }
+    submitFeedback(feedbackName, feedbackEmail, feedbackMsg).then((response) => {
+      if (response == 1) {
+        alert("Feedback Submitted");
+        $("#contactForm").trigger("reset");
+      } else {
+        alert(response);
       }
-    );
+    });
   });
 
   let notifLimit = 10;
@@ -181,9 +167,7 @@ function ClickEvents() {
   //DELETE NEWS BY ID
   $(document).on("click", ".deleteNews", function () {
     const id = $(this).attr("data-id");
-    const confirmDelete = confirm(
-      "Are you sure you want to delete this library news?"
-    );
+    const confirmDelete = confirm("Are you sure you want to delete this library news?");
 
     if (confirmDelete) {
       deleteNewsById(id).then((response) => {
@@ -200,9 +184,7 @@ function ClickEvents() {
   //DELETE NEWS IMG BY ID
   $(document).on("click", ".deleteNewsImg", function () {
     const id = $(this).attr("data-id");
-    const confirmDelete = confirm(
-      "Are you sure you want to delete this image?"
-    );
+    const confirmDelete = confirm("Are you sure you want to delete this image?");
 
     if (confirmDelete) {
       deleteNewsImgById(id).then((response) => {
@@ -226,6 +208,21 @@ function ClickEvents() {
         alert(response);
       }
     });
+  });
+
+  $(document).on("click", ".deleteDownload", function () {
+    const id = $(this).attr("data-id");
+    const confirmDel = confirm("Are you sure you want to delete this file?");
+    if (confirmDel) {
+      deleteDownloadable(id).then((response) => {
+        if (response == 1) {
+          alert("Downloadble Deleted");
+          location.reload();
+        } else {
+          alert(response);
+        }
+      });
+    }
   });
 
   //USER SIDE
@@ -269,15 +266,25 @@ function ClickEvents() {
       $("#searchResultDisplay").html(`Search Results for : ${searchVal}`);
     }
   });
+
+  $("#downloadbleForm").submit(function (event) {
+    event.preventDefault();
+    const formData = new FormData(this);
+    addDownloadble(formData).then((response) => {
+      if (response == 1) {
+        alert("File Uploaded");
+      } else {
+        alert(response);
+      }
+    });
+  });
 }
 function FetchEvents() {
   checkCookie();
 
   setInterval(async () => {
     try {
-      const response = await fetchFeedbacks(
-        sessionStorage.getItem("notifLimit")
-      );
+      const response = await fetchFeedbacks(sessionStorage.getItem("notifLimit"));
       const data = JSON.parse(response);
       const tbody = $("#tbody-notification");
       tbody.empty();
@@ -287,10 +294,7 @@ function FetchEvents() {
 
         const textTime = timeAgo(element.feedbackTime);
         const isReadText = element.feedbackIsRead == 0 ? "" : "text-muted";
-        const isReadIcon =
-          element.feedbackIsRead == 0
-            ? `<i class="fa-solid fa-circle text-primary position-absolute" style="font-size: 10px; top:10;"></i>`
-            : "";
+        const isReadIcon = element.feedbackIsRead == 0 ? `<i class="fa-solid fa-circle text-primary position-absolute" style="font-size: 10px; top:10;"></i>` : "";
         const row = `
         <tr class="position-relative">
           <td class="ps-4" role="button">
@@ -334,47 +338,6 @@ function FetchEvents() {
     $("#totalFeedbackRows").html(data.totalRows);
   });
 
-  //FETCH LIBRARY NEWS
-  fetchAllNews().then((response) => {
-    const data = JSON.parse(response);
-    //ADMIN TABLE
-    data.forEach(function (element) {
-      const img =
-        element.library_news_img_path == "" ||
-        element.library_news_img_path == null
-          ? ""
-          : `
-              <div>
-                  <img src="${element.library_news_img_path}" width="40px" height="40px"
-                      class="object-fit-cover" alt="">
-              </div>`;
-      const tbody = $("#tbody");
-      const row = `
-      <tr>
-          <td class="text-start">${element.news_id}</td>
-          <td>
-              ${img}
-          </td>
-          <td>${element.library_news_subject}</td>
-          <td>${sliceText(element.library_news_txt, 30)}</td>
-          <td>${element.text_date}</td>
-          <td>
-              <div>
-                  <button class="editNews btn btn-success" data-id="${
-                    element.news_id
-                  }" data-bs-toggle="modal" data-bs-target="#editNewsModal"><i class="fa-solid fa-pen"></i></button>
-                  <button class="deleteNews btn btn-danger" data-id="${
-                    element.news_id
-                  }"><i class="fa-solid fa-trash"></i></button>
-              </div>
-          </td>
-      </tr>
-      `;
-
-      tbody.append(row);
-    });
-    dataTable($("#table_news"));
-  });
   fetchNewsByLimit(5).then((response) => {
     const data = JSON.parse(response);
 
@@ -388,9 +351,9 @@ function FetchEvents() {
       <div>
           <h1 class="fs-5">${subject}</h1>
           <p class="text-dark-emphasis" style="font-size: small;">${message}</p>
-          <div class="news-date d-flex gap-2">
-              <span class="material-symbols-outlined" style="font-size: smaller;"> arrow_right_alt </span>
-              <p style="font-size: smaller;">${date}</p>
+          <div class="news-date d-flex align-items-center gap-2">
+              <span class="material-symbols-outlined fs-4"> arrow_right_alt </span>
+              <small class="p-0 m-0">${date}</small>
           </div>
       </div>
       `;
@@ -425,16 +388,8 @@ function FetchEvents() {
     $("#newsLoading").show();
   }, 2000);
   setInterval(async () => {
-    const searchResult =
-      sessionStorage.getItem("searchVal") == "" ||
-      sessionStorage.getItem("searchVal") == null
-        ? ""
-        : sessionStorage.getItem("searchVal");
-    const limitNews =
-      sessionStorage.getItem("limitNews") == "" ||
-      sessionStorage.getItem("limitNews") == null
-        ? ""
-        : sessionStorage.getItem("limitNews");
+    const searchResult = sessionStorage.getItem("searchVal") == "" || sessionStorage.getItem("searchVal") == null ? "" : sessionStorage.getItem("searchVal");
+    const limitNews = sessionStorage.getItem("limitNews") == "" || sessionStorage.getItem("limitNews") == null ? "" : sessionStorage.getItem("limitNews");
     const response = await fetchNewsByCondition(searchResult, limitNews);
     const data = JSON.parse(response);
 
@@ -455,10 +410,7 @@ function FetchEvents() {
         for (let index = 0; index < Math.min(4, imageArray.length); index++) {
           const element = imageArray[index];
 
-          const hasReminder =
-            imageArray.length - Math.min(4, imageArray.length) > 0
-              ? imageArray.length - Math.min(4, imageArray.length)
-              : "";
+          const hasReminder = imageArray.length - Math.min(4, imageArray.length) > 0 ? imageArray.length - Math.min(4, imageArray.length) : "";
 
           const reminder =
             index === Math.min(4, imageArray.length) - 1 && hasReminder
@@ -493,10 +445,7 @@ function FetchEvents() {
         newsContainer.append(row);
       });
 
-      if (
-        parseInt(sessionStorage.getItem("limitNews")) >
-        parseInt(sessionStorage.getItem("newsRows"))
-      ) {
+      if (parseInt(sessionStorage.getItem("limitNews")) > parseInt(sessionStorage.getItem("newsRows"))) {
         $("#newsLoading").hide();
       }
     } else {
@@ -504,6 +453,43 @@ function FetchEvents() {
       $("#newsLoading").hide();
     }
   }, 1000);
+
+  fetchAllDownloadable().then((response) => {
+    const data = JSON.parse(response);
+
+    console.log(data);
+
+    if (data.length > 0) {
+      const downloadsCont = $("#downloadsCont");
+      const downloadHead = `
+      <div class="text-center">
+            <h1 class="fs-2">Online Services</h1>
+            <p class="fs-6">Access downloadable forms and make reservations with ease!</p>
+        </div>
+      `;
+      const row = `<div class="row" id="row-download">
+
+                </div>`;
+      downloadsCont.append(downloadHead);
+      downloadsCont.append(row);
+      data.forEach((element) => {
+        const child = `
+          <div class="col col-12 col-md-6 col-xxl-4 p-0 p-3">
+              <div class="card p-4">
+                  <img src="./assets/img/download1.jpg" class="w-100 rounded-3"
+                      style="height: 300px; object-fit: cover" alt="" />
+                  <h1 class="fs-5 mt-3 pb-2">${element.downloads_name}</h1>
+                  <a href="${element.downloads_path}" download
+                      class="btn btn-success d-flex text-decoration-none gap-1"
+                      style="width: max-content">Download <span class="material-symbols-outlined"> download
+                      </span></a>
+              </div>
+          </div>
+        `;
+        $("#row-download").append(child);
+      });
+    }
+  });
 }
 function ModalEvents() {
   //VIEW NOTIFICATION MODAL
@@ -571,12 +557,7 @@ function ModalEvents() {
       $("#cancelReply").hide();
       $("#sendReply").hide();
       $("#submitReplyLoading").show();
-      submitReplyFeedback(
-        feedbackId,
-        feedbackName,
-        feedbackEmail,
-        feedbackReply
-      ).then((response) => {
+      submitReplyFeedback(feedbackId, feedbackName, feedbackEmail, feedbackReply).then((response) => {
         alert(response);
         location.reload();
       });
@@ -600,11 +581,138 @@ function ModalEvents() {
       addNews(formData).then((response) => {
         event.preventDefault();
         alert(response);
+        location.reload();
       });
     });
 
     $("#addNewsModal").on("hide.bs.modal", function () {
       $("#addNewsForm").trigger("reset");
+    });
+  });
+}
+function DataTable() {
+  //FETCH LIBRARY NEWS
+  fetchAllNews().then((response) => {
+    const data = JSON.parse(response);
+    //ADMIN TABLE LIBRARY NEWS
+    $("#table_news").DataTable({
+      data: data,
+      columnDefs: [
+        {
+          targets: 0,
+          width: "10px",
+          className: "text-center",
+        },
+      ],
+      columns: [
+        {
+          data: "news_id",
+          title: "#",
+          render: function (data, type, row) {
+            return `<span class='badge bg-success'>${data}</span>`;
+          },
+        },
+        {
+          data: "library_news_img_path",
+          title: "Img",
+          render: function (data, type, row) {
+            const result =
+              data == null || data == ""
+                ? ""
+                : `<div>
+                  <img src="${data}" width="40px" height="40px"
+                     class="object-fit-cover" alt="">
+              </div>`;
+            return result;
+          },
+        },
+        {
+          data: "library_news_subject",
+          title: "Subject",
+          render: function (data, type, row) {
+            return sliceText(data, 30);
+          },
+        },
+        {
+          data: "library_news_txt",
+          title: "Messsage",
+          render: function (data, type, row) {
+            return sliceText(data, 30);
+          },
+        },
+        {
+          data: "text_date",
+          title: "Date",
+          render: function (data, type, row) {
+            return data;
+          },
+        },
+        {
+          data: null,
+          title: "Action",
+          render: function (data, type, row) {
+            return `
+              <div>
+                <button class="editNews btn btn-success" data-id="${row.news_id}" data-bs-toggle="modal" data-bs-target="#editNewsModal"><i class="fa-solid fa-pen"></i></button>
+                <button class="deleteNews btn btn-danger" data-id="${row.news_id}"><i class="fa-solid fa-trash"></i></button>
+            </div>`;
+          },
+        },
+      ],
+    });
+  });
+
+  fetchAllDownloadable().then((response) => {
+    const data = JSON.parse(response);
+    // ADMIN TABLE DOWNLOADABLES
+    $("#table_dwonloads").DataTable({
+      data: data,
+      columnDefs: [
+        {
+          targets: 0,
+          width: "10px",
+          className: "text-center",
+        },
+      ],
+      columns: [
+        {
+          data: "id",
+          title: "#",
+          render: function (data, type, row) {
+            return `<span class='badge bg-success'>${data}</span>`;
+          },
+        },
+        {
+          data: "downloads_name",
+          title: "Filename",
+          render: function (data, type, row) {
+            return data;
+          },
+        },
+        {
+          data: "downloads_type",
+          title: "Subject",
+          render: function (data, type, row) {
+            return data;
+          },
+        },
+        {
+          data: "text_date",
+          title: "Date",
+          render: function (data, type, row) {
+            return data;
+          },
+        },
+
+        {
+          data: null,
+          title: "Action",
+          render: function (data, type, row) {
+            return `
+              <button class="deleteDownload btn btn-danger" data-id="${row.id}"><i class="fa-solid fa-trash"></i></button>`;
+          },
+        },
+      ],
     });
   });
 }

@@ -7,6 +7,7 @@
 
   <link rel="stylesheet" href="assets/css/about.css" />
   <?php include "./components/links.php" ?>
+  <?php include "./components/modal.php" ?>
 </head>
 <?php $page = "about"; ?>
 
@@ -28,6 +29,112 @@
     </div>
   </div>
   <div class="container-fluid">
+    <div class="container-lg py-5">
+      <div class="row">
+        <div class="col col-12 col-md-5 p-0">
+          <img src="./assets/img/alijis-campus.png" class="w-100 h-100 object-fit-cover rounded-4" alt="">
+        </div>
+        <div class="col col-12 col-md-7 p-0">
+          <div class="p-4 ms-md-4">
+            <h1 class="fs-3 fw-bolder text-success pb-3">About US</h1>
+            <p>
+              Welcome to <b>Alijis Campus Library</b>, a place where knowledge, learning, and community come together.
+              Our
+              library is dedicated to providing access to a vast collection of books, digital resources, and research
+              materials to support education and lifelong learning.
+              <br>
+              <br>
+              At <b>Alijis Campus Library</b>, we believe that libraries are more than just books—they are gateways to
+              discovery,
+              creativity, and innovation. Whether you are a student, researcher, or casual reader, our library offers a
+              welcoming space for reading, studying, and exploring new ideas.
+              <br>
+              <br>
+              We are committed to fostering a love for reading and learning by offering a variety of services, including
+              book lending, research assistance, digital resources, and educational programs. Our team is always ready
+              to help you find the information and resources you need.
+              <br>
+              <br>
+              Join us in our mission to inspire knowledge and empower minds. Visit <b>Alijis Campus Library</b> today
+              and
+              discover a world of possibilities!
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <div class="container-lg">
+      <div class="row">
+        <div class="foundation col col-12 col-sm-6 col-lg-3 p-0">
+          <div class="card-about card m-3 p-3 border-2" data-bs-toggle="modal" data-bs-target="#aboutModal">
+            <div class="d-flex justify-content-center py-5">
+              <span class="d-flex justify-content-center align-items-center bg-primary rounded-2 text-light"
+                style="width: 100px; height: 100px; transform: rotate(45deg);">
+                <i class="fa-solid fa-flag fs-3 m-5" style="transform: rotate(-45deg);"></i>
+              </span>
+            </div>
+            <div class="d-flex align-items-center">
+              <hr class="border border-dark w-100">
+              <i class="fa-solid fa-diamond text-muted opacity-50"></i>
+              <hr class="border border-dark w-100">
+            </div>
+            <p class="text-center fs-5 text-muted mt-3">Mission</p>
+          </div>
+        </div>
+        <div class="foundation col col-12 col-sm-6 col-lg-3 p-0">
+          <div class="card-about card m-3 p-3 border-2" data-bs-toggle="modal" data-bs-target="#aboutModal">
+            <div class="d-flex justify-content-center py-5">
+              <span class="d-flex justify-content-center align-items-center bg-danger rounded-2 text-light"
+                style="width: 100px; height: 100px; transform: rotate(45deg);">
+                <i class="fa-solid fa-eye fs-3 m-5" style="transform: rotate(-45deg);"></i>
+              </span>
+            </div>
+            <div class="d-flex align-items-center">
+              <hr class="border border-dark w-100">
+              <i class="fa-solid fa-diamond text-muted opacity-50"></i>
+              <hr class="border border-dark w-100">
+            </div>
+            <p class="text-center fs-5 text-muted mt-3">Vision</p>
+          </div>
+        </div>
+        <div class="foundation col col-12 col-sm-6 col-lg-3 p-0">
+          <div class="card-about card m-3 p-3 border-2" data-bs-toggle="modal" data-bs-target="#aboutModal">
+            <div class="d-flex justify-content-center py-5">
+              <span class="d-flex justify-content-center align-items-center bg-success rounded-2 text-light"
+                style="width: 100px; height: 100px; transform: rotate(45deg);">
+                <i class="fa-solid fa-chart-line fs-3 m-5" style="transform: rotate(-45deg);"></i>
+              </span>
+            </div>
+            <div class="d-flex align-items-center">
+              <hr class="border border-dark w-100">
+              <i class="fa-solid fa-diamond text-muted opacity-50"></i>
+              <hr class="border border-dark w-100">
+            </div>
+            <p class="text-center fs-5 text-muted mt-3">Goals</p>
+          </div>
+        </div>
+        <div class="foundation col col-12 col-sm-6 col-lg-3 p-0">
+          <div class="card-about card m-3 p-3 border-2" data-bs-toggle="modal" data-bs-target="#aboutModal">
+            <div class="d-flex justify-content-center py-5">
+              <span class="d-flex justify-content-center align-items-center bg-warning rounded-2 text-light"
+                style="width: 100px; height: 100px; transform: rotate(45deg);">
+                <i class="fa-solid fa-clipboard-check fs-3 m-5" style="transform: rotate(-45deg);"></i>
+              </span>
+            </div>
+            <div class="d-flex align-items-center">
+              <hr class="border border-dark w-100">
+              <i class="fa-solid fa-diamond text-muted opacity-50"></i>
+              <hr class="border border-dark w-100">
+            </div>
+            <p class="text-center fs-5 text-muted mt-3">Objectives</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <div class="container-fluid">
     <div class="container-lg mt-5 mb-5">
       <div class="row mt-5">
         <div class="col col-12 col-lg-6 p-3">
@@ -93,7 +200,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
   <div class="container-fluid">
     <div class="container-lg">
       <div class="d-flex align-items-center gap-3">
@@ -232,7 +339,7 @@
 
       <div class="container-lg">
         <div class="d-flex justify-content-center align-items-center">
-          <div class="col col-12 col-md-6 col-lg-4 p-3 text-center">
+          <div class="col col-12 col-sm-6 col-lg-3 col-lg-4 p-3 text-center">
             <img src="assets/img/librarian1.png" class="w-100" style="height: 300px; object-fit: contain" />
             <div class="mt-3">
               <h1 class="fs-5 text-dark m-0">Ms. Ma Loreta J. Santes RL, MSLS</h1>
