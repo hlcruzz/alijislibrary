@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 21, 2025 at 04:43 AM
+-- Generation Time: Mar 25, 2025 at 03:22 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -40,6 +40,29 @@ CREATE TABLE `accounts` (
 
 INSERT INTO `accounts` (`id`, `accountUsername`, `accountPassword`, `accountLogin`) VALUES
 (1, 'admin', 'admin', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `downloads`
+--
+
+CREATE TABLE `downloads` (
+  `id` int(11) NOT NULL,
+  `downloads_name` varchar(50) NOT NULL,
+  `downloads_path` varchar(100) NOT NULL,
+  `downloads_type` varchar(50) NOT NULL,
+  `downloads_date` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `downloads`
+--
+
+INSERT INTO `downloads` (`id`, `downloads_name`, `downloads_path`, `downloads_type`, `downloads_date`) VALUES
+(2, 'DataTables example - Bootstrap 5.pdf', './assets/download/DataTables example - Bootstrap 5.pdf', 'pdf', '2025-03-24 05:57:17'),
+(3, 'DTR.pdf', './assets/download/DTR.pdf', 'pdf', '2025-03-24 06:48:09'),
+(4, 'CHMSC-L-F08-books-recommended (1).doc', './assets/download/CHMSC-L-F08-books-recommended (1).doc', 'doc', '2025-03-24 07:10:24');
 
 -- --------------------------------------------------------
 
@@ -147,7 +170,12 @@ INSERT INTO `library_news` (`id`, `library_news_subject`, `library_news_txt`, `l
 (22, 'New Library Mobile App Launched', 'We are thrilled to announce the launch of our brand-new mobile app! The app allows you to browse the catalog, reserve books, check your account, and receive notifications about upcoming events—all from your phone. Download it today from the App Store or Google Play!', '2025-03-18 02:24:06'),
 (23, 'Library Art Exhibit: Local Artists Showcase', 'The library is hosting an art exhibit showcasing works by local artists. The exhibit will feature paintings, sculptures, photography, and mixed-media pieces. The exhibit is open to the public from April 1st to April 15th, and we invite everyone to come and support our talented community artists.', '2025-03-18 02:24:06'),
 (24, 'asd', 'asdasd', '2025-03-18 02:30:45'),
-(25, 'asd', 'adasd', '2025-03-18 02:59:17');
+(25, 'asd', 'adasd', '2025-03-18 02:59:17'),
+(26, 'asd', 'asda', '2025-03-24 02:34:42'),
+(27, 'asdahfdgh', 'dghghdh', '2025-03-24 02:37:17'),
+(28, '678568fityuity', 'u678fgifui', '2025-03-24 02:41:42'),
+(29, 'asda', 'sdasdasd', '2025-03-24 03:06:38'),
+(30, '546ydrtydrty', '4567h557h7', '2025-03-24 03:11:45');
 
 -- --------------------------------------------------------
 
@@ -185,7 +213,11 @@ INSERT INTO `library_news_img` (`id`, `library_news_id`, `library_news_img_path`
 (46, 10, './assets/img/libraryNews/brain.png'),
 (48, 24, './assets/img/libraryNews/harold.jpg'),
 (50, 7, './assets/img/libraryNews/avatar container.png'),
-(51, 7, './assets/img/libraryNews/menu.png');
+(51, 7, './assets/img/libraryNews/menu.png'),
+(54, 28, ''),
+(55, 29, ''),
+(56, 30, ''),
+(57, 11, './assets/img/libraryNews/ribbon.png');
 
 --
 -- Indexes for dumped tables
@@ -195,6 +227,12 @@ INSERT INTO `library_news_img` (`id`, `library_news_id`, `library_news_img_path`
 -- Indexes for table `accounts`
 --
 ALTER TABLE `accounts`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `downloads`
+--
+ALTER TABLE `downloads`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -234,6 +272,12 @@ ALTER TABLE `accounts`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `downloads`
+--
+ALTER TABLE `downloads`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT for table `feedbacks`
 --
 ALTER TABLE `feedbacks`
@@ -249,13 +293,13 @@ ALTER TABLE `feedbacks_reply`
 -- AUTO_INCREMENT for table `library_news`
 --
 ALTER TABLE `library_news`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `library_news_img`
 --
 ALTER TABLE `library_news_img`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
 -- Constraints for dumped tables
