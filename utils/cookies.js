@@ -39,6 +39,23 @@ export function checkCookie() {
         this.style.setProperty("display", "flex", "important");
       });
   }
+
+  switch (sessionStorage.getItem("settingsNav")) {
+    case "open":
+      $("#settingsNav").css({
+        "max-height": "500px",
+      });
+      break;
+    case "close":
+      $("#settingsNav").css({
+        "max-height": "0",
+      });
+      break;
+    default:
+      $("#settingsNav").css({
+        "max-height": "0",
+      });
+  }
 }
 export function darkTheme() {
   $.cookie("theme", "dark");
@@ -77,8 +94,9 @@ export function sideMenu(menu) {
     $(".openCloseMenu").eq(1).show();
     $.removeCookie("menu");
     $.cookie("menu", "open");
+    $.removeCookie("settingsNav");
   }
 }
-export function setCookie() {
-  sessionStorage.setItem("notifLimit", 10);
+export function setCookie(name, value) {
+  $.cookie(name, value);
 }

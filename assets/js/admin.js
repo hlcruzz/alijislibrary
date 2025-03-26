@@ -89,3 +89,30 @@ export function checkAdminLogin(response) {
 export function sliceText(txt, limit) {
   return txt.length > limit ? txt.substr(0, limit) + "..." : txt;
 }
+
+export function openNavigation(container, maxHeight) {
+  container.css({
+    "max-height": maxHeight + "px",
+  });
+}
+
+export function openFoundationWidget() {
+  $(".foundation-head").each(function (index) {
+    let num = 1;
+    const foundationBody = $(".foundation-body").eq(index);
+
+    $(this).on("click", function () {
+      let result = num++ % 2;
+
+      if (result == 1) {
+        foundationBody.css({
+          "max-height": "500px",
+        });
+      } else {
+        foundationBody.css({
+          "max-height": "0",
+        });
+      }
+    });
+  });
+}

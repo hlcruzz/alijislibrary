@@ -22,13 +22,12 @@ import {
   deleteDownloadable,
 } from "./router/index-route.js";
 import { checkCookie, darkTheme, lightTheme, sideMenu, setCookie } from "./utils/cookies.js";
-import { setSession } from "./utils/session.js";
-import { seePassword, adminNotifCont, timeAgo, showLoading, checkAdminLogin, sliceText } from "./assets/js/admin.js";
+import { setSession, checkSessionSettings } from "./utils/session.js";
+import { seePassword, adminNotifCont, timeAgo, showLoading, checkAdminLogin, sliceText, openNavigation, openFoundationWidget } from "./assets/js/admin.js";
 $(document).ready(function () {
   ClickEvents();
   FetchEvents();
   ModalEvents();
-  setCookie();
   DataTable();
 });
 
@@ -278,6 +277,32 @@ function ClickEvents() {
       }
     });
   });
+
+  checkSessionSettings();
+  $("#settings").on("click", function () {
+    const result = num++ % 2;
+    if (result == 1) {
+      setSession("settingsNav", "open");
+      $("#settingsNav").css({
+        "max-height": "500px",
+      });
+      $("#settingsArrow").css({
+        transform: "rotate(90deg)",
+        transition: "transform 0.3s ease",
+      });
+    } else {
+      sessionStorage.setItem("settingsNav", "close");
+      $("#settingsNav").css({
+        "max-height": "0",
+      });
+      $("#settingsArrow").css({
+        transform: "rotate(0)",
+        transition: "transform 0.3s ease",
+      });
+    }
+  });
+
+  openFoundationWidget();
 }
 function FetchEvents() {
   checkCookie();
@@ -322,6 +347,7 @@ function FetchEvents() {
     }
   }, 2000);
 
+  setSession("notifLimit", 10);
   fetchTotalReadFeedbacks().then((response) => {
     const data = JSON.parse(response);
     $("#totalIsReadFeedbacks").html(data.totalReadFeedbacks);
@@ -456,8 +482,6 @@ function FetchEvents() {
 
   fetchAllDownloadable().then((response) => {
     const data = JSON.parse(response);
-
-    console.log(data);
 
     if (data.length > 0) {
       const downloadsCont = $("#downloadsCont");

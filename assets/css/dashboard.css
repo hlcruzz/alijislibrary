@@ -8,44 +8,59 @@
   --light-bg: #2a983e;
   --default-bs-dark: #212529;
   --bg-darkmode: #9dc4bb;
+  --menu-dark: #1a3c34;
+  --menu-light: #059646;
 }
 body {
   scroll-behavior: smooth;
 }
+[data-bs-theme="light"] #admin-menu {
+  background-color: var(--menu-light);
+}
+[data-bs-theme="dark"] #admin-menu {
+  background-color: var(--menu-dark);
+}
 .navText {
   display: none !important;
   white-space: nowrap;
+  color: white;
 }
 .openCloseMenu:nth-child(3) {
   display: none;
 }
-a.menu-links {
+a.menu-links,
+a.settings-links {
   transition: 0.5s ease;
   border-radius: 10px;
+  cursor: pointer;
 }
 #logout {
   background-color: transparent;
 }
 [data-bs-theme="light"] a.menu-links,
 [data-bs-theme="light"] a.admin-cont,
-.navText {
+[data-bs-theme="light"] a.settings-links {
   color: white;
 }
 
 [data-bs-theme="dark"] a.menu-links,
+[data-bs-theme="dark"] a.settings-links,
 [data-bs-theme="dark"] a.admin-cont {
   color: white;
 }
 
-[data-bs-theme="dark"] a.menu-links:hover {
+[data-bs-theme="dark"] a.menu-links:hover,
+[data-bs-theme="dark"] a.settings-links:hover {
   background-color: #66c28e;
   color: var(--secondary-color);
 }
-[data-bs-theme="dark"] a.menu-links:hover .menu-icon {
+[data-bs-theme="dark"] a.menu-links:hover .menu-icon,
+[data-bs-theme="dark"] a.settings-links:hover .menu-icon {
   color: var(--secondary-color);
 }
 
-[data-bs-theme="light"] a.menu-links:hover {
+[data-bs-theme="light"] a.menu-links:hover,
+[data-bs-theme="light"] a.settings-links:hover {
   background-color: #66c28e;
   color: white;
 }
