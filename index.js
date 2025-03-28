@@ -1084,43 +1084,9 @@ function DataTable() {
           title: "Action",
           render: function (data, type, row) {
             return `
-                <button class="btn notif-link btn-primary" data-bs-toggle="modal" data-bs-target="#viewNotifModal" data-id="${row.id}" ><span class="material-symbols-outlined">
-chat_bubble
-</span></button>`;
+                <button class="btn notif-link btn-primary" data-bs-toggle="modal" data-bs-target="#viewNotifModal" data-id="${row.id}" ><span class="material-symbols-outlined">chat_bubble</span></button>`;
           },
         },
-
-        // {
-        //   data: "downloads_name",
-        //   title: "Filename",
-        //   render: function (data, type, row) {
-        //     return `<span class='badge bg-success'>${data.feedbackName}</span>`;
-        //   },
-        // },
-        // {
-        //   data: "downloads_type",
-        //   title: "Subject",
-        //   render: function (data, type, row) {
-        //     return `<span class='badge bg-success'>${data.feedbackName}</span>
-        //     <span class='badge bg-success'>${data.feedbackEmail}</span>`;
-        //   },
-        // },
-        // {
-        //   data: "text_date",
-        //   title: "Date",
-        //   render: function (data, type, row) {
-        //     return `<span class='badge bg-success'>${data.feedbackMsg}</span>`;
-        //   },
-        // },
-
-        // {
-        //   data: null,
-        //   title: "Action",
-        //   render: function (data, type, row) {
-        //     return `
-        //       <button class="deleteDownload btn btn-danger" data-id="${row.id}"><i class="fa-solid fa-trash"></i></button>`;
-        //   },
-        // },
       ],
       rowCallback: function (row, data, index) {
         $(row).addClass("position-relative");
