@@ -26,20 +26,13 @@
                                     role="button">
                                     <h1 class="fs-5 p-0 m-0 d-flex gap-3 align-items-center"><i
                                             class="fa-solid fa-flag"></i> Mission</h1>
-                                    <span class=" material-symbols-outlined fs-5">
+                                    <span class=" material-symbols-outlined fs-5 foundationArrow">
                                         arrow_forward_ios
                                     </span>
                                 </div>
                                 <div class="overflow-hidden foundation-body "
                                     style="max-height:0 ; transition: 1s ease;">
-                                    <p class="p-3">The College Library commits itself to provide its academic
-                                        community with
-                                        essential and appropriate services, required facilities, and balanced collection
-                                        of materials and resources necessary in meeting the current and future needs of
-                                        school programs and users’ informational, instructional, and personal
-                                        requirements. It assumes a pivotal role in institutional development through its
-                                        commitment to achieve success and efficient delivery of services in various
-                                        aspects of institutional instruction, research, and public service.</p>
+                                    <p class="p-3" id="missionTxt"></p>
                                 </div>
                             </div>
                         </div>
@@ -51,15 +44,13 @@
                                     role="button">
                                     <h1 class="fs-5 p-0 m-0 d-flex gap-3 align-items-center"><i
                                             class="fa-solid fa-eye"></i> Vision</h1>
-                                    <span class="material-symbols-outlined fs-5">
+                                    <span class="material-symbols-outlined fs-5 foundationArrow">
                                         arrow_forward_ios
                                     </span>
                                 </div>
                                 <div class="overflow-hidden foundation-body "
                                     style="max-height:0 ; transition: 1s ease;">
-                                    <p class="p-3">By 2022, the library will be a one stop learning venue by providing
-                                        various library information
-                                        resources and services.</p>
+                                    <p class="p-3" id="visionTxt"></p>
                                 </div>
                             </div>
                         </div>
@@ -69,16 +60,13 @@
                                     role="button">
                                     <h1 class="fs-5 p-0 m-0 d-flex gap-3 align-items-center"><i
                                             class="fa-solid fa-chart-line"></i> Goal</h1>
-                                    <span class="material-symbols-outlined fs-5">
+                                    <span class="material-symbols-outlined fs-5 foundationArrow">
                                         arrow_forward_ios
                                     </span>
                                 </div>
                                 <div class="overflow-hidden foundation-body "
                                     style="max-height:0 ; transition: 1s ease;">
-                                    <p class="p-3">To enhance the intellectual, physical, artistic, social, aesthetic
-                                        and spiritual growth and development
-                                        of students through wise and responsible use of library
-                                        resources.</p>
+                                    <p class="p-3" id="goalTxt"></p>
                                 </div>
                             </div>
                         </div>
@@ -88,29 +76,34 @@
                                     role="button">
                                     <h1 class="fs-5 p-0 m-0 d-flex gap-3 align-items-center"><i
                                             class="fa-solid fa-clipboard-check"></i> Objectives</h1>
-                                    <span class="material-symbols-outlined fs-5">
+                                    <span class="material-symbols-outlined fs-5 foundationArrow">
                                         arrow_forward_ios
                                     </span>
                                 </div>
                                 <div class="overflow-hidden foundation-body "
                                     style="max-height:0 ; transition: 1s ease;">
-                                    <p class="p-3">The library aims to support its mission and vision by providing
-                                        essential services and resources. It
-                                        supports the College's instruction, research, extension, and
-                                        production programs while continuously developing a well-balanced collection of
-                                        library resources. The
-                                        library ensures that facilities are available to maximize
-                                        the effective use of these resources and organizes information sources for easy
-                                        access by customers.
-                                        Additionally, it collaborates with faculty members to assist
-                                        in their instructional and research needs. Lastly, the library is committed to
-                                        offering services
-                                        tailored to customers with special needs, ensuring inclusivity
-                                        and accessibility for all.</p>
+                                    <p class="p-3" id="objectivesTxt"></p>
                                 </div>
                             </div>
                         </div>
                     </div>
+
+                    <form id="foundationForm" class="form-control p-4 mt-3">
+                        <h1 class="fs-5 m-0">Update Foundation</h1>
+                        <select name="foundationName" id="foundationName" class="form-select mt-3" required>
+                            <option value="" selected hidden>Select Content</option>
+                            <option value="Mission">Mission</option>
+                            <option value="Vision">Vision</option>
+                            <option value="Goal">Goal</option>
+                            <option value="Objectives">Objectives</option>
+                        </select>
+                        <div class="mt-3">
+                            <label for="">Text Content: </label>
+                            <textarea name="foundationTxt" required id="foundationTxt" cols="30" rows="10"
+                                class="form-control mt-3"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-success mt-3">Update</button>
+                    </form>
 
                     <!-- ABOUT US for GENERAL INFO -->
                     <!-- <form id="updateAboutUsForm" class="form-control p-4 pb-0 mt-3">

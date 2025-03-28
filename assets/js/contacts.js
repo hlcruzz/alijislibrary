@@ -10,8 +10,7 @@ function dropFAQ(p, plus, close) {
   });
 }
 
-$(".showFaq").each(function (index) {
-  $(this).on("click", function () {
-    dropFAQ($(`.faq-p`).eq(index), $(this), $(`.closeFaq`).eq(index));
-  });
+$(document).on("click", ".showFaq", function () {
+  const index = $(".showFaq").index(this);
+  dropFAQ($(`.faq-p`).eq(index), $(this), $(`.closeFaq`).eq(index));
 });

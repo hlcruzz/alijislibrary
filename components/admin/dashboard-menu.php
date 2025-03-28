@@ -15,6 +15,12 @@
         case 'settings-foundation':
             echo ".settings-links:nth-child(1) {background-color: #66c28e;color: white;}";
             break;
+        case 'settings-guidelines':
+            echo ".settings-links:nth-child(2) {background-color: #66c28e;color: white;}";
+            break;
+        case 'settings-faq':
+            echo ".settings-links:nth-child(3) {background-color: #66c28e;color: white;}";
+            break;
         default:
         # code... break;downloadble
     }
@@ -130,7 +136,7 @@
         </div>
 </div>
 </a>
-<a href="" class="settings-links p-3 text-decoration-none d-flex align-items-center gap-2">
+<a href="/admin-settings-guidelines" class="settings-links p-3 text-decoration-none d-flex align-items-center gap-2">
     <span class="material-symbols-outlined">
         warning
     </span>
@@ -141,7 +147,7 @@
     </div>
     </div>
 </a>
-<a href="" class="settings-links p-3 text-decoration-none d-flex align-items-center gap-2">
+<a href="/admin-settings-faq" class="settings-links p-3 text-decoration-none d-flex align-items-center gap-2">
     <span class="material-symbols-outlined">
         quiz
     </span>

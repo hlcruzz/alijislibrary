@@ -8,7 +8,7 @@
                 role="button"></i>
 
             <i class="fa-solid fa-bars openCloseMenu material-symbols-outlined  rounded-2 text-center" id="close-menu"
-                role="button"></i>
+                role="button" style="display: none;"></i>
             <h1 class="fs-5 ms-4 p-0 m-0">Admin Dashboard</h1>
         </div>
 

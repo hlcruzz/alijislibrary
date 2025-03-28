@@ -100,7 +100,7 @@ export function openFoundationWidget() {
   $(".foundation-head").each(function (index) {
     let num = 1;
     const foundationBody = $(".foundation-body").eq(index);
-
+    const foundationArrow = $(".foundationArrow").eq(index);
     $(this).on("click", function () {
       let result = num++ % 2;
 
@@ -108,11 +108,43 @@ export function openFoundationWidget() {
         foundationBody.css({
           "max-height": "500px",
         });
+        foundationArrow.css({
+          transform: "rotate(90deg)",
+          transition: "0.5s ease",
+        });
       } else {
         foundationBody.css({
           "max-height": "0",
+        });
+        foundationArrow.css({
+          transform: "rotate(0)",
+          transition: "0.5s ease",
         });
       }
     });
   });
 }
+$(document).on("click", ".guideBtn", function () {
+  const index = $(".guideBtn").index(this);
+  $(".guideBtn").css({
+    "background-color": "",
+    color: "",
+  });
+  $(this).css({
+    "background-color": "#13bc27",
+    color: "white",
+  });
+
+  $(".guideArrow").css("visibility", "hidden");
+  $(".guideArrow").eq(index).css("visibility", "visible");
+
+  $(".rules").hide();
+  $(".rules").eq(index).show();
+});
+
+$("#addRules").on("click", () => {
+  const inputCont = $("#inputRules");
+  const input = `<textarea name="guidelineRules[]" class="form-control" placeholder="Enter Rules"
+                                required rows="5"></textarea>`;
+  inputCont.append(input);
+});

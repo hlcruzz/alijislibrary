@@ -36,3 +36,22 @@
   transform: translateY(-20px);
   box-shadow: 0px 5px 5px rgb(139, 139, 139);
 }
+.guideBtn {
+  background-color: var(--bg-green);
+  transition: 0.3s ease;
+  white-space: nowrap;
+}
+.guideBtn:hover {
+  background-color: var(--primary-color);
+  color: white;
+}
+.guideArrow {
+  display: none;
+  color: var(--primary-color);
+}
+.rules {
+  display: none;
+}
+.rules:nth-child(1) {
+  display: block;
+}

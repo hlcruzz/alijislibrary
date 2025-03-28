@@ -20,6 +20,18 @@ import {
   addDownloadble,
   fetchAllDownloadable,
   deleteDownloadable,
+  fetchAllFoundation,
+  fetchFoundationByName,
+  updateFoundation,
+  addGuidelines,
+  fetchAllGuidelines,
+  fetchAllGuidelinesByName,
+  deleteGuidelineRuleById,
+  updateGuidelines,
+  addFAQ,
+  fetchAllFaq,
+  fetchFaqById,
+  updateFaq,
 } from "./router/index-route.js";
 import { checkCookie, darkTheme, lightTheme, sideMenu, setCookie } from "./utils/cookies.js";
 import { setSession, checkSessionSettings } from "./utils/session.js";
@@ -30,7 +42,6 @@ $(document).ready(function () {
   ModalEvents();
   DataTable();
 });
-
 function ClickEvents() {
   $("#adminForm").submit(function (event) {
     event.preventDefault();
@@ -303,24 +314,87 @@ function ClickEvents() {
   });
 
   openFoundationWidget();
+
+  $("#foundationForm").submit((event) => {
+    event.preventDefault();
+
+    const foundationName = $("#foundationName").val();
+    const foundationTxt = $("#foundationTxt").val();
+
+    updateFoundation(foundationName, foundationTxt).then((response) => {
+      if (response == foundationName) {
+        alert(`${response} Updated`);
+        location.reload();
+      } else {
+        alert(response);
+      }
+    });
+  });
+
+  $(document).on("click", ".editGuidlineBtn", function () {
+    const name = $(this).attr("data-name");
+    fetchAllGuidelinesByName(name).then((response) => {
+      const data = JSON.parse(response);
+      $("#editGuidelinesName").append(`<option value="${data.guidelineName}" selected hidden>${data.guidelineName}</option>`);
+
+      const rules = data.rules_txt.split("\n");
+      const rules_id = data.rules_id.split(",");
+      $("#rules_id").val(rules_id);
+      rules.forEach((element, index) => {
+        let rule_id = rules_id[index];
+
+        $("#editInputRules").append(`
+    <div class="d-flex gap-3 align-items-center rulesCont">
+      <textarea name="editGuidelineRules[]" value="${element}" class="form-control" placeholder="Enter Rules" required
+                rows="5">${element}</textarea>
+      <button type="button" id="deleteRule" data-id="${rule_id}" data-index="${index}" class="deleteRule btn btn-danger btn-sm">
+        <span class="material-symbols-outlined">delete</span>
+      </button>
+    </div>
+  `);
+      });
+    });
+  });
+
+  $(document).on("click", ".deleteRule", function () {
+    const id = $(this).attr("data-id");
+    const indexVal = $(this).attr("data-index");
+    deleteGuidelineRuleById(id).then((response) => {
+      if (response == 1) {
+        $(".rulesCont").eq(indexVal)[0].style.setProperty("display", "none", "important");
+      } else {
+        alert(response);
+      }
+    });
+  });
+
+  $(document).on("click", ".editFaqBtn", function () {
+    const id = $(this).attr("data-id");
+
+    fetchFaqById(id).then((response) => {
+      const data = JSON.parse(response);
+      $("#editFaqId").val(data.id);
+      $("#editQuestion").val(data.faq_question);
+      $("#editAnswer").val(data.faq_answer);
+    });
+  });
 }
 function FetchEvents() {
   checkCookie();
 
   setInterval(async () => {
-    try {
-      const response = await fetchFeedbacks(sessionStorage.getItem("notifLimit"));
-      const data = JSON.parse(response);
-      const tbody = $("#tbody-notification");
-      tbody.empty();
+    const response = await fetchFeedbacks(sessionStorage.getItem("notifLimit"));
+    const data = JSON.parse(response);
+    const tbody = $("#tbody-notification");
+    tbody.empty();
 
-      data.forEach(function (element) {
-        const textLength = sliceText(element.feedbackMsg, 30);
+    data.forEach(function (element) {
+      const textLength = sliceText(element.feedbackMsg, 30);
 
-        const textTime = timeAgo(element.feedbackTime);
-        const isReadText = element.feedbackIsRead == 0 ? "" : "text-muted";
-        const isReadIcon = element.feedbackIsRead == 0 ? `<i class="fa-solid fa-circle text-primary position-absolute" style="font-size: 10px; top:10;"></i>` : "";
-        const row = `
+      const textTime = timeAgo(element.feedbackTime);
+      const isReadText = element.feedbackIsRead == 0 ? "" : "text-muted";
+      const isReadIcon = element.feedbackIsRead == 0 ? `<i class="fa-solid fa-circle text-primary position-absolute" style="font-size: 10px; top:10;"></i>` : "";
+      const row = `
         <tr class="position-relative">
           <td class="ps-4" role="button">
             <div class="position-relatived d-flex align-items-center gap-2" style="min-width: 400px;">
@@ -340,11 +414,8 @@ function FetchEvents() {
           </td>
         </tr>
       `;
-        tbody.append(row);
-      });
-    } catch (error) {
-      console.error("Error fetching feedbacks:", error);
-    }
+      tbody.append(row);
+    });
   }, 2000);
 
   setSession("notifLimit", 10);
@@ -514,6 +585,139 @@ function FetchEvents() {
       });
     }
   });
+  fetchAllFoundation().then((response) => {
+    const data = JSON.parse(response);
+
+    //Admin Side
+    $("#missionTxt").html(data[0].foundationTxt);
+    $("#visionTxt").html(data[1].foundationTxt);
+    $("#goalTxt").html(data[2].foundationTxt);
+    $("#objectivesTxt").html(data[3].foundationTxt);
+
+    //User Side
+    const foundationCont = $("#foundationCont");
+    data.forEach((element, index) => {
+      let isIndex;
+      switch (index) {
+        case 0:
+          isIndex = "bg-primary";
+          break;
+        case 1:
+          isIndex = "bg-danger";
+          break;
+        case 2:
+          isIndex = "bg-success";
+          break;
+        case 3:
+          isIndex = "bg-warning";
+          break;
+        default:
+          break;
+      }
+      const content = `
+      <div class="col col-12 col-sm-6 col-lg-3 p-0">
+        <div class="foundation card-about card m-3 p-3 border-2" data-name="${element.foundationName}" data-bs-toggle="modal" data-bs-target="#aboutModal">
+          <div class="d-flex justify-content-center py-5">
+            <span class="d-flex justify-content-center align-items-center ${isIndex} rounded-2 text-light"
+              style="width: 100px; height: 100px; transform: rotate(45deg);">
+              <i class="fa-solid fa-flag fs-3 m-5" style="transform: rotate(-45deg);"></i>
+            </span>
+          </div>
+          <div class="d-flex align-items-center">
+            <hr class="border border-dark w-100">
+            <i class="fa-solid fa-diamond text-muted opacity-50"></i>
+            <hr class="border border-dark w-100">
+          </div>
+          <p class="text-center fs-5 text-muted mt-3">${element.foundationName}</p>
+        </div>
+      </div>
+      `;
+      foundationCont.append(content);
+    });
+  });
+
+  $("#foundationName").on("change", function () {
+    const foundationName = $(this).val();
+
+    fetchFoundationByName(foundationName).then((response) => {
+      const data = JSON.parse(response);
+      $("#foundationTxt").val(data.foundationTxt);
+    });
+  });
+
+  //ABOUT USER SIDE
+  fetchAllGuidelines().then((response) => {
+    const data = JSON.parse(response);
+
+    const rulesCont = $("#rules-cont");
+
+    data.forEach((element, index) => {
+      const txtLenth = element.txt;
+      const txtContent = element.txt.split("\n");
+
+      let rules = "";
+      for (let i = 0; i < txtContent.length; i++) {
+        rules += `<li>${txtContent[i]}</li>`;
+      }
+
+      const content = `
+      <div class="rules">
+        <ul class="d-flex flex-column gap-3">
+          ${rules}
+        </ul>
+      </div>`;
+
+      rulesCont.append(content);
+    });
+
+    const guidlineNameCont = $("#guidlineNameCont");
+    data.forEach((element, index) => {
+      const isIndexFirst =
+        index == 0
+          ? `style="background-color: var(--primary-color);
+color: white;"`
+          : "";
+
+      const indexVisible = index == 0 ? `style="right: 2; visibility: visible;"` : `style="right: 2; visibility: hidden;"`;
+      const content = `
+      <div class="d-flex align-items-center" role="button">
+          <li class="guideBtn p-3 ps-4 pe-5 w-100" ${isIndexFirst}>${element.guidelineName}</li>
+          <i class="fa-solid fa-play position-relative guideArrow" ${indexVisible}></i>
+        </div>`;
+
+      guidlineNameCont.append(content);
+    });
+  });
+
+  fetchAllFaq().then((response) => {
+    const data = JSON.parse(response);
+
+    const faqCont = $("#faqCont");
+    data.forEach((element) => {
+      const content = `
+      <div class="col col-12">
+          <div class="p-4 rounded-4 bg-light mb-4 position-relative">
+              <div class="d-flex justify-content-between align-items-center">
+                  <h2 class="fs-5">${element.faq_question}
+                  </h2>
+                  <div>
+                      <span class="closeFaq faq-icon material-symbols-outlined fs-2" style="display: none;"
+                          role="button" id="close1">
+                          close </span>
+                      <span class="showFaq faq-icon material-symbols-outlined fs-2" role="button"> add </span>
+                  </div>
+              </div>
+              <div class="faq-p overflow-hidden" style="max-height: 0" id="p1">
+                  <p class="fst-italic">
+                      ${element.faq_answer}
+                  </p>
+              </div>
+          </div>
+      </div>
+      `;
+      faqCont.append(content);
+    });
+  });
 }
 function ModalEvents() {
   //VIEW NOTIFICATION MODAL
@@ -612,6 +816,100 @@ function ModalEvents() {
     $("#addNewsModal").on("hide.bs.modal", function () {
       $("#addNewsForm").trigger("reset");
     });
+  });
+
+  $(document).on("click", ".foundation", function () {
+    const foundationName = $(this).attr("data-name");
+    fetchFoundationByName(foundationName).then((response) => {
+      const data = JSON.parse(response);
+      $("#modalFoundationName").html(data.foundationName);
+      $("#modalFoundationTxt").html(data.foundationTxt);
+    });
+  });
+
+  $("#aboutModal").on("hide.bs.modal", () => {
+    $("#modalFoundationName").empty();
+    $("#modalFoundationTxt").empty();
+  });
+
+  $("#addGuidelinesModal").on("show.bs.modal", function () {
+    $("#guidelinesForm").submit(function (event) {
+      event.preventDefault();
+      const formData = new FormData(this);
+      addGuidelines(formData).then((response) => {
+        if (response == 1) {
+          alert("Guidelines Added!");
+          location.reload();
+        } else {
+          alert(response);
+        }
+      });
+    });
+  });
+
+  $("#addGuidelinesModal").on("hide.bs.modal", function () {
+    $("#inputRules").empty();
+    $("#guidelinesForm").trigger("reset");
+  });
+
+  $("#editGuidelinesModal").on("hide.bs.modal", function () {
+    $("#editInputRules").empty();
+  });
+
+  $("#editGuidelinesModal").on("show.bs.modal", function () {
+    $("#editGuidelinesForm").submit(function (event) {
+      event.preventDefault();
+      const formData = new FormData(this);
+      updateGuidelines(formData).then((response) => {
+        if (response == 1) {
+          alert("Rules Updated!");
+          location.reload();
+        } else {
+          alert(response);
+        }
+      });
+    });
+  });
+
+  $("#addFaqModal").on("show.bs.modal", function () {
+    $("#addFaqForm").submit(function (event) {
+      event.preventDefault();
+
+      const question = $("#question").val();
+      const answer = $("#answer").val();
+      addFAQ(question, answer).then((response) => {
+        if (response == 1) {
+          alert("FAQ Added!");
+          location.reload();
+        } else {
+          alert(response);
+        }
+      });
+    });
+  });
+  $("#addFaqModal").on("hide.bs.modal", function () {
+    $("#addFaqForm").trigger("reset");
+  });
+
+  $("#editFaqModal").on("show.bs.modal", function () {
+    $("#editFaqForm").submit(function (event) {
+      event.preventDefault();
+
+      const editFaqId = $("#editFaqId").val();
+      const editQuestion = $("#editQuestion").val();
+      const editAnswer = $("#editAnswer").val();
+      updateFaq(editFaqId, editQuestion, editAnswer).then((response) => {
+        if (response == 1) {
+          alert("FAQ Updated!");
+          location.reload();
+        } else {
+          alert(response);
+        }
+      });
+    });
+  });
+  $("#editFaqModal").on("hide.bs.modal", function () {
+    $("#editFaqForm").trigger("reset");
   });
 }
 function DataTable() {
@@ -715,7 +1013,7 @@ function DataTable() {
         },
         {
           data: "downloads_type",
-          title: "Subject",
+          title: "Type",
           render: function (data, type, row) {
             return data;
           },
@@ -734,6 +1032,112 @@ function DataTable() {
           render: function (data, type, row) {
             return `
               <button class="deleteDownload btn btn-danger" data-id="${row.id}"><i class="fa-solid fa-trash"></i></button>`;
+          },
+        },
+      ],
+    });
+  });
+  fetchAllGuidelines().then((response) => {
+    const data = JSON.parse(response);
+    $("#table_guidelines").DataTable({
+      data: data,
+      columnDefs: [
+        {
+          targets: 0,
+          width: "10px",
+          className: "text-center",
+        },
+      ],
+      columns: [
+        {
+          data: "guideline_id",
+          title: "#",
+          render: function (data, type, row) {
+            return `<span class='badge bg-success'>${data}</span>`;
+          },
+        },
+        {
+          data: "guidelineName",
+          title: "Name",
+          render: function (data, type, row) {
+            return data;
+          },
+        },
+        {
+          data: "txt",
+          title: "Rules",
+          render: function (data, type, row) {
+            return sliceText(data, 50);
+          },
+        },
+        {
+          data: "text_date",
+          title: "Date",
+          render: function (data, type, row) {
+            return data;
+          },
+        },
+
+        {
+          data: null,
+          title: "Action",
+          render: function (data, type, row) {
+            return `
+              <button class="editGuidlineBtn btn btn-success" data-bs-toggle="modal" data-bs-target="#editGuidelinesModal" data-name="${row.guidelineName}" title="${row.guidelineName}"><i class="fa-solid fa-pen"></i></button>`;
+          },
+        },
+      ],
+    });
+  });
+  fetchAllFaq().then((response) => {
+    const data = JSON.parse(response);
+    $("#table_faq").DataTable({
+      data: data,
+      columnDefs: [
+        {
+          targets: 0,
+          width: "10px",
+          className: "text-center",
+        },
+      ],
+
+      columns: [
+        {
+          data: "id",
+          title: "#",
+          render: function (data, type, row) {
+            return data;
+          },
+        },
+        {
+          data: "faq_question",
+          title: "Question",
+          render: function (data, type, row) {
+            return sliceText(data, 30);
+          },
+        },
+        {
+          data: "faq_answer",
+          title: "Answer",
+          render: function (data, type, row) {
+            return sliceText(data, 50);
+          },
+        },
+        {
+          data: "text_date",
+          title: "Date",
+          render: function (data, type, row) {
+            return data;
+          },
+        },
+        {
+          data: null,
+          title: "Action",
+          render: function (data, type, row) {
+            return `
+              <button class="editFaqBtn btn btn-success" data-bs-toggle="modal" data-bs-target="#editFaqModal" data-id="${row.id}"><i class="fa-solid fa-pen"></i></button>
+              <button class="deleteFaqBtn btn btn-danger" data-id="${row.id}"><i class="fa-solid fa-trash"></i></button>
+              `;
           },
         },
       ],
