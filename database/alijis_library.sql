@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 25, 2025 at 03:22 AM
+-- Generation Time: Mar 28, 2025 at 08:37 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -63,6 +63,29 @@ INSERT INTO `downloads` (`id`, `downloads_name`, `downloads_path`, `downloads_ty
 (2, 'DataTables example - Bootstrap 5.pdf', './assets/download/DataTables example - Bootstrap 5.pdf', 'pdf', '2025-03-24 05:57:17'),
 (3, 'DTR.pdf', './assets/download/DTR.pdf', 'pdf', '2025-03-24 06:48:09'),
 (4, 'CHMSC-L-F08-books-recommended (1).doc', './assets/download/CHMSC-L-F08-books-recommended (1).doc', 'doc', '2025-03-24 07:10:24');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `faq`
+--
+
+CREATE TABLE `faq` (
+  `id` int(11) NOT NULL,
+  `faq_question` varchar(100) NOT NULL,
+  `faq_answer` text NOT NULL,
+  `faq_date` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `faq`
+--
+
+INSERT INTO `faq` (`id`, `faq_question`, `faq_answer`, `faq_date`) VALUES
+(1, 'How do I borrow reading materials from the CHMSC Alijis Campus Library?', 'To borrow reading materials from the CHMSC Alijis Campus Library, students, faculty, and staff must have a valid, properly validated library card. Students can borrow up to three books from the Circulation or Filipiniana sections and unlimited fiction books for one week, while faculty members can borrow unlimited books from these sections with renewals allowed every two weeks. Administrative support staff may borrow one book for one week. Borrowing starts at 3:00 P.M., and borrowed books must be returned by 10:00 A.M. the next day to avoid overdue fines. Books can be renewed up to twice a semester, and overdue materials must be returned before borrowing new items. If you have overdue materials, you cannot borrow additional books until the fines are settled.', '2025-03-28 05:06:27'),
+(2, 'What library services are available in CHMSC Alijis Campus Library?', 'The CHMSC Alijis Campus Library offers a variety of services to its users. These include borrowing/check-out services for students, faculty, and staff with valid library cards, and the returning/check-in of borrowed materials at the counter. Overnight or home use of books is allowed under specific guidelines for different groups (undergraduate students, faculty, and administrative staff). The library also provides book renewals, allowing books to be renewed twice a semester. For researchers, the library offers internet and computer-aided research services, with access to databases like IGI Global and Phil.elib. Reference and information services include chat assistance with librarians, online document delivery, bibliographic requests, and telephone inquiries. The library also facilitates printing and scanning services for library users and offers free Wi-Fi (access code available upon request). Additionally, referral letters are provided for faculty and students who wish to conduct research in neighboring libraries. The library regularly conducts virtual library orientation sessions for freshmen, transferees, and faculty. Lastly, library updates and announcements are shared via their Facebook page and email communications.', '2025-03-28 05:48:26'),
+(3, 'What is the penalty for overdue books?', 'The penalty for overdue books at the CHMSC Alijis Campus Library includes fines and restrictions on library access. For students, overdue books from the Circulation and Filipiniana sections are fined Php 1.00 per hour for each book returned after 10:00 A.M. on the due date (excluding holidays, Saturdays, and Sundays), while overdue fiction books incur a fine of Php 1.00 per day. Students are given a maximum of three (3) working days to return overdue books; if the books are not returned within this time, the student will be banned from library services for the rest of the semester, even if the book is returned or the fine is paid during the ban period. For researchers (outsiders), an overdue fine of Php 30.00 per day is charged, provided they have a referral letter from their home institution’s librarian.', '2025-03-28 05:49:48'),
+(4, 'Does the CHMSC Alijis Campus Library have a scanner?', 'Yes, the CHMSC Alijis Campus Library provides scanning services to its users. Library users, including faculty and students, can request assistance with scanning reading materials, research references, and other books available in the library.', '2025-03-28 05:50:07');
 
 -- --------------------------------------------------------
 
@@ -130,6 +153,103 @@ INSERT INTO `feedbacks_reply` (`id`, `feedbacks_id`, `feedbacks_reply_msg`, `fee
 (1, 23, 'Mwaha', '2025-03-13 03:23:15'),
 (2, 1, 'zxvzxbzdfb', '2025-03-13 03:25:11'),
 (3, 24, 'asdasd', '2025-03-21 02:53:11');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `foundation`
+--
+
+CREATE TABLE `foundation` (
+  `id` int(11) NOT NULL,
+  `foundationName` varchar(15) NOT NULL,
+  `foundationTxt` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `foundation`
+--
+
+INSERT INTO `foundation` (`id`, `foundationName`, `foundationTxt`) VALUES
+(1, 'Mission', 'The College Library commits itself to provide its academic community with essential and appropriate services, required facilities, and balanced collection of materials and resources necessary in meeting the current and future needs of school programs and users’ informational, instructional, and personal requirements. It assumes a pivotal role in institutional development through its commitment to achieve success and efficient delivery of services in various aspects of institutional instruction, research, and public service.'),
+(2, 'Vision', 'By 2022, the library will be a one stop learning venue by providing various library information resources and services.'),
+(3, 'Goal', 'To enhance the intellectual, physical, artistic, social, aesthetic and spiritual growth and development of students through wise and responsible use of library resources.'),
+(4, 'Objectives', 'The library aims to support its mission and vision by providing essential services and resources. It supports the College\'s instruction, research, extension, and production programs while continuously developing a well-balanced collection of library resources. The library ensures that facilities are available to maximize the effective use of these resources and organizes information sources for easy access by customers. Additionally, it collaborates with faculty members to assist in their instructional and research needs. Lastly, the library is committed to offering services tailored to customers with special needs, ensuring inclusivity and accessibility for all.');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `guidelines`
+--
+
+CREATE TABLE `guidelines` (
+  `id` int(11) NOT NULL,
+  `guidelineName` varchar(100) NOT NULL,
+  `guidelines_date` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `guidelines`
+--
+
+INSERT INTO `guidelines` (`id`, `guidelineName`, `guidelines_date`) VALUES
+(1, 'Library Access & Identification', '2025-03-27 08:04:01'),
+(2, 'Personal Belongings & Responsibility', '2025-03-27 08:08:57'),
+(3, 'Entrance & Exit Procedures', '2025-03-27 08:09:23'),
+(4, 'Library Conduct & Behavior', '2025-03-27 08:09:58'),
+(5, 'Library Materials Usage & Care', '2025-03-27 08:10:45'),
+(6, 'Borrowing, Overdue, and Fines', '2025-03-27 08:11:25'),
+(7, 'Special Conditions', '2025-03-27 08:11:52'),
+(8, 'Library Access & Identification', '2025-03-28 01:16:12'),
+(9, 'Library Access & Identification', '2025-03-28 01:16:12'),
+(10, 'Library Access & Identification', '2025-03-28 01:16:12'),
+(11, 'Library Access & Identification', '2025-03-28 01:16:35'),
+(12, 'Library Access & Identification', '2025-03-28 01:16:46'),
+(13, 'Library Access & Identification', '2025-03-28 01:18:08'),
+(14, 'Special Conditions', '2025-03-28 01:18:17'),
+(15, 'Library Access & Identification', '2025-03-28 01:49:45');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `guideline_rules`
+--
+
+CREATE TABLE `guideline_rules` (
+  `id` int(11) NOT NULL,
+  `guideline_id` int(11) DEFAULT NULL,
+  `guideline_rules_txt` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `guideline_rules`
+--
+
+INSERT INTO `guideline_rules` (`id`, `guideline_id`, `guideline_rules_txt`) VALUES
+(2, 1, 'A visitor must present an Identification card and visitor’s I.D. issued by the College Security Guard.'),
+(3, 2, 'Valuable things such as cell phones, money, laptops, jewelry, etc., should not be left in the depository area. The person in charge is not accountable for the loss of these items.'),
+(4, 2, 'Personal book/s may be brought inside the library provided that permission is first sought from the person assigned at the entrance.'),
+(5, 3, 'Customers must log in their library card number in the computer at the entrance upon entering the library.'),
+(6, 3, 'Appropriate ways should be utilized for entrance to and exit from the library.'),
+(7, 3, 'Customers going in and out of the library are required to have their things checked and inspected before leaving.'),
+(8, 4, 'Silence should be observed at all times.'),
+(9, 4, 'Eating, sleeping, smoking, and project making are strictly prohibited.'),
+(10, 4, 'Orderly and proper use of library furniture and equipment must be observed.'),
+(11, 4, 'Cell phones should be set in silent mode.'),
+(12, 4, 'Taking pictures of unpublished materials is prohibited.'),
+(13, 5, 'Books and other reading materials should be handled with care.'),
+(14, 5, 'Books taken from the open shelves area should be placed on the designated shelves or area for easy return by the library staff to appropriate shelves.'),
+(15, 5, 'Library material reported lost or damaged must be replaced by the borrower with the latest edition of the same title. If such material is not available in the market, replacement of any current library material of the same subject is allowed, provided the value is not less than the actual amount of the lost or damaged one.'),
+(16, 5, 'All library materials must be properly processed before taken out of the library. Anybody caught stealing any library materials shall be subjected to disciplinary action.'),
+(17, 5, 'Customers (students, faculty, and staff) are not allowed to borrow any library materials for use by other customers.'),
+(18, 5, 'Library card should be used to borrow books and other reading materials.'),
+(19, 6, 'Students are given a maximum of three (3) working days to return overdue books, or else they will be banned from library services for the rest of the current semester. The ban is not lifted even if the book is returned or the fine is paid during the ban period.'),
+(20, 6, 'Students who borrowed books for home use and who cannot return on the due date can make use of the borrower’s entry slip to avail of library services but for three (3) working days only, as far as policy in banning is concerned.'),
+(21, 6, 'A fine slip is issued to students who have overdue fines and is valid for three (3) working days only. It can be used to avail of library services provided a student is not yet banned.'),
+(22, 6, 'Payment of fines for overdue library materials and library card replacement should be made at the cashier’s office.'),
+(23, 7, 'Charging of cell phones is strictly prohibited.'),
+(24, 7, 'Home use of books is not allowed three days before the mid-term and final examinations as well as during the said examinations. It will resume on the last date of mid-term examination. Moreover, during and after signing of clearance, photocopying is allowed provided the clearance form is attached with the library card.'),
+(35, 15, 'Library customers with valid identification cards are allowed entrance to the library. For CHMSC students, they must be in proper uniform, with school I.D. and library card.');
 
 -- --------------------------------------------------------
 
@@ -236,6 +356,12 @@ ALTER TABLE `downloads`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `faq`
+--
+ALTER TABLE `faq`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `feedbacks`
 --
 ALTER TABLE `feedbacks`
@@ -247,6 +373,25 @@ ALTER TABLE `feedbacks`
 ALTER TABLE `feedbacks_reply`
   ADD PRIMARY KEY (`id`),
   ADD KEY `feedbacks_id` (`feedbacks_id`);
+
+--
+-- Indexes for table `foundation`
+--
+ALTER TABLE `foundation`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `guidelines`
+--
+ALTER TABLE `guidelines`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `guideline_rules`
+--
+ALTER TABLE `guideline_rules`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `guideline_id` (`guideline_id`);
 
 --
 -- Indexes for table `library_news`
@@ -278,6 +423,12 @@ ALTER TABLE `downloads`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT for table `faq`
+--
+ALTER TABLE `faq`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT for table `feedbacks`
 --
 ALTER TABLE `feedbacks`
@@ -288,6 +439,24 @@ ALTER TABLE `feedbacks`
 --
 ALTER TABLE `feedbacks_reply`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `foundation`
+--
+ALTER TABLE `foundation`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `guidelines`
+--
+ALTER TABLE `guidelines`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- AUTO_INCREMENT for table `guideline_rules`
+--
+ALTER TABLE `guideline_rules`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `library_news`
@@ -310,6 +479,12 @@ ALTER TABLE `library_news_img`
 --
 ALTER TABLE `feedbacks_reply`
   ADD CONSTRAINT `feedbacks_reply_ibfk_1` FOREIGN KEY (`feedbacks_id`) REFERENCES `feedbacks` (`id`);
+
+--
+-- Constraints for table `guideline_rules`
+--
+ALTER TABLE `guideline_rules`
+  ADD CONSTRAINT `guideline_rules_ibfk_1` FOREIGN KEY (`guideline_id`) REFERENCES `guidelines` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `library_news_img`
