@@ -22,22 +22,9 @@ import {
   deleteDownloadable,
   fetchAllFeedbacks,
 } from "./router/index-route.js";
-import {
-  checkCookie,
-  darkTheme,
-  lightTheme,
-  sideMenu,
-  setCookie,
-} from "./utils/cookies.js";
+import { checkCookie, darkTheme, lightTheme, sideMenu, setCookie } from "./utils/cookies.js";
 import { setSession } from "./utils/session.js";
-import {
-  seePassword,
-  adminNotifCont,
-  timeAgo,
-  showLoading,
-  checkAdminLogin,
-  sliceText,
-} from "./assets/js/admin.js";
+import { seePassword, adminNotifCont, timeAgo, showLoading, checkAdminLogin, sliceText } from "./assets/js/admin.js";
 $(document).ready(function () {
   ClickEvents();
   FetchEvents();
@@ -62,16 +49,14 @@ function ClickEvents() {
     const feedbackEmail = $("#feedbackEmail").val();
     const feedbackMsg = $("#feedbackMsg").val();
 
-    submitFeedback(feedbackName, feedbackEmail, feedbackMsg).then(
-      (response) => {
-        if (response == 1) {
-          alert("Feedback Submitted");
-          $("#contactForm").trigger("reset");
-        } else {
-          alert(response);
-        }
+    submitFeedback(feedbackName, feedbackEmail, feedbackMsg).then((response) => {
+      if (response == 1) {
+        alert("Feedback Submitted");
+        $("#contactForm").trigger("reset");
+      } else {
+        alert(response);
       }
-    );
+    });
   });
 
   $("#theme-input").on("click", function () {
@@ -105,16 +90,14 @@ function ClickEvents() {
     const feedbackEmail = $("#feedbackEmail").val();
     const feedbackMsg = $("#feedbackMsg").val();
 
-    submitFeedback(feedbackName, feedbackEmail, feedbackMsg).then(
-      (response) => {
-        if (response == 1) {
-          alert("Feedback Submitted");
-          $("#contactForm").trigger("reset");
-        } else {
-          alert(response);
-        }
+    submitFeedback(feedbackName, feedbackEmail, feedbackMsg).then((response) => {
+      if (response == 1) {
+        alert("Feedback Submitted");
+        $("#contactForm").trigger("reset");
+      } else {
+        alert(response);
       }
-    );
+    });
   });
 
   let notifLimit = 10;
@@ -183,9 +166,7 @@ function ClickEvents() {
 
   $(document).on("click", ".deleteNews", function () {
     const id = $(this).attr("data-id");
-    const confirmDelete = confirm(
-      "Are you sure you want to delete this library news?"
-    );
+    const confirmDelete = confirm("Are you sure you want to delete this library news?");
 
     if (confirmDelete) {
       deleteNewsById(id).then((response) => {
@@ -201,9 +182,7 @@ function ClickEvents() {
 
   $(document).on("click", ".deleteNewsImg", function () {
     const id = $(this).attr("data-id");
-    const confirmDelete = confirm(
-      "Are you sure you want to delete this image?"
-    );
+    const confirmDelete = confirm("Are you sure you want to delete this image?");
 
     if (confirmDelete) {
       deleteNewsImgById(id).then((response) => {
@@ -300,9 +279,7 @@ function FetchEvents() {
 
   setInterval(async () => {
     try {
-      const response = await fetchFeedbacks(
-        sessionStorage.getItem("notifLimit")
-      );
+      const response = await fetchFeedbacks(sessionStorage.getItem("notifLimit"));
       const data = JSON.parse(response);
       const tbody = $("#tbody-notification");
       tbody.empty();
@@ -312,10 +289,7 @@ function FetchEvents() {
 
         const textTime = timeAgo(element.feedbackTime);
         const isReadText = element.feedbackIsRead == 0 ? "" : "text-muted";
-        const isReadIcon =
-          element.feedbackIsRead == 0
-            ? `<i class="fa-solid fa-circle text-primary position-absolute" style="font-size: 10px; top:10;"></i>`
-            : "";
+        const isReadIcon = element.feedbackIsRead == 0 ? `<i class="fa-solid fa-circle text-primary position-absolute" style="font-size: 10px; top:10;"></i>` : "";
         const row = `
         <tr class="position-relative">
           <td class="ps-4" role="button">
@@ -408,16 +382,8 @@ function FetchEvents() {
     $("#newsLoading").show();
   }, 2000);
   setInterval(async () => {
-    const searchResult =
-      sessionStorage.getItem("searchVal") == "" ||
-      sessionStorage.getItem("searchVal") == null
-        ? ""
-        : sessionStorage.getItem("searchVal");
-    const limitNews =
-      sessionStorage.getItem("limitNews") == "" ||
-      sessionStorage.getItem("limitNews") == null
-        ? ""
-        : sessionStorage.getItem("limitNews");
+    const searchResult = sessionStorage.getItem("searchVal") == "" || sessionStorage.getItem("searchVal") == null ? "" : sessionStorage.getItem("searchVal");
+    const limitNews = sessionStorage.getItem("limitNews") == "" || sessionStorage.getItem("limitNews") == null ? "" : sessionStorage.getItem("limitNews");
     const response = await fetchNewsByCondition(searchResult, limitNews);
     const data = JSON.parse(response);
 
@@ -438,10 +404,7 @@ function FetchEvents() {
         for (let index = 0; index < Math.min(4, imageArray.length); index++) {
           const element = imageArray[index];
 
-          const hasReminder =
-            imageArray.length - Math.min(4, imageArray.length) > 0
-              ? imageArray.length - Math.min(4, imageArray.length)
-              : "";
+          const hasReminder = imageArray.length - Math.min(4, imageArray.length) > 0 ? imageArray.length - Math.min(4, imageArray.length) : "";
 
           const reminder =
             index === Math.min(4, imageArray.length) - 1 && hasReminder
@@ -476,10 +439,7 @@ function FetchEvents() {
         newsContainer.append(row);
       });
 
-      if (
-        parseInt(sessionStorage.getItem("limitNews")) >
-        parseInt(sessionStorage.getItem("newsRows"))
-      ) {
+      if (parseInt(sessionStorage.getItem("limitNews")) > parseInt(sessionStorage.getItem("newsRows"))) {
         $("#newsLoading").hide();
       }
     } else {
@@ -585,12 +545,7 @@ function ModalEvents() {
       $("#cancelReply").hide();
       $("#sendReply").hide();
       $("#submitReplyLoading").show();
-      submitReplyFeedback(
-        feedbackId,
-        feedbackName,
-        feedbackEmail,
-        feedbackReply
-      ).then((response) => {
+      submitReplyFeedback(feedbackId, feedbackName, feedbackEmail, feedbackReply).then((response) => {
         alert(response);
         location.reload();
       });
@@ -772,10 +727,7 @@ function DataTable() {
           title: "Name",
           render: function (data, type, row) {
             const isReadText = row.feedbackIsRead == 0 ? "" : "text-muted";
-            const isReadIcon =
-              row.feedbackIsRead == 0
-                ? `<i class="fa-solid fa-circle text-primary position-absolute" style="font-size: 10px; top:10px;"></i>`
-                : "";
+            const isReadIcon = row.feedbackIsRead == 0 ? `<i class="fa-solid fa-circle text-primary position-absolute" style="font-size: 10px; top:10px;"></i>` : "";
 
             return `
               <span class='fs-5 mb-2 p-0 m-0 ${isReadText}'>${row.feedbackName}</span><br>
