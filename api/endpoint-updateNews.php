@@ -6,7 +6,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $editNewsSubject = $_POST['editNewsSubject'];
     $editNewsMsg = $_POST['editNewsMsg'];
 
-    //FILE HANDLER
     if (!empty($_FILES['files']['name'][0])) {
         foreach ($_FILES['files']['name'] as $key => $file_name) {
             $maxSize = (1024 * 1024) * 5;

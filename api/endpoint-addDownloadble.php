@@ -21,7 +21,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $maxSize = (1025 * 1024) * 5;
 
 
-    //CHECK FILES
     if (!in_array($file_type, $validTypes)) {
         die("Invalid file type!");
     }

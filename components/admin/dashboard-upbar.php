@@ -1,9 +1,7 @@
 <div class="container-fluid border border-start-0 p-3 position-sticky top-0 z-1" id="upbar">
     <div class="d-flex justify-content-between align-items-center gap-4">
         <div class="d-flex">
-            <!-- <span >
-                chevron_right
-            </span> -->
+
             <i class="fa-solid fa-bars openCloseMenu material-symbols-outlined  rounded-2 text-center" id="open-menu"
                 role="button"></i>
 

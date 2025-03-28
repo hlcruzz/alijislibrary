@@ -20,10 +20,24 @@ import {
   addDownloadble,
   fetchAllDownloadable,
   deleteDownloadable,
+  fetchAllFeedbacks,
 } from "./router/index-route.js";
-import { checkCookie, darkTheme, lightTheme, sideMenu, setCookie } from "./utils/cookies.js";
+import {
+  checkCookie,
+  darkTheme,
+  lightTheme,
+  sideMenu,
+  setCookie,
+} from "./utils/cookies.js";
 import { setSession } from "./utils/session.js";
-import { seePassword, adminNotifCont, timeAgo, showLoading, checkAdminLogin, sliceText } from "./assets/js/admin.js";
+import {
+  seePassword,
+  adminNotifCont,
+  timeAgo,
+  showLoading,
+  checkAdminLogin,
+  sliceText,
+} from "./assets/js/admin.js";
 $(document).ready(function () {
   ClickEvents();
   FetchEvents();
@@ -48,14 +62,16 @@ function ClickEvents() {
     const feedbackEmail = $("#feedbackEmail").val();
     const feedbackMsg = $("#feedbackMsg").val();
 
-    submitFeedback(feedbackName, feedbackEmail, feedbackMsg).then((response) => {
-      if (response == 1) {
-        alert("Feedback Submitted");
-        $("#contactForm").trigger("reset");
-      } else {
-        alert(response);
+    submitFeedback(feedbackName, feedbackEmail, feedbackMsg).then(
+      (response) => {
+        if (response == 1) {
+          alert("Feedback Submitted");
+          $("#contactForm").trigger("reset");
+        } else {
+          alert(response);
+        }
       }
-    });
+    );
   });
 
   $("#theme-input").on("click", function () {
@@ -89,14 +105,16 @@ function ClickEvents() {
     const feedbackEmail = $("#feedbackEmail").val();
     const feedbackMsg = $("#feedbackMsg").val();
 
-    submitFeedback(feedbackName, feedbackEmail, feedbackMsg).then((response) => {
-      if (response == 1) {
-        alert("Feedback Submitted");
-        $("#contactForm").trigger("reset");
-      } else {
-        alert(response);
+    submitFeedback(feedbackName, feedbackEmail, feedbackMsg).then(
+      (response) => {
+        if (response == 1) {
+          alert("Feedback Submitted");
+          $("#contactForm").trigger("reset");
+        } else {
+          alert(response);
+        }
       }
-    });
+    );
   });
 
   let notifLimit = 10;
@@ -113,7 +131,6 @@ function ClickEvents() {
     });
   });
 
-  //EDIT NEWS MODAL
   $(document).on("click", ".editNews", function () {
     const id = $(this).attr("data-id");
     $("#editNewsId").val(id);
@@ -164,10 +181,11 @@ function ClickEvents() {
     });
   });
 
-  //DELETE NEWS BY ID
   $(document).on("click", ".deleteNews", function () {
     const id = $(this).attr("data-id");
-    const confirmDelete = confirm("Are you sure you want to delete this library news?");
+    const confirmDelete = confirm(
+      "Are you sure you want to delete this library news?"
+    );
 
     if (confirmDelete) {
       deleteNewsById(id).then((response) => {
@@ -181,10 +199,11 @@ function ClickEvents() {
     }
   });
 
-  //DELETE NEWS IMG BY ID
   $(document).on("click", ".deleteNewsImg", function () {
     const id = $(this).attr("data-id");
-    const confirmDelete = confirm("Are you sure you want to delete this image?");
+    const confirmDelete = confirm(
+      "Are you sure you want to delete this image?"
+    );
 
     if (confirmDelete) {
       deleteNewsImgById(id).then((response) => {
@@ -225,9 +244,6 @@ function ClickEvents() {
     }
   });
 
-  //USER SIDE
-
-  // View News Images
   $(document).on("click", ".newsImages", function () {
     const id = $(this).attr("data-id");
     fetchNewsImgById(id).then((response) => {
@@ -284,7 +300,9 @@ function FetchEvents() {
 
   setInterval(async () => {
     try {
-      const response = await fetchFeedbacks(sessionStorage.getItem("notifLimit"));
+      const response = await fetchFeedbacks(
+        sessionStorage.getItem("notifLimit")
+      );
       const data = JSON.parse(response);
       const tbody = $("#tbody-notification");
       tbody.empty();
@@ -294,7 +312,10 @@ function FetchEvents() {
 
         const textTime = timeAgo(element.feedbackTime);
         const isReadText = element.feedbackIsRead == 0 ? "" : "text-muted";
-        const isReadIcon = element.feedbackIsRead == 0 ? `<i class="fa-solid fa-circle text-primary position-absolute" style="font-size: 10px; top:10;"></i>` : "";
+        const isReadIcon =
+          element.feedbackIsRead == 0
+            ? `<i class="fa-solid fa-circle text-primary position-absolute" style="font-size: 10px; top:10;"></i>`
+            : "";
         const row = `
         <tr class="position-relative">
           <td class="ps-4" role="button">
@@ -365,7 +386,6 @@ function FetchEvents() {
   const newsLoadingIcon = $("#newsLoading");
 
   if (newsLoadingIcon.length > 0) {
-    // Check if the element exists
     const obs = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -388,8 +408,16 @@ function FetchEvents() {
     $("#newsLoading").show();
   }, 2000);
   setInterval(async () => {
-    const searchResult = sessionStorage.getItem("searchVal") == "" || sessionStorage.getItem("searchVal") == null ? "" : sessionStorage.getItem("searchVal");
-    const limitNews = sessionStorage.getItem("limitNews") == "" || sessionStorage.getItem("limitNews") == null ? "" : sessionStorage.getItem("limitNews");
+    const searchResult =
+      sessionStorage.getItem("searchVal") == "" ||
+      sessionStorage.getItem("searchVal") == null
+        ? ""
+        : sessionStorage.getItem("searchVal");
+    const limitNews =
+      sessionStorage.getItem("limitNews") == "" ||
+      sessionStorage.getItem("limitNews") == null
+        ? ""
+        : sessionStorage.getItem("limitNews");
     const response = await fetchNewsByCondition(searchResult, limitNews);
     const data = JSON.parse(response);
 
@@ -410,7 +438,10 @@ function FetchEvents() {
         for (let index = 0; index < Math.min(4, imageArray.length); index++) {
           const element = imageArray[index];
 
-          const hasReminder = imageArray.length - Math.min(4, imageArray.length) > 0 ? imageArray.length - Math.min(4, imageArray.length) : "";
+          const hasReminder =
+            imageArray.length - Math.min(4, imageArray.length) > 0
+              ? imageArray.length - Math.min(4, imageArray.length)
+              : "";
 
           const reminder =
             index === Math.min(4, imageArray.length) - 1 && hasReminder
@@ -437,7 +468,7 @@ function FetchEvents() {
           <p class="mt-4">
               ${text}
           </p>
-          <div class="newsImages row row-cols-2 row-cols-md-4" data-id="${element.id}" data-bs-target="#viewImgNewsModal" data-bs-toggle="modal">
+          <div class="newsImages row row-cols-2 row-cols-md-4" data-id="${element.id}" data-bs-target="#viewImgNewsModal" data-bs-toggle="modal"> 
             ${imagesHtml}
           </div>
       </div>`;
@@ -445,7 +476,10 @@ function FetchEvents() {
         newsContainer.append(row);
       });
 
-      if (parseInt(sessionStorage.getItem("limitNews")) > parseInt(sessionStorage.getItem("newsRows"))) {
+      if (
+        parseInt(sessionStorage.getItem("limitNews")) >
+        parseInt(sessionStorage.getItem("newsRows"))
+      ) {
         $("#newsLoading").hide();
       }
     } else {
@@ -456,8 +490,6 @@ function FetchEvents() {
 
   fetchAllDownloadable().then((response) => {
     const data = JSON.parse(response);
-
-    console.log(data);
 
     if (data.length > 0) {
       const downloadsCont = $("#downloadsCont");
@@ -492,9 +524,7 @@ function FetchEvents() {
   });
 }
 function ModalEvents() {
-  //VIEW NOTIFICATION MODAL
   $("#viewNotifModal").on("show.bs.modal", function () {
-    // DISPLAY MODAL
     $(".notif-link").each(function () {
       $(this).on("click", function () {
         const id = $(this).attr("data-id");
@@ -528,7 +558,6 @@ function ModalEvents() {
         });
       });
     });
-    // SHOW REPLY
     $("#replyFeedback").on("click", function () {
       $("#feedback-btn").hide();
       $("#feedbackForm").show();
@@ -546,7 +575,6 @@ function ModalEvents() {
       });
     });
 
-    // REPLY SUBMISSION
     $("#sendReply").on("click", function () {
       const feedbackId = $("#displayFeedbackId").val();
       const feedbackName = $("#displayFeedbackName").html();
@@ -557,7 +585,12 @@ function ModalEvents() {
       $("#cancelReply").hide();
       $("#sendReply").hide();
       $("#submitReplyLoading").show();
-      submitReplyFeedback(feedbackId, feedbackName, feedbackEmail, feedbackReply).then((response) => {
+      submitReplyFeedback(
+        feedbackId,
+        feedbackName,
+        feedbackEmail,
+        feedbackReply
+      ).then((response) => {
         alert(response);
         location.reload();
       });
@@ -572,7 +605,6 @@ function ModalEvents() {
     });
   });
 
-  //ADD LIBRARY NEWS MODAL
   $("#addNewsModal").on("show.bs.modal", function () {
     $("#addNewsForm").submit(function (event) {
       event.preventDefault();
@@ -590,11 +622,10 @@ function ModalEvents() {
     });
   });
 }
+
 function DataTable() {
-  //FETCH LIBRARY NEWS
   fetchAllNews().then((response) => {
     const data = JSON.parse(response);
-    //ADMIN TABLE LIBRARY NEWS
     $("#table_news").DataTable({
       data: data,
       columnDefs: [
@@ -621,7 +652,7 @@ function DataTable() {
                 ? ""
                 : `<div>
                   <img src="${data}" width="40px" height="40px"
-                     class="object-fit-cover" alt="">
+                      class="object-fit-cover" alt="">
               </div>`;
             return result;
           },
@@ -664,9 +695,9 @@ function DataTable() {
 
   fetchAllDownloadable().then((response) => {
     const data = JSON.parse(response);
-    // ADMIN TABLE DOWNLOADABLES
     $("#table_dwonloads").DataTable({
       data: data,
+      destroy: true,
       columnDefs: [
         {
           targets: 0,
@@ -713,6 +744,111 @@ function DataTable() {
           },
         },
       ],
+    });
+  });
+
+  fetchAllFeedbacks().then((response) => {
+    const data = JSON.parse(response);
+    $("#feedbacksTable").DataTable({
+      data: data,
+      columnDefs: [
+        {
+          targets: 0,
+          width: "10px",
+          className: "text-center",
+        },
+      ],
+      columns: [
+        {
+          data: "id",
+          title: "#",
+          render: function (data, type, row) {
+            return `<span class='badge bg-success'>${data}</span>`;
+          },
+        },
+
+        {
+          data: null,
+          title: "Name",
+          render: function (data, type, row) {
+            const isReadText = row.feedbackIsRead == 0 ? "" : "text-muted";
+            const isReadIcon =
+              row.feedbackIsRead == 0
+                ? `<i class="fa-solid fa-circle text-primary position-absolute" style="font-size: 10px; top:10px;"></i>`
+                : "";
+
+            return `
+              <span class='fs-5 mb-2 p-0 m-0 ${isReadText}'>${row.feedbackName}</span><br>
+              <span class='${isReadText} p-0 m-0'>${row.feedbackEmail}</span>
+              ${isReadIcon}
+            `;
+          },
+        },
+
+        {
+          data: "feedbackMsg",
+          title: "Message",
+          render: function (data, type, row) {
+            const isReadText = row.feedbackIsRead == 0 ? "" : "text-muted";
+            return `<span class="${isReadText}">${sliceText(data, 30)}</span>`;
+          },
+        },
+
+        {
+          data: "feedbackDate",
+          title: "Date",
+          render: function (data, type, row) {
+            const isReadText = row.feedbackIsRead == 0 ? "" : "text-muted";
+            return `<span class="${isReadText}">${data}</span>`;
+          },
+        },
+
+        {
+          data: null,
+          title: "Action",
+          render: function (data, type, row) {
+            return `
+                <button class="btn notif-link btn-primary" data-bs-toggle="modal" data-bs-target="#viewNotifModal" data-id="${row.id}" ><span class="material-symbols-outlined">
+chat_bubble
+</span></button>`;
+          },
+        },
+
+        // {
+        //   data: "downloads_name",
+        //   title: "Filename",
+        //   render: function (data, type, row) {
+        //     return `<span class='badge bg-success'>${data.feedbackName}</span>`;
+        //   },
+        // },
+        // {
+        //   data: "downloads_type",
+        //   title: "Subject",
+        //   render: function (data, type, row) {
+        //     return `<span class='badge bg-success'>${data.feedbackName}</span>
+        //     <span class='badge bg-success'>${data.feedbackEmail}</span>`;
+        //   },
+        // },
+        // {
+        //   data: "text_date",
+        //   title: "Date",
+        //   render: function (data, type, row) {
+        //     return `<span class='badge bg-success'>${data.feedbackMsg}</span>`;
+        //   },
+        // },
+
+        // {
+        //   data: null,
+        //   title: "Action",
+        //   render: function (data, type, row) {
+        //     return `
+        //       <button class="deleteDownload btn btn-danger" data-id="${row.id}"><i class="fa-solid fa-trash"></i></button>`;
+        //   },
+        // },
+      ],
+      rowCallback: function (row, data, index) {
+        $(row).addClass("position-relative");
+      },
     });
   });
 }

@@ -367,3 +367,20 @@ export function deleteDownloadable(id) {
     });
   });
 }
+
+
+export function fetchAllFeedbacks() {
+  return new Promise((resolve, reject) => {
+    $.ajax({
+      url: "./api/endpoint-fetchAllFeedbacks.php",
+      method: "GET",
+      success: function (response) {
+        resolve(response);
+      },
+      error: function (response) {
+        reject(response);
+      },
+    });
+  });
+}
+

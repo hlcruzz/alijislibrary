@@ -1,26 +1,29 @@
 <?php if (!empty($page)) { ?>
-<style>
-<?php switch ($page) {
-    case "index": echo ".links:nth-child(1)::before {width: 100%;}";
-    break;
-    case "about": echo ".links:nth-child(2)::before {width: 100%;}";
-    break;
-    case "programs": echo ".links:nth-child(3)::before {width: 100%;}";
-    break;
-    case "services": echo ".links:nth-child(4)::before {width: 100%;}";
-    break;
-    case "contacts": echo ".links:nth-child(5)::before {width: 100%;}";
-    break;
-    default:
-        echo null;
-}
+    <style>
+        <?php switch ($page) {
+            case "index":
+                echo ".links:nth-child(1)::before {width: 100%;}";
+                break;
+            case "about":
+                echo ".links:nth-child(2)::before {width: 100%;}";
+                break;
+            case "programs":
+                echo ".links:nth-child(3)::before {width: 100%;}";
+                break;
+            case "services":
+                echo ".links:nth-child(4)::before {width: 100%;}";
+                break;
+            case "contacts":
+                echo ".links:nth-child(5)::before {width: 100%;}";
+                break;
+            default:
+                echo null;
+        }
 
-?>
-</style>
+        ?>
+    </style>
 <?php } ?>
-<!-- Navigation Bar -->
 <div class="container-fluid nav-container position-sticky top-0 bg-white" style="z-index: 10">
-    <!-- Desktop Nav -->
     <div class="container-lg d-none d-lg-block p-3">
         <div class="d-flex align-items-center row-cols-2">
             <div class="d-flex align-items-center gap-3 col-6">

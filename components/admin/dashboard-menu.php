@@ -13,7 +13,6 @@
             echo ".menu-links:nth-child(4) {background-color: #66c28e;color: white;}";
             break;
         default:
-        # code... break;downloadble
     }
 
     ?>

@@ -22,20 +22,15 @@ export function adminNotifCont(result) {
 }
 
 export function timeAgo(timestampString) {
-  // Convert the string to a Date object
   let timestampDate = new Date(timestampString);
-  let now = new Date(); // Current date and time
-
-  // Calculate the difference in milliseconds
+  let now = new Date();
   let diffInMs = now - timestampDate;
 
-  // Calculate the time in minutes, hours, and days
-  let diffInSeconds = Math.floor(diffInMs / 1000); // Convert to seconds
-  let diffInMinutes = Math.floor(diffInSeconds / 60); // Convert to minutes
-  let diffInHours = Math.floor(diffInMinutes / 60); // Convert to hours
-  let diffInDays = Math.floor(diffInHours / 24); // Convert to days
+  let diffInSeconds = Math.floor(diffInMs / 1000);
+  let diffInMinutes = Math.floor(diffInSeconds / 60);
+  let diffInHours = Math.floor(diffInMinutes / 60);
+  let diffInDays = Math.floor(diffInHours / 24);
 
-  // Return the result in human-readable format
   if (diffInMinutes < 1) {
     return `${diffInSeconds} sec`;
   } else if (diffInMinutes < 60) {

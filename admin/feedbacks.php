@@ -16,29 +16,24 @@
             <div class="flex-grow-1 ">
                 <?php include "./components/admin/dashboard-upbar.php" ?>
                 <!-- CONTENT -->
-                <div class="content p-3" style="min-height: 100vh;">
-                    <div class="container-fluid">
-                        <h1>Hello</h1>
-                        <table id=" table_id" class="display border w-100">
-                            <thead>
-                                <tr>
-                                    <th>Column 1</th>
-                                    <th>Column 2</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Row 1 Data 1</td>
-                                    <td>Row 1 Data 2</td>
-                                </tr>
-                                <tr>
-                                    <td>Row 2 Data 1</td>
-                                    <td>Row 2 Data 2</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                <div class="p-4 content">
+                    <div class="row">
+                        <div class="col-12 ">
+                            <div class="d-flex justify-content-between align-items-center pb-4">
+                                <h1 class="fs-3 p-0 m-0">Library Feedbacks</h1>
+                                <div class="d-flex gap-3 align-items-center">
 
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-body px-4">
+                                    <table id="feedbacksTable" class="table table-hover table-bordered">
+
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <!-- CONTENT 2 -->
 
                 </div>

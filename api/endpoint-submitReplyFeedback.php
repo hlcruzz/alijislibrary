@@ -20,25 +20,22 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $stmt->bindParam(":feedbacks_reply_msg", $reply);
         $stmt->execute();
 
-        // Server settings
-        $mail->isSMTP();                              // Send using SMTP
-        $mail->Host = 'smtp.gmail.com';                // Set the SMTP server to send through
-        $mail->SMTPAuth = true;                        // Enable SMTP authentication
-        $mail->Username = 'hlgcruz.chmsu@gmail.com';   // SMTP write your email
-        $mail->Password = 'vestizqrfqrgosiq';          // SMTP password
-        $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;  // Enable implicit SSL encryption
+        $mail->isSMTP();
+        $mail->Host = 'smtp.gmail.com';
+        $mail->SMTPAuth = true;
+        $mail->Username = 'hlgcruz.chmsu@gmail.com';
+        $mail->Password = 'vestizqrfqrgosiq';
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
         $mail->Port = 465;
 
-        // Recipients
-        $mail->setFrom("hlgcruz.chmsu@gmail.com", "Alijis Campus Library"); // Sender Email and name
-        $mail->addAddress($email);    // Add a recipient email
-        $mail->addReplyTo("hlgcruz.chmsu@gmail.com");  // Reply to sender email
+        $mail->setFrom("hlgcruz.chmsu@gmail.com", "Alijis Campus Library");
+        $mail->addAddress($email);
+        $mail->addReplyTo("hlgcruz.chmsu@gmail.com");
 
-        // Content (HTML body for the email)
-        $mail->isHTML(true);  // Set email format to HTML
-        $mail->Subject = "Alijis Campus Library Feedback";  // Email subject heading
 
-        // HTML Body
+        $mail->isHTML(true);
+        $mail->Subject = "Alijis Campus Library Feedback";
+
         $mail->Body = "
             <!DOCTYPE html>
             <html lang='en'>
