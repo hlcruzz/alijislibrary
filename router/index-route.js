@@ -368,7 +368,6 @@ export function deleteDownloadable(id) {
   });
 }
 
-
 export function fetchAllFeedbacks() {
   return new Promise((resolve, reject) => {
     $.ajax({
@@ -384,3 +383,208 @@ export function fetchAllFeedbacks() {
   });
 }
 
+export function fetchAllFoundation() {
+  return new Promise((resolve, reject) => {
+    $.ajax({
+      url: "./api/endpoint-fetchAllFoundation.php",
+      method: "GET",
+      success: function (response) {
+        resolve(response);
+      },
+      error: function (response) {
+        reject(response);
+      },
+    });
+  });
+}
+export function fetchFoundationByName(foundationName) {
+  return new Promise((resolve, reject) => {
+    $.ajax({
+      url: "./api/endpoint-fetchFoundationByName.php",
+      data: {
+        foundationName: foundationName,
+      },
+      method: "GET",
+      success: function (response) {
+        resolve(response);
+      },
+      error: function (response) {
+        reject(response);
+      },
+    });
+  });
+}
+
+export function updateFoundation(foundationName, foundationTxt) {
+  return new Promise((resolve, reject) => {
+    $.ajax({
+      url: "./api/endpoint-updateFoundation.php",
+      data: {
+        foundationName: foundationName,
+        foundationTxt: foundationTxt,
+      },
+      method: "POST",
+      success: function (response) {
+        resolve(response);
+      },
+      error: function (response) {
+        reject(response);
+      },
+    });
+  });
+}
+
+export function addGuidelines(formData) {
+  return new Promise((resolve, reject) => {
+    $.ajax({
+      url: "./api/endpoint-addGuidelines.php",
+      data: formData,
+      processData: false,
+      contentType: false,
+      method: "POST",
+      success: function (response) {
+        resolve(response);
+      },
+      error: function (response) {
+        reject(response);
+      },
+    });
+  });
+}
+
+export function fetchAllGuidelines() {
+  return new Promise((resolve, reject) => {
+    $.ajax({
+      url: "./api/endpoint-fetchAllGuidelines.php",
+      method: "GET",
+      success: function (response) {
+        resolve(response);
+      },
+      error: function (response) {
+        reject(response);
+      },
+    });
+  });
+}
+
+export function fetchAllGuidelinesByName(guidelineName) {
+  return new Promise((resolve, reject) => {
+    $.ajax({
+      url: "./api/endpoint-fetchAllGuidelinesById.php",
+      data: {
+        guidelineName: guidelineName,
+      },
+      method: "GET",
+      success: function (response) {
+        resolve(response);
+      },
+      error: function (response) {
+        reject(response);
+      },
+    });
+  });
+}
+export function deleteGuidelineRuleById(id) {
+  return new Promise((resolve, reject) => {
+    $.ajax({
+      url: "./api/endpoint-deleteGuidelineRuleById.php",
+      data: {
+        id: id,
+      },
+      method: "POST",
+      success: function (response) {
+        resolve(response);
+      },
+      error: function (response) {
+        reject(response);
+      },
+    });
+  });
+}
+
+export function updateGuidelines(formData) {
+  return new Promise((resolve, reject) => {
+    $.ajax({
+      url: "./api/endpoint-updateGuidelinesByIds.php",
+      data: formData,
+      processData: false,
+      contentType: false,
+      method: "POST",
+      success: function (response) {
+        resolve(response);
+      },
+      error: function (response) {
+        reject(response);
+      },
+    });
+  });
+}
+
+export function addFAQ(question, answer) {
+  return new Promise((resolve, reject) => {
+    $.ajax({
+      url: "./api/endpoint-addFAQ.php",
+      data: {
+        question: question,
+        answer: answer,
+      },
+      method: "POST",
+      success: function (response) {
+        resolve(response);
+      },
+      error: function (response) {
+        reject(response);
+      },
+    });
+  });
+}
+export function fetchAllFaq() {
+  return new Promise((resolve, reject) => {
+    $.ajax({
+      url: "./api/endpoint-fetchAllFaq.php",
+      method: "GET",
+      success: function (response) {
+        resolve(response);
+      },
+      error: function (response) {
+        reject(response);
+      },
+    });
+  });
+}
+export function fetchFaqById(id) {
+  return new Promise((resolve, reject) => {
+    $.ajax({
+      url: "./api/endpoint-fetchFaqById.php",
+      data: {
+        id: id,
+      },
+      method: "GET",
+      success: function (response) {
+        resolve(response);
+      },
+      error: function (response) {
+        reject(response);
+      },
+    });
+  });
+}
+export function updateFaq(id, question, answer) {
+  return new Promise((resolve, reject) => {
+    $.ajax({
+      url: "./api/endpoint-updateFaq.php",
+      data: {
+        id: id,
+        question: question,
+        answer: answer,
+      },
+      method: "POST",
+      success: function (response) {
+        resolve(response);
+      },
+      error: function (response) {
+        reject(response);
+      },
+    });
+  });
+}

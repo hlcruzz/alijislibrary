@@ -36,6 +36,15 @@ switch ($request) {
     case '/admin-downloadables':
         require 'admin/downloadable.php';
         break;
+    case '/admin-settings-foundation':
+        require 'admin/foundation.php';
+        break;
+    case '/admin-settings-guidelines':
+        require 'admin/guidelines.php';
+        break;
+    case '/admin-settings-faq':
+        require 'admin/faq.php';
+        break;
     default:
         http_response_code(404);
         echo "Page not found!";

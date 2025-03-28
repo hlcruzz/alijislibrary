@@ -33,21 +33,18 @@
     </div>
 </div>
 
-<div class="modal" id="aboutModal" tabindex="-1">
+<div class="modal fade" id="aboutModal" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="text-center w-100"><i class="fa-solid fa-bookmark text-success"></i> Mission</h1>
+                <div class="d-flex justify-content-center align-items-center gap-3 w-100">
+                    <i class="fa-solid fa-bookmark text-success fs-2"></i>
+                    <h1 class="fs-2 m-0" id="modalFoundationName"></h1>
+                    <i class="fa-solid fa-bookmark text-success fs-2"></i>
+                </div>
             </div>
-            <div class="modal-body">
-                The College Library commits itself to provide its academic community with essential and appropriate
-                services, required facilities, and balanced collection of
-                materials and resources necessary in meeting the current and future needs of school programs and
-                users’
-                informational, instructional, and personal requirements.
-                It assumes a pivotal role in institutional development through its commitment to achieve success and
-                efficient delivery of services in various aspects of
-                institutional instruction, research, and public service.
+            <div class="modal-body" id="modalFoundationTxt">
+
             </div>
         </div>
     </div>

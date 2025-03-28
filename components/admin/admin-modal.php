@@ -163,3 +163,156 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="addGuidelinesModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel"> Add
+                    Guidelines</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form id="guidelinesForm">
+                <div class="modal-body d-flex flex-column gap-2">
+
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1">Guideline Name</span>
+                        <select name="guidelinesName" id="guidelinesName" class="form-select"
+                            placeholder="Enter Guideline Name" required>
+                            <option value="" selected hidden>Select Guideline Name</option>
+                            <option value="Library Access & Identification">Library Access & Identification</option>
+                            <option value="Personal Belongings & Responsibility">Personal Belongings & Responsibility
+                            </option>
+                            <option value="Entrance & Exit Procedures">Entrance & Exit Procedures</option>
+                            <option value="Library Conduct & Behavior">Library Conduct & Behavior</option>
+                            <option value="Library Materials Usage & Care">Library Materials Usage & Care</option>
+                            <option value="Borrowing, Overdue, and Fines">Borrowing, Overdue, and Fines</option>
+                            <option value="Special Conditions">Special Conditions</option>
+                        </select>
+                    </div>
+                    <div class="d-flex flex-column gap-3">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <label for="">Rules: </label>
+                            <button type="button" id="addRules" class="btn btn-primary btn-sm"><span
+                                    class="material-symbols-outlined">
+                                    add
+                                </span></button>
+                        </div>
+                        <textarea name="guidelineRules[]" class="form-control" placeholder="Enter Rules" required
+                            rows="5"></textarea>
+                        <div class="d-flex flex-column gap-3" id="inputRules">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-success">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="editGuidelinesModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel"> Edit
+                    Guidelines</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form id="editGuidelinesForm">
+                <div class="modal-body d-flex flex-column gap-2">
+                    <input type="hidden" id="rules_id" name="rules_id">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1">Guideline Name</span>
+                        <select name="editGuidelinesName" id="editGuidelinesName" class="form-select"
+                            placeholder="Enter Guideline Name" required disabled>
+                            <option value="Library Access & Identification">Library Access & Identification</option>
+                            <option value="Personal Belongings & Responsibility">Personal Belongings & Responsibility
+                            </option>
+                            <option value="Entrance & Exit Procedures">Entrance & Exit Procedures</option>
+                            <option value="Library Conduct & Behavior">Library Conduct & Behavior</option>
+                            <option value="Library Materials Usage & Care">Library Materials Usage & Care</option>
+                            <option value="Borrowing, Overdue, and Fines">Borrowing, Overdue, and Fines</option>
+                            <option value="Special Conditions">Special Conditions</option>
+                        </select>
+                    </div>
+                    <div class="d-flex flex-column gap-3">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <label for="">Rules: </label>
+                        </div>
+                        <div class="d-flex flex-column gap-3" id="editInputRules">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-success">Update</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="addFaqModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel"> Add FAQ</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form id="addFaqForm">
+                <div class="modal-body d-flex flex-column gap-2">
+                    <div class="input-group">
+                        <span class=" input-group-text" id="basic-addon1">Question</span>
+                        <input type="text" name="question" id="question" class="form-control" required
+                            placeholder="Enter Question">
+                    </div>
+                    <div class="mt-3">
+                        <label for="answer">Answer: </label>
+                        <textarea type="text" name="answer" id="answer" required class="form-control mt-2" rows="5"
+                            placeholder="Enter Answer"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-success">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="editFaqModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel"> Edit FAQ</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form id="editFaqForm">
+                <div class="modal-body d-flex flex-column gap-2">
+                    <input type="hidden" id="editFaqId">
+                    <div class="mt-2">
+                        <label for="editQuestion">Question: </label>
+                        <textarea type="text" name="editQuestion" id="editQuestion" class="form-control mt-2" required
+                            placeholder="Enter Question" rows="5"></textarea>
+                    </div>
+                    <div class="mt-2">
+                        <label for="answer">Answer: </label>
+                        <textarea type="text" name="editAnswer" id="editAnswer" required class="form-control mt-2"
+                            rows="15" placeholder="Enter Answer"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-success">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

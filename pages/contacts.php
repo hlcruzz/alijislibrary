@@ -103,8 +103,8 @@
     <div class="container-fluid mt-5 pt-5 pb-5" id="contact3">
         <div class="container-lg">
             <h1 class="fs-2 text-center">Frequently Asked Questions</h1>
-            <div class="row mt-5">
-                <div class="col col-12">
+            <div class="row mt-5" id="faqCont">
+                <!-- <div class="col col-12">
                     <div class="p-4 rounded-4 bg-light mb-4 position-relative">
                         <div class="d-flex justify-content-between align-items-center">
                             <h2 class="fs-5">How do I borrow reading materials from the CHMSC Alijis Campus Library?
@@ -230,7 +230,7 @@
                             </p>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
