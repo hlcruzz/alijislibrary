@@ -119,8 +119,7 @@
             </div>
           </div>
           <div class="d-flex align-items-start gap-3 mt-5" style="min-height: 180px">
-            <img src="assets/img/reference4.png" class="" width="100px" style="object-fit: contain"
-              alt="" />
+            <img src="assets/img/reference4.png" class="" width="100px" style="object-fit: contain" alt="" />
             <div class="d-flex flex-column justify-content-between gap-2 pe-4" style="min-height: 180px">
               <h4>OneLook Multi-Dictionary Search</h4>
               <p class="m-0">Search in hundreds of general and specialized dictionaries at once. Great for
@@ -132,29 +131,25 @@
             </div>
           </div>
           <div class="d-flex align-items-start gap-3 mt-5" style="min-height: 180px">
-            <img src="assets/img/reference5.jpg" class="" width="100px" style="object-fit: contain"
-              alt="" />
+            <img src="assets/img/reference5.jpg" class="" width="100px" style="object-fit: contain" alt="" />
             <div class="d-flex flex-column justify-content-between gap-2 pe-4" style="min-height: 180px">
               <h4>OneLook Multi-Dictionary Search</h4>
               <p class="m-0">The only dictionary and search engine you need for computer and internet
                 technology
                 definitions.</p>
-              <a href="https://www.webopedia.com/" class="view-more d-flex text-decoration-none"
-                target="_blank">View
+              <a href="https://www.webopedia.com/" class="view-more d-flex text-decoration-none" target="_blank">View
                 More <span class="material-symbols-outlined"> trending_up </span></a>
             </div>
           </div>
           <div class="d-flex align-items-start gap-3 mt-5" style="min-height: 180px">
-            <img src="assets/img/reference3.png" class="" width="100px" style="object-fit: contain"
-              alt="" />
+            <img src="assets/img/reference3.png" class="" width="100px" style="object-fit: contain" alt="" />
             <div class="d-flex flex-column justify-content-between gap-2 pe-4" style="min-height: 180px">
               <h4>Webster Gateway</h4>
               <p class="m-0">It provides a hypertext point-and-click interface for accessing various
                 dictionary services
                 on the Internet.</p>
-              <a href="https://www.merriam-webster.com/dictionary/gateway"
-                class="view-more d-flex text-decoration-none" target="_blank">View More <span
-                  class="material-symbols-outlined"> trending_up </span></a>
+              <a href="https://www.merriam-webster.com/dictionary/gateway" class="view-more d-flex text-decoration-none"
+                target="_blank">View More <span class="material-symbols-outlined"> trending_up </span></a>
             </div>
           </div>
         </div>
@@ -165,14 +160,12 @@
             <div class="d-flex flex-column gap-2 justify-content-between" style="min-height: 180px">
               <h4>Britannica Online</h4>
               <p class="m-0">It is the world standard in knowledge since 1768</p>
-              <a href="https://www.britannica.com/" class="view-more d-flex text-decoration-none"
-                target="_blank">View
+              <a href="https://www.britannica.com/" class="view-more d-flex text-decoration-none" target="_blank">View
                 More <span class="material-symbols-outlined"> trending_up </span></a>
             </div>
           </div>
           <div class="d-flex align-items-start gap-3 mt-5" style="min-height: 180px">
-            <img src="assets/img/reference7.png" class="" width="100px" style="object-fit: contain"
-              alt="" />
+            <img src="assets/img/reference7.png" class="" width="100px" style="object-fit: contain" alt="" />
             <div class="d-flex flex-column justify-content-between gap-2 pe-4" style="min-height: 180px">
               <h4>The Probert Encyclopaedia</h4>
               <p class="m-0">
@@ -181,22 +174,19 @@
                 manner of subjects through over 235,000 accurate, concise
                 and fully interlinked articles.
               </p>
-              <a href="https://www.probert-encyclopaedia.co.uk/"
-                class="view-more d-flex text-decoration-none" target="_blank">View More <span
-                  class="material-symbols-outlined"> trending_up </span></a>
+              <a href="https://www.probert-encyclopaedia.co.uk/" class="view-more d-flex text-decoration-none"
+                target="_blank">View More <span class="material-symbols-outlined"> trending_up </span></a>
             </div>
           </div>
           <div class="d-flex align-items-start gap-3 mt-5" style="min-height: 180px">
-            <img src="assets/img/reference8.png" class="" width="100px" style="object-fit: contain"
-              alt="" />
+            <img src="assets/img/reference8.png" class="" width="100px" style="object-fit: contain" alt="" />
             <div class="d-flex flex-column justify-content-between gap-2 pe-4" style="min-height: 180px">
               <h4>TEncyberpedia</h4>
               <p class="m-0">It is an electronic encyclopedia with its own content as well as over 10,000
                 links to the
                 best reference sites on the Internet.</p>
-              <a href="https://www.probert-encyclopaedia.co.uk/"
-                class="view-more d-flex text-decoration-none" target="_blank">View More <span
-                  class="material-symbols-outlined"> trending_up </span></a>
+              <a href="https://www.probert-encyclopaedia.co.uk/" class="view-more d-flex text-decoration-none"
+                target="_blank">View More <span class="material-symbols-outlined"> trending_up </span></a>
             </div>
           </div>
         </div>
@@ -208,27 +198,23 @@
               <h4>Google Maps</h4>
               <p class="m-0">Find local businesses, view maps and get driving directions in Google Maps
               </p>
-              <a href="https://www.google.com/maps" class="view-more d-flex text-decoration-none"
-                target="_blank">View
+              <a href="https://www.google.com/maps" class="view-more d-flex text-decoration-none" target="_blank">View
                 More <span class="material-symbols-outlined"> trending_up </span></a>
             </div>
           </div>
           <div class="d-flex align-items-start gap-3 mt-5" style="min-height: 180px">
-            <img src="assets/img/reference10.png" class="" width="100px" style="object-fit: contain"
-              alt="" />
+            <img src="assets/img/reference10.png" class="" width="100px" style="object-fit: contain" alt="" />
             <div class="d-flex flex-column justify-content-between gap-2 pe-4" style="min-height: 180px">
               <h4>World Atlas</h4>
               <p class="m-0">A complete atlas of the world featuring several thousand place names and
                 colorful, accurate
                 maps.</p>
-              <a href="https://www.probert-encyclopaedia.co.uk/"
-                class="view-more d-flex text-decoration-none" target="_blank">View More <span
-                  class="material-symbols-outlined"> trending_up </span></a>
+              <a href="https://www.probert-encyclopaedia.co.uk/" class="view-more d-flex text-decoration-none"
+                target="_blank">View More <span class="material-symbols-outlined"> trending_up </span></a>
             </div>
           </div>
           <div class="d-flex align-items-start gap-3 mt-5" style="min-height: 180px">
-            <img src="assets/img/reference11.png" class="" width="100px" style="object-fit: contain"
-              alt="" />
+            <img src="assets/img/reference11.png" class="" width="100px" style="object-fit: contain" alt="" />
             <div class="d-flex flex-column justify-content-between gap-2 pe-4" style="min-height: 180px">
               <h4>MapQuest</h4>
               <p class="m-0">
@@ -237,9 +223,8 @@
                 nearby businesses, get driving directions and maps, and plan a
                 trip with city information.
               </p>
-              <a href="https://www.probert-encyclopaedia.co.uk/"
-                class="view-more d-flex text-decoration-none" target="_blank">View More <span
-                  class="material-symbols-outlined"> trending_up </span></a>
+              <a href="https://www.probert-encyclopaedia.co.uk/" class="view-more d-flex text-decoration-none"
+                target="_blank">View More <span class="material-symbols-outlined"> trending_up </span></a>
             </div>
           </div>
         </div>
@@ -255,14 +240,12 @@
                 communications, transportation, military, terrorism, and transnational
                 issues for 266 world entities.
               </p>
-              <a href="https://www.cia.gov/the-world-factbook/"
-                class="view-more d-flex text-decoration-none" target="_blank">View More <span
-                  class="material-symbols-outlined"> trending_up </span></a>
+              <a href="https://www.cia.gov/the-world-factbook/" class="view-more d-flex text-decoration-none"
+                target="_blank">View More <span class="material-symbols-outlined"> trending_up </span></a>
             </div>
           </div>
           <div class="d-flex align-items-start gap-3 mt-5" style="min-height: 180px">
-            <img src="assets/img/reference2.png" class="" width="100px" style="object-fit: contain"
-              alt="" />
+            <img src="assets/img/reference2.png" class="" width="100px" style="object-fit: contain" alt="" />
             <div class="d-flex flex-column justify-content-between gap-2 pe-4" style="min-height: 180px">
               <h4>Information Please Almanac</h4>
               <p class="m-0">It allows searching or browsing in sports, entertainment, US, world, people,

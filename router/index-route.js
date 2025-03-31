@@ -588,3 +588,21 @@ export function updateFaq(id, question, answer) {
     });
   });
 }
+
+export function deleteFaq(id) {
+  return new Promise((resolve, reject) => {
+    $.ajax({
+      url: "./api/endpoint-deleteFaq.php",
+      data: {
+        id: id,
+      },
+      method: "POST",
+      success: function (response) {
+        resolve(response);
+      },
+      error: function (response) {
+        reject(response);
+      },
+    });
+  });
+}
