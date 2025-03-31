@@ -33,7 +33,6 @@ import {
   fetchFaqById,
   updateFaq,
   fetchAllFeedbacks,
-  deleteFaq,
 } from "./router/index-route.js";
 import { checkCookie, darkTheme, lightTheme, sideMenu, setCookie } from "./utils/cookies.js";
 import { setSession, checkSessionSettings } from "./utils/session.js";
@@ -373,21 +372,6 @@ function ClickEvents() {
       $("#editQuestion").val(data.faq_question);
       $("#editAnswer").val(data.faq_answer);
     });
-  });
-
-  $(document).on("click", ".deleteFaqBtn", function () {
-    const id = $(this).attr("data-id");
-    const testConfirm = confirm("Are you sure you want to delte this FAQ?");
-    if (testConfirm) {
-      deleteFaq(id).then((response) => {
-        if (response == 1) {
-          alert("FAQ Deleted!");
-          location.reload();
-        } else {
-          alert(response);
-        }
-      });
-    }
   });
 }
 function FetchEvents() {
