@@ -36,6 +36,9 @@ switch ($request) {
     case '/admin-downloadables':
         require 'admin/downloadable.php';
         break;
+    case '/admin-online-reference-tools':
+        require 'admin/online-tools.php';
+        break;
     case '/admin-settings-foundation':
         require 'admin/foundation.php';
         break;

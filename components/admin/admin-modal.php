@@ -72,7 +72,8 @@
                 <div class="modal-body d-flex flex-column gap-2">
                     <div class="form-group d-flex flex-column gap-2">
                         <label for="">Images: (Optional)</label>
-                        <input type="file" name="files[]" id="newsImg" class="form-control" accept="image/*" multiple>
+                        <input type="file" name="files[]" id="newsImg" class="form-control" accept=".jpg, .jpeg, .png"
+                            multiple>
                     </div>
                     <div class="form-group d-flex flex-column gap-2">
                         <label for="">Subject:</label>
@@ -115,7 +116,8 @@
                     <input type="hidden" name="editNewsId" id="editNewsId">
                     <div class="form-group d-flex flex-column gap-2">
                         <label for="">Upload New Images: (Optional)</label>
-                        <input type="file" name="files[]" id="files" class="form-control" accept="image/*" multiple>
+                        <input type="file" name="files[]" id="files" class="form-control" accept=".jpg, .jpeg, .png"
+                            multiple>
                     </div>
                     <div class="form-group d-flex flex-column gap-2">
                         <label for="">Subject:</label>
@@ -311,6 +313,109 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-success">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="addToolModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel"> Add Online Reference Tool</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form id="addToolForm">
+                <div class="modal-body d-flex flex-column gap-2">
+                    <div>
+                        <label for="file">Image: ( jpeg, jpg, png ) </label>
+                        <input type="file" name="file" id="file" class="form-control mt-2" accept=".jpg, .jpeg, .png"
+                            required>
+                    </div>
+                    <div class="input-group mt-3">
+                        <label class="input-group-text" for="online_reference_type">Type</label>
+                        <select name="online_reference_type" id="online_reference_type" class="form-select" required>
+                            <option value="" selected hidden>Select Type</option>
+                            <option value="Dictionaries">Dictionaries</option>
+                            <option value="Encyclopedias">Encyclopedias</option>
+                            <option value="Maps">Maps</option>
+                            <option value="General References">General References</option>
+                        </select>
+                    </div>
+                    <div class="mt-3">
+                        <label for="online_reference_name">Online Reference Tool Name: </label>
+                        <input type="text" name="online_reference_name" id="online_reference_name"
+                            class="form-control mt-2" placeholder="Enter Online Reference Tool Name" required>
+                    </div>
+                    <div class="mt-3">
+                        <label for="online_reference_desc">Online Reference Tool Description: </label>
+                        <textarea name="online_reference_desc" id="online_reference_desc" class="form-control mt-2"
+                            placeholder="Enter Description" rows="5" required></textarea>
+                    </div>
+                    <div class="input-group mt-3">
+                        <label class="input-group-text" for="online_reference_link">Link</label>
+                        <input type="url" name="online_reference_link" id="online_reference_link" class="form-control"
+                            placeholder="https://example.com/" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-success">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="editToolModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel"> Edit Online Reference Tool</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form id="editToolForm">
+                <div class="modal-body d-flex flex-column gap-2">
+                    <div class="position-relative" id="editOnlineToolImgCont">
+
+                    </div>
+                    <input type="hidden" id="edit_online_reference_id" name="edit_online_reference_id">
+                    <div>
+                        <label for="file">Update Image: ( jpeg, jpg, png ) </label>
+                        <input type="file" name="edit_file_tool" id="edit_file_tool" class="form-control mt-2"
+                            accept=".jpg, .jpeg, .png">
+                    </div>
+                    <div class="input-group mt-3">
+                        <label class="input-group-text" for="edit_online_reference_type">Type</label>
+                        <select name="edit_online_reference_type" id="edit_online_reference_type" class="form-select"
+                            required>
+                            <option value="" selected hidden>Select Type</option>
+                            <option value="Dictionaries">Dictionaries</option>
+                            <option value="Encyclopedias">Encyclopedias</option>
+                            <option value="Maps">Maps</option>
+                            <option value="General References">General References</option>
+                        </select>
+                    </div>
+                    <div class="mt-3">
+                        <label for="edit_online_reference_name">Online Reference Tool Name: </label>
+                        <input type="text" name="edit_online_reference_name" id="edit_online_reference_name"
+                            class="form-control mt-2" placeholder="Enter Online Reference Tool Name" required>
+                    </div>
+                    <div class="mt-3">
+                        <label for="edit_online_reference_desc">Online Reference Tool Description: </label>
+                        <textarea name="edit_online_reference_desc" id="edit_online_reference_desc"
+                            class="form-control mt-2" placeholder="Enter Description" rows="5" required></textarea>
+                    </div>
+                    <div class="input-group mt-3">
+                        <label class="input-group-text" for="edit_online_reference_link">Link</label>
+                        <input type="url" name="edit_online_reference_link" id="edit_online_reference_link"
+                            class="form-control" placeholder="https://example.com/" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-success">Update</button>
                 </div>
             </form>
         </div>

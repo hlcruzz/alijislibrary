@@ -34,6 +34,11 @@ import {
   updateFaq,
   fetchAllFeedbacks,
   deleteFaq,
+  addReferenceTools,
+  fetchAllReferenceTools,
+  fetchReferenceToolsById,
+  updateReferenceTools,
+  deleteReferenceTools,
 } from "./router/index-route.js";
 import { checkCookie, darkTheme, lightTheme, sideMenu, setCookie } from "./utils/cookies.js";
 import { setSession, checkSessionSettings } from "./utils/session.js";
@@ -390,6 +395,21 @@ function ClickEvents() {
       });
     }
   });
+  $(document).on("click", ".deleteOnlineRef", function () {
+    const id = $(this).attr("data-id");
+    const confirmDel = confirm("Are you sure you want to delete this Reference?");
+
+    if (confirmDel) {
+      deleteReferenceTools(id).then((response) => {
+        if (response == 1) {
+          alert("Online Reference Deleted");
+          location.reload();
+        } else {
+          alert(response);
+        }
+      });
+    }
+  });
 }
 function FetchEvents() {
   checkCookie();
@@ -626,7 +646,7 @@ function FetchEvents() {
           break;
       }
       const content = `
-      <div class="col col-12 col-sm-6 col-lg-3 p-0">
+      <div class="foundationCont col col-12 col-sm-6 col-lg-3 p-0">
         <div class="foundation card-about card m-3 p-3 border-2" data-name="${element.foundationName}" data-bs-toggle="modal" data-bs-target="#aboutModal">
           <div class="d-flex justify-content-center py-5">
             <span class="d-flex justify-content-center align-items-center ${isIndex} rounded-2 text-light"
@@ -917,6 +937,74 @@ function ModalEvents() {
   $("#editFaqModal").on("hide.bs.modal", function () {
     $("#editFaqForm").trigger("reset");
   });
+
+  $("#addToolModal").on("show.bs.modal", () => {
+    $("#addToolForm").submit(function (event) {
+      event.preventDefault();
+
+      const formData = new FormData(this);
+      addReferenceTools(formData).then((response) => {
+        if (response == 1) {
+          alert("Online Reference Tool Added");
+          location.reload();
+        } else {
+          alert(response);
+        }
+      });
+    });
+  });
+
+  $("#addToolModal").on("hide.bs.modal", () => {
+    $("#addToolForm").trigger("reset");
+  });
+
+  $(document).on("click", ".editOnlineRef", function () {
+    const id = $(this).attr("data-id");
+
+    fetchReferenceToolsById(id).then((response) => {
+      const data = JSON.parse(response);
+      const ref_id = data.id;
+      const online_reference_type = data.online_reference_type;
+      const online_reference_path = data.online_reference_path;
+      const online_reference_name = data.online_reference_name;
+      const online_reference_link = data.online_reference_link;
+      const online_reference_desc = data.online_reference_desc;
+
+      $("#edit_online_reference_id").val(ref_id);
+      $("#edit_online_reference_type").val(online_reference_type);
+      $("#edit_online_reference_name").val(online_reference_name);
+      $("#edit_online_reference_desc").val(online_reference_desc);
+      $("#edit_online_reference_link").val(online_reference_link);
+
+      const imageContainer = $("#editOnlineToolImgCont");
+      const imageContent = `
+      <img src="${online_reference_path}" alt=""
+          class="w-100 object-fit-contain" style="max-height: 300px;">
+      `;
+      imageContainer.empty();
+      imageContainer.append(imageContent);
+    });
+  });
+
+  $("#editToolModal").on("show.bs.modal", function () {
+    $("#editToolForm").submit(function (event) {
+      event.preventDefault();
+
+      const formData = new FormData(this);
+      updateReferenceTools(formData).then((response) => {
+        if (response == 1) {
+          alert("Online Reference Tool Updated");
+          location.reload();
+        } else {
+          alert(response);
+        }
+      });
+    });
+  });
+
+  $("#editToolModal").on("hide.bs.modal", function () {
+    $("#editToolForm").trigger("reset");
+  });
 }
 
 function DataTable() {
@@ -1071,8 +1159,8 @@ function DataTable() {
             const isReadIcon = row.feedbackIsRead == 0 ? `<i class="fa-solid fa-circle text-primary position-absolute" style="font-size: 10px; top:10px;"></i>` : "";
 
             return `
-              <span class='fs-5 mb-2 p-0 m-0 ${isReadText}'>${row.feedbackName}</span><br>
-              <span class='${isReadText} p-0 m-0'>${row.feedbackEmail}</span>
+              <span class='mb-2 p-0 m-0 ${isReadText}'>${row.feedbackName}</span><br>
+              <small class='${isReadText} p-0 m-0'>${row.feedbackEmail}</small>
               ${isReadIcon}
             `;
           },
@@ -1179,7 +1267,7 @@ function DataTable() {
           data: "id",
           title: "#",
           render: function (data, type, row) {
-            return data;
+            return `<span class='badge bg-success'>${data}</span>`;
           },
         },
         {
@@ -1210,6 +1298,79 @@ function DataTable() {
             return `
               <button class="editFaqBtn btn btn-success" data-bs-toggle="modal" data-bs-target="#editFaqModal" data-id="${row.id}"><i class="fa-solid fa-pen"></i></button>
               <button class="deleteFaqBtn btn btn-danger" data-id="${row.id}"><i class="fa-solid fa-trash"></i></button>
+              `;
+          },
+        },
+      ],
+    });
+  });
+  fetchAllReferenceTools().then((response) => {
+    const data = JSON.parse(response);
+    $("#online_tools_table").DataTable({
+      data: data,
+      columnDefs: [
+        {
+          targets: 0,
+          width: "10px",
+          className: "text-center",
+        },
+      ],
+
+      columns: [
+        {
+          data: "id",
+          title: "#",
+          render: function (data, type, row) {
+            return `<span class='badge bg-success'>${data}</span>`;
+          },
+        },
+        {
+          data: "online_reference_path",
+          title: "Img",
+          render: function (data, type, row) {
+            return `
+            <div>
+                  <img src="${data}" width="40px" height="40px"
+                      class="object-fit-cover" alt="">
+              </div>
+            `;
+          },
+        },
+        {
+          data: "online_reference_name",
+          title: "Name",
+          render: function (data, type, row) {
+            return data;
+          },
+        },
+        {
+          data: "online_reference_desc",
+          title: "Description",
+          render: function (data, type, row) {
+            return sliceText(data, 50);
+          },
+        },
+        {
+          data: "online_reference_type",
+          title: "Type",
+          render: function (data, type, row) {
+            return data;
+          },
+        },
+        {
+          data: "text_date",
+          title: "Date",
+          render: function (data, type, row) {
+            return data;
+          },
+        },
+        {
+          data: null,
+          title: "Action",
+          render: function (data, type, row) {
+            return `
+              <button class="editOnlineRef btn btn-success" data-bs-toggle="modal" data-bs-target="#editToolModal" data-id="${row.id}"><i class="fa-solid fa-pen"></i></button>
+              <button class="deleteOnlineRef btn btn-danger" data-id="${row.id}"><i class="fa-solid fa-trash"></i></button>
               `;
           },
         },

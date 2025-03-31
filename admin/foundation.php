@@ -113,7 +113,7 @@
                                     <h1 class="fs-5">Update About Us Content</h1>
                                     <div class="">
                                         <label for="aboutTxt">Update Image: </label>
-                                        <input type="file" class="form-control mt-2" accept="image/*">
+                                        <input type="file" class="form-control mt-2"  accept=".jpg, .jpeg, .png">
                                     </div>
                                     <div class="">
                                         <label for="aboutTxt">Content Text: </label>

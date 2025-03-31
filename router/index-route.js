@@ -606,3 +606,90 @@ export function deleteFaq(id) {
     });
   });
 }
+
+export function addReferenceTools(formData) {
+  return new Promise((resolve, reject) => {
+    $.ajax({
+      url: "./api/endpoint-addReferenceTools.php",
+      data: formData,
+      processData: false,
+      contentType: false,
+      method: "POST",
+      success: function (response) {
+        resolve(response);
+      },
+      error: function (response) {
+        reject(response);
+      },
+    });
+  });
+}
+
+export function fetchAllReferenceTools() {
+  return new Promise((resolve, reject) => {
+    $.ajax({
+      url: "./api/endpoint-fetchAllReferenceTools.php",
+      method: "GET",
+      success: function (response) {
+        resolve(response);
+      },
+      error: function (response) {
+        reject(response);
+      },
+    });
+  });
+}
+
+export function fetchReferenceToolsById(id) {
+  return new Promise((resolve, reject) => {
+    $.ajax({
+      url: "./api/endpoint-fetchReferenceToolsById.php",
+      data: {
+        id: id,
+      },
+      method: "GET",
+      success: function (response) {
+        resolve(response);
+      },
+      error: function (response) {
+        reject(response);
+      },
+    });
+  });
+}
+
+export function updateReferenceTools(formData) {
+  return new Promise((resolve, reject) => {
+    $.ajax({
+      url: "./api/endpoint-updateReferenceTools.php",
+      data: formData,
+      processData: false,
+      contentType: false,
+      method: "POST",
+      success: function (response) {
+        resolve(response);
+      },
+      error: function (response) {
+        reject(response);
+      },
+    });
+  });
+}
+
+export function deleteReferenceTools(id) {
+  return new Promise((resolve, reject) => {
+    $.ajax({
+      url: "./api/endpoint-deleteReferenceTools.php",
+      data: {
+        id: id,
+      },
+      method: "POST",
+      success: function (response) {
+        resolve(response);
+      },
+      error: function (response) {
+        reject(response);
+      },
+    });
+  });
+}
