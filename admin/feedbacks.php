@@ -13,10 +13,10 @@
     <div class="container-fluid p-0" style="max-height: 100vh;">
         <div class="d-flex">
             <?php include "./components/admin/dashboard-menu.php" ?>
-            <div class="flex-grow-1 ">
+            <div class="content flex-grow-1 ">
                 <?php include "./components/admin/dashboard-upbar.php" ?>
                 <!-- CONTENT -->
-                <div class="p-4 content">
+                <div class="p-4">
                     <div class="row">
                         <div class="col-12 ">
                             <div class="d-flex justify-content-between align-items-center pb-4">
