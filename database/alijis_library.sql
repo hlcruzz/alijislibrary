@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 28, 2025 at 08:37 AM
+-- Generation Time: Apr 02, 2025 at 03:13 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -85,7 +85,7 @@ INSERT INTO `faq` (`id`, `faq_question`, `faq_answer`, `faq_date`) VALUES
 (1, 'How do I borrow reading materials from the CHMSC Alijis Campus Library?', 'To borrow reading materials from the CHMSC Alijis Campus Library, students, faculty, and staff must have a valid, properly validated library card. Students can borrow up to three books from the Circulation or Filipiniana sections and unlimited fiction books for one week, while faculty members can borrow unlimited books from these sections with renewals allowed every two weeks. Administrative support staff may borrow one book for one week. Borrowing starts at 3:00 P.M., and borrowed books must be returned by 10:00 A.M. the next day to avoid overdue fines. Books can be renewed up to twice a semester, and overdue materials must be returned before borrowing new items. If you have overdue materials, you cannot borrow additional books until the fines are settled.', '2025-03-28 05:06:27'),
 (2, 'What library services are available in CHMSC Alijis Campus Library?', 'The CHMSC Alijis Campus Library offers a variety of services to its users. These include borrowing/check-out services for students, faculty, and staff with valid library cards, and the returning/check-in of borrowed materials at the counter. Overnight or home use of books is allowed under specific guidelines for different groups (undergraduate students, faculty, and administrative staff). The library also provides book renewals, allowing books to be renewed twice a semester. For researchers, the library offers internet and computer-aided research services, with access to databases like IGI Global and Phil.elib. Reference and information services include chat assistance with librarians, online document delivery, bibliographic requests, and telephone inquiries. The library also facilitates printing and scanning services for library users and offers free Wi-Fi (access code available upon request). Additionally, referral letters are provided for faculty and students who wish to conduct research in neighboring libraries. The library regularly conducts virtual library orientation sessions for freshmen, transferees, and faculty. Lastly, library updates and announcements are shared via their Facebook page and email communications.', '2025-03-28 05:48:26'),
 (3, 'What is the penalty for overdue books?', 'The penalty for overdue books at the CHMSC Alijis Campus Library includes fines and restrictions on library access. For students, overdue books from the Circulation and Filipiniana sections are fined Php 1.00 per hour for each book returned after 10:00 A.M. on the due date (excluding holidays, Saturdays, and Sundays), while overdue fiction books incur a fine of Php 1.00 per day. Students are given a maximum of three (3) working days to return overdue books; if the books are not returned within this time, the student will be banned from library services for the rest of the semester, even if the book is returned or the fine is paid during the ban period. For researchers (outsiders), an overdue fine of Php 30.00 per day is charged, provided they have a referral letter from their home institution’s librarian.', '2025-03-28 05:49:48'),
-(4, 'Does the CHMSC Alijis Campus Library have a scanner?', 'Yes, the CHMSC Alijis Campus Library provides scanning services to its users. Library users, including faculty and students, can request assistance with scanning reading materials, research references, and other books available in the library.', '2025-03-28 05:50:07');
+(6, 'Does the CHMSC Alijis Campus Library have a scanner?', 'Yes, the CHMSU Alijis Campus Library provides scanning services to its users. Library users, including faculty and students, can request assistance with scanning reading materials, research references, and other books available in the library.', '2025-03-31 01:55:58');
 
 -- --------------------------------------------------------
 
@@ -339,6 +339,40 @@ INSERT INTO `library_news_img` (`id`, `library_news_id`, `library_news_img_path`
 (56, 30, ''),
 (57, 11, './assets/img/libraryNews/ribbon.png');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `online_reference`
+--
+
+CREATE TABLE `online_reference` (
+  `id` int(11) NOT NULL,
+  `online_reference_path` varchar(255) NOT NULL,
+  `online_reference_type` varchar(100) NOT NULL,
+  `online_reference_name` varchar(100) NOT NULL,
+  `online_reference_desc` text NOT NULL,
+  `online_reference_link` text NOT NULL,
+  `online_reference_date` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `online_reference`
+--
+
+INSERT INTO `online_reference` (`id`, `online_reference_path`, `online_reference_type`, `online_reference_name`, `online_reference_desc`, `online_reference_link`, `online_reference_date`) VALUES
+(1, './assets/img/onlineReferenceTools/reference3.png', 'Dictionaries', 'Merriam Webster', 'It is an American company that publishes reference books and is mostly known for its dictionaries. It is the oldest dictionary publisher in the United States.', 'https://www.merriam-webster.com/', '2025-03-31 02:53:06'),
+(2, './assets/img/onlineReferenceTools/reference4.png', 'Dictionaries', 'OneLook Multi-Dictionary Search', 'Search in hundreds of general and specialized dictionaries at once. Great for obscure words or when you want to compare different dictionaries.', 'http://itools.com/tool/onelook-multi-dictionary-search', '2025-03-31 02:58:04'),
+(3, './assets/img/onlineReferenceTools/reference5.jpg', 'Dictionaries', 'OneLook Multi-Dictionary Search', 'The only dictionary and search engine you need for computer and internet technology definitions.', 'https://www.webopedia.com/', '2025-03-31 02:58:41'),
+(4, './assets/img/onlineReferenceTools/reference3.png', 'Dictionaries', 'Webster Gateway', 'It provides a hypertext point-and-click interface for accessing various dictionary services on the Internet.', 'https://www.merriam-webster.com/dictionary/gateway', '2025-03-31 02:59:20'),
+(5, './assets/img/onlineReferenceTools/reference6.png', 'Encyclopedias', 'Britannica Online', 'It is the world standard in knowledge since 1768', 'https://www.britannica.com/', '2025-03-31 02:59:52'),
+(6, './assets/img/onlineReferenceTools/reference7.png', 'Encyclopedias', 'The Probert Encyclopaedia', 'The Probert Encyclopaedia\r\nIt\'s an independent reference encyclopaedia aimed at professionals and students alike, documenting all manner of subjects through over 235,000 accurate, concise and fully interlinked articles.', 'https://www.probert-encyclopaedia.co.uk/', '2025-03-31 03:00:33'),
+(7, './assets/img/onlineReferenceTools/reference8.png', 'Encyclopedias', 'Encyberpedia', 'It is an electronic encyclopedia with its own content as well as over 10,000 links to the best reference sites on the Internet.', 'https://scripophily.net/encyberpedia-com-domain-name/general.htm', '2025-03-31 03:00:58'),
+(8, './assets/img/onlineReferenceTools/reference9.jpg', 'Maps', 'Google Maps', 'Find local businesses, view maps and get driving directions in Google Maps', 'https://www.google.com/maps', '2025-03-31 03:01:28'),
+(9, './assets/img/onlineReferenceTools/reference10.png', 'Maps', 'World Atlas', 'A complete atlas of the world featuring several thousand place names and colorful, accurate maps.', 'https://www.worldatlas.com/', '2025-03-31 03:01:56'),
+(10, './assets/img/onlineReferenceTools/reference11.png', 'Maps', 'MapQuest', 'Find directions and explore towns and cities worldwide. Users can display addresses on a map, view nearby businesses, get driving directions and maps, and plan a trip with city information.', 'https://www.mapquest.com/', '2025-03-31 03:06:46'),
+(11, './assets/img/onlineReferenceTools/reference1.png', 'General References', 'The World Fact Book', 'Provides basic intelligence on the history, people, government, economy, energy, geography, communications, transportation, military, terrorism, and transnational issues for 266 world entities.', 'https://www.cia.gov/the-world-factbook/', '2025-03-31 03:07:25'),
+(13, './assets/img/onlineReferenceTools/reference2.png', 'General References', 'Information Please Almanac', 'It allows searching or browsing in sports, entertainment, US, world, people, living, society, business & economy & technology.', 'https://www.infoplease.com/almanacs', '2025-03-31 06:52:04');
+
 --
 -- Indexes for dumped tables
 --
@@ -407,6 +441,12 @@ ALTER TABLE `library_news_img`
   ADD KEY `library_news_id` (`library_news_id`);
 
 --
+-- Indexes for table `online_reference`
+--
+ALTER TABLE `online_reference`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -426,7 +466,7 @@ ALTER TABLE `downloads`
 -- AUTO_INCREMENT for table `faq`
 --
 ALTER TABLE `faq`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `feedbacks`
@@ -469,6 +509,12 @@ ALTER TABLE `library_news`
 --
 ALTER TABLE `library_news_img`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+
+--
+-- AUTO_INCREMENT for table `online_reference`
+--
+ALTER TABLE `online_reference`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- Constraints for dumped tables

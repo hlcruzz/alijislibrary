@@ -10,10 +10,10 @@
             echo ".menu-links:nth-child(3) {background-color: #66c28e;color: white;}";
             break;
         case 'downloadble':
-            echo ".menu-links:nth-child(4) {background-color: #66c28e;color: white;}";
+            echo ".menu-links:nth-child(5) {background-color: #66c28e;color: white;}";
             break;
         case 'online-reference-tools':
-            echo ".menu-links:nth-child(5) {background-color: #66c28e;color: white;}";
+            echo ".menu-links:nth-child(6) {background-color: #66c28e;color: white;}";
             break;
         case 'settings-foundation':
             echo ".settings-links:nth-child(1) {background-color: #66c28e;color: white;}";
@@ -23,6 +23,9 @@
             break;
         case 'settings-faq':
             echo ".settings-links:nth-child(3) {background-color: #66c28e;color: white;}";
+            break;
+        case 'settings-objectives':
+            echo ".settings-links:nth-child(5) {background-color: #66c28e;color: white;}";
             break;
         default:
     }
@@ -189,7 +192,17 @@
                             </div>
                         </div>
                     </a>
-
+                    <a href="/admin-objectives" class="settings-links p-3 text-decoration-none d-flex align-items-center gap-2">
+                        <span class="material-symbols-outlined">
+                            flag
+                        </span>
+                        <div class="navText w-100 d-flex justify-content-between align-items-center">
+                            <h1 class="p-0 m-0" style="font-size: small">Objectives</h1>
+                            <div class=" d-flex align-items-center gap-3">
+                                <h1 class="p-0 m-0 fs-5"></h1>
+                            </div>
+                        </div>
+                    </a>
                 </div>
 
 

@@ -48,6 +48,9 @@ switch ($request) {
     case '/admin-settings-faq':
         require 'admin/faq.php';
         break;
+    case '/admin-objectives':
+        require 'admin/objectives.php';
+        break;
     default:
         http_response_code(404);
         echo "Page not found!";

@@ -693,3 +693,74 @@ export function deleteReferenceTools(id) {
     });
   });
 }
+
+export function addObjectives(icon, text) {
+  return new Promise((resolve, reject) => {
+    $.ajax({
+      url: "./api/endpoint-addObjectives.php",
+      data: {
+        icon: icon,
+        text: text,
+      },
+      method: "POST",
+      success: function (response) {
+        resolve(response);
+      },
+      error: function (response) {
+        reject(response);
+      },
+    });
+  });
+}
+
+export function fetchTotalObjectives() {
+  return new Promise((resolve, reject) => {
+    $.ajax({
+      url: "./api/endpoint-fetchTotalObjectives.php",
+      method: "GET",
+
+      success: function (response) {
+        resolve(response);
+      },
+      error: function (response) {
+        reject(response);
+      },
+    });
+  });
+}
+
+export function objectivesDelete(id) {
+  return new Promise((resolve, reject) => {
+    $.ajax({
+      url: "./api/endpoint-objectivesDelete.php",
+      method: "POST",
+      data: {
+        id: id,
+      },
+      success: function (response) {
+        resolve(response);
+      },
+      error: function (response) {
+        reject(response);
+      },
+    });
+  });
+}
+
+export function updateObjectives(formData) {
+  return new Promise((resolve, reject) => {
+    $.ajax({
+      url: "./api/endpoint-updateObjectives.php",
+      method: "POST",
+      data: formData,
+      processData: false,
+      contentType: false,
+      success: function (response) {
+        resolve(response);
+      },
+      error: function (response) {
+        reject(response);
+      },
+    });
+  });
+}

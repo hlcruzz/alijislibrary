@@ -143,3 +143,189 @@ $("#addRules").on("click", () => {
                                 required rows="5"></textarea>`;
   inputCont.append(input);
 });
+
+
+export function arrayIcons() {
+  const icons = [
+    "home",
+    "menu",
+    "backspace",
+    "arrow_back",
+    "arrow_forward",
+    "arrow_upward",
+    "arrow_downward",
+    "star",
+    "favorite",
+    "check",
+    "close",
+    "search",
+    "settings",
+    "alarm",
+    "account_circle",
+    "shopping_cart",
+    "delete",
+    "edit",
+    "visibility",
+    "mail",
+    "message",
+    "phone",
+    "volume_up",
+    "volume_down",
+    "save",
+    "download",
+    "upload",
+    "folder",
+    "file_download",
+    "warning",
+    "error",
+    "info",
+    "notification_important",
+    "camera",
+    "image",
+    "photo",
+    "picture_in_picture",
+    "map",
+    "location_on",
+    "directions",
+    "compass_calibration",
+    "share",
+    "person_add",
+    "group",
+    "people",
+    "toggle_on",
+    "toggle_off",
+    "fullscreen",
+    "fullscreen_exit",
+    "help",
+    "lock",
+    "lock_open",
+    "vpn_key",
+    "event",
+    "event_note",
+    "lightbulb",
+    "thumb_up",
+    "thumb_down",
+    "star_border",
+    "star_half",
+    "assignment",
+    "assignment_turned_in",
+    "calendar_today",
+    "access_time",
+    "schedule",
+    "history",
+    "language",
+    "public",
+    "translate",
+    "cloud",
+    "cloud_upload",
+    "cloud_download",
+    "battery_full",
+    "battery_charging_full",
+    "wifi",
+    "bluetooth",
+    "security",
+    "build",
+    "bug_report",
+    "code",
+    "dashboard",
+    "assessment",
+    "trending_up",
+    "trending_down",
+    "bar_chart",
+    "pie_chart",
+    "insert_chart",
+    "check_circle",
+    "radio_button_checked",
+    "radio_button_unchecked",
+    "star_rate",
+    "school",
+    "emoji_events",
+    "mediation",
+    "diversity_3",
+    "volunteer_activism",
+    "add",
+    "remove",
+    "more_vert",
+    "more_horiz",
+    "menu_open",
+    "expand_more",
+    "expand_less",
+    "play_arrow",
+    "pause",
+    "stop",
+    "refresh",
+    "redo",
+    "undo",
+    "print",
+    "visibility_off",
+    "notifications",
+    "notifications_active",
+    "notifications_none",
+    "notifications_off",
+    "bookmark",
+    "bookmark_border",
+    "flag",
+    "label",
+    "label_important",
+    "add_circle",
+    "remove_circle",
+    "check_circle_outline",
+    "error_outline",
+    "warning_amber",
+    "info_outline",
+    "help_outline",
+    "question_mark",
+    "cancel",
+    "clear",
+    "done",
+    "done_all",
+    "done_outline",
+    "drag_handle",
+    "drag_indicator",
+    "drag_handle",
+    "format_paint",
+    "format_textdirection_r_to_l",
+    "format_textdirection_l_to_r",
+    "format_bold",
+    "format_italic",
+    "format_underline",
+    "format_list_bulleted",
+    "format_list_numbered",
+    "format_quote",
+    "format_align_left",
+    "format_align_center",
+    "format_align_right",
+    "format_align_justify",
+    "format_indent_decrease",
+    "format_indent_increase",
+  ];
+
+  $.each(icons, function (index, icon) {
+    $("#iconList").append(`<option value="${icon}"></option>`);
+  });
+
+  $("#objectiveIcon").on("input", function () {
+    const iconName = $(this).val();
+    if (icons.includes(iconName)) {
+      $("#selectedIcon").text(iconName);
+      $("#iconPreview").fadeIn();
+    } else {
+      $("#iconPreview").fadeOut();
+    }
+  });
+}
+
+export function deleteDisplayObjectives(id) {
+  return new Promise((resolve, reject) => {
+    if (confirm("Are you sure you want to delete this objective?")) {
+      objectivesDelete(id).then(function (response) {
+        if (response) {
+          resolve("Deleted successfully!");
+        } else {
+          reject("Failed to delete objective.");
+        }
+      });
+    }
+  });
+}
+

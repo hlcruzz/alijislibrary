@@ -68,7 +68,7 @@
                     <img src="/assets/img/librarian1.png" class="object-fit-cover" style="border-radius: 50%;"
                         width="40px" height="40px" alt="">
                     <div class="">
-                        <h1 class="p-0 m-0 fs-6">Harold Cruz</h1>
+                        <h1 class="p-0 m-0 fs-6">Ms. Ma Loreta J. Santes</h1>
                         <small class="fw-light">Administrator</small>
                     </div>
                 </div>

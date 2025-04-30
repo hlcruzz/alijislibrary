@@ -421,3 +421,81 @@
         </div>
     </div>
 </div>
+
+
+
+<div class="modal fade" id="addObjectivesModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Add Objectives</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form id="addObjectivesForm">
+                <div class="modal-body d-flex flex-column gap-2">
+
+                    <div class="mb-3">
+                        <label for="objectiveIcon">Select Icon:</label>
+                        <div class="input-group mt-2">
+                            <input type="text" id="objectiveIcon" name="objectiveIcon" list="iconList" class="form-control" placeholder="Choose an icon..." required />
+                            <datalist id="iconList"></datalist>
+                            <label class="input-group-text" for="objectiveIcon">
+                                <div class="mt-2 text-center" id="iconPreview" style="display: none;">
+                                    <span id="selectedIcon" class="material-symbols-outlined"></span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                    <small id="addIconFeedback" class="text-danger d-block mt-1" style="display:none;"></small>
+                    <div>
+                        <label for="objectiveText">Objective Text</label>
+                        <textarea class="form-control mt-2" id="objectiveText" name="objectiveText" rows="3" placeholder="Enter objective details..." required></textarea>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-success"> Submit </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="editObjectiveModal" aria-labelledby="exampleModalLabel" aria-hidden="false">
+    <div class="modal-dialog">
+        <div class="modal-content p-3">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Objectives</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form id="editObjectiveForm">
+                <div class="modal-body d-flex flex-column gap-2">
+                    <label for="editObjectiveId"></label>
+                    <input type="hidden" id="editObjectiveId" name="editObjectiveId">
+                    <div class="mb-3">
+                        <label for="editObjectiveIcon">Select Icon:</label>
+                        <div class="input-group mt-2">
+                            <input type="text" id="editObjectiveIcon" name="editObjectiveIcon" list="iconList" class="form-control" placeholder="Choose an icon..." required />
+                            <datalist id="iconList"></datalist>
+                            <label class="input-group-text" for="editObjectiveIcon">
+                                <div class="mt-2 text-center" id="editSelectedIcon">
+
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="editObjectiveText">Objective Text</label>
+                        <textarea class="form-control mt-2" id="editObjectiveText" name="editObjectiveText" required></textarea>
+                    </div>
+
+                </div>
+                <div class="Modal-footer d-flex justify-content-end gap-3">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-success"> Submit </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

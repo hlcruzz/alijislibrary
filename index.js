@@ -39,10 +39,31 @@ import {
   fetchReferenceToolsById,
   updateReferenceTools,
   deleteReferenceTools,
+  addObjectives,
+  fetchTotalObjectives,
+  objectivesDelete,
+  updateObjectives,
 } from "./router/index-route.js";
-import { checkCookie, darkTheme, lightTheme, sideMenu, setCookie } from "./utils/cookies.js";
+import {
+  checkCookie,
+  darkTheme,
+  lightTheme,
+  sideMenu,
+  setCookie,
+} from "./utils/cookies.js";
 import { setSession, checkSessionSettings } from "./utils/session.js";
-import { seePassword, adminNotifCont, timeAgo, showLoading, checkAdminLogin, sliceText, openNavigation, openFoundationWidget } from "./assets/js/admin.js";
+import {
+  seePassword,
+  adminNotifCont,
+  timeAgo,
+  showLoading,
+  checkAdminLogin,
+  sliceText,
+  openNavigation,
+  openFoundationWidget,
+  arrayIcons,
+  deleteDisplayObjectives,
+} from "./assets/js/admin.js";
 $(document).ready(function () {
   ClickEvents();
   FetchEvents();
@@ -65,14 +86,16 @@ function ClickEvents() {
     const feedbackEmail = $("#feedbackEmail").val();
     const feedbackMsg = $("#feedbackMsg").val();
 
-    submitFeedback(feedbackName, feedbackEmail, feedbackMsg).then((response) => {
-      if (response == 1) {
-        alert("Feedback Submitted");
-        $("#contactForm").trigger("reset");
-      } else {
-        alert(response);
+    submitFeedback(feedbackName, feedbackEmail, feedbackMsg).then(
+      (response) => {
+        if (response == 1) {
+          alert("Feedback Submitted");
+          $("#contactForm").trigger("reset");
+        } else {
+          alert(response);
+        }
       }
-    });
+    );
   });
 
   $("#theme-input").on("click", function () {
@@ -106,14 +129,16 @@ function ClickEvents() {
     const feedbackEmail = $("#feedbackEmail").val();
     const feedbackMsg = $("#feedbackMsg").val();
 
-    submitFeedback(feedbackName, feedbackEmail, feedbackMsg).then((response) => {
-      if (response == 1) {
-        alert("Feedback Submitted");
-        $("#contactForm").trigger("reset");
-      } else {
-        alert(response);
+    submitFeedback(feedbackName, feedbackEmail, feedbackMsg).then(
+      (response) => {
+        if (response == 1) {
+          alert("Feedback Submitted");
+          $("#contactForm").trigger("reset");
+        } else {
+          alert(response);
+        }
       }
-    });
+    );
   });
 
   let notifLimit = 10;
@@ -182,7 +207,9 @@ function ClickEvents() {
 
   $(document).on("click", ".deleteNews", function () {
     const id = $(this).attr("data-id");
-    const confirmDelete = confirm("Are you sure you want to delete this library news?");
+    const confirmDelete = confirm(
+      "Are you sure you want to delete this library news?"
+    );
 
     if (confirmDelete) {
       deleteNewsById(id).then((response) => {
@@ -198,7 +225,9 @@ function ClickEvents() {
 
   $(document).on("click", ".deleteNewsImg", function () {
     const id = $(this).attr("data-id");
-    const confirmDelete = confirm("Are you sure you want to delete this image?");
+    const confirmDelete = confirm(
+      "Are you sure you want to delete this image?"
+    );
 
     if (confirmDelete) {
       deleteNewsImgById(id).then((response) => {
@@ -336,7 +365,9 @@ function ClickEvents() {
     const name = $(this).attr("data-name");
     fetchAllGuidelinesByName(name).then((response) => {
       const data = JSON.parse(response);
-      $("#editGuidelinesName").append(`<option value="${data.guidelineName}" selected hidden>${data.guidelineName}</option>`);
+      $("#editGuidelinesName").append(
+        `<option value="${data.guidelineName}" selected hidden>${data.guidelineName}</option>`
+      );
 
       const rules = data.rules_txt.split("\n");
       const rules_id = data.rules_id.split(",");
@@ -362,7 +393,9 @@ function ClickEvents() {
     const indexVal = $(this).attr("data-index");
     deleteGuidelineRuleById(id).then((response) => {
       if (response == 1) {
-        $(".rulesCont").eq(indexVal)[0].style.setProperty("display", "none", "important");
+        $(".rulesCont")
+          .eq(indexVal)[0]
+          .style.setProperty("display", "none", "important");
       } else {
         alert(response);
       }
@@ -397,7 +430,9 @@ function ClickEvents() {
   });
   $(document).on("click", ".deleteOnlineRef", function () {
     const id = $(this).attr("data-id");
-    const confirmDel = confirm("Are you sure you want to delete this Reference?");
+    const confirmDel = confirm(
+      "Are you sure you want to delete this Reference?"
+    );
 
     if (confirmDel) {
       deleteReferenceTools(id).then((response) => {
@@ -410,8 +445,90 @@ function ClickEvents() {
       });
     }
   });
+
+  icons.forEach((icon) => {
+    $("#iconList").append(`<option value="${icon}"></option>`);
+  });
+
+  $(document).on("click", ".editObjective", function () {
+    const objectiveId = $(this).attr("data-objective-id");
+    const objectiveIcon = $(this).attr("data-objectives-icon");
+    const objectiveText = $(this).attr("data-objectives-text");
+
+    $("#editObjectiveId").val(objectiveId);
+    $("#editObjectiveIcon")
+      .val(objectiveIcon)
+      .data("original-icon", objectiveIcon);
+    $("#editObjectiveText").val(objectiveText);
+    $("#editSelectedIcon").html(
+      `<span class="material-symbols-outlined">${objectiveIcon}</span>`
+    );
+  });
+
+  $("#editObjectiveIcon").on("change", function () {
+    const inputVal = $(this).val();
+    const selectedIcon = $("#editSelectedIcon");
+    selectedIcon.empty();
+
+    if (!icons.includes(inputVal)) {
+      alert("Icon doesn't exist. Please select another icon!");
+      const originalIcon = $(this).data("original-icon");
+      $(this).val(originalIcon);
+      selectedIcon.html(
+        `<span class="material-symbols-outlined">${originalIcon}</span>`
+      );
+    } else {
+      selectedIcon.html(
+        `<span class="material-symbols-outlined">${inputVal}</span>`
+      );
+    }
+  });
+
+  $("#editObjectiveForm").on("submit", function (event) {
+    event.preventDefault();
+    const formData = new FormData(this);
+    updateObjectives(formData).then((response) => {
+      if (response == 1) {
+        alert("Objective Updated Successfully");
+        location.reload();
+      } else {
+        alert(response);
+      }
+    });
+  });
 }
+
 function FetchEvents() {
+  fetchTotalObjectives().then(function (response) {
+    const data = JSON.parse(response);
+    const groupedData = {};
+
+    data.forEach(function (item) {
+      if (!groupedData[item.objectives_icon]) {
+        groupedData[item.objectives_icon] = [];
+      }
+      groupedData[item.objectives_icon].push(item.objectives_text);
+    });
+
+    Object.keys(groupedData).forEach(function (icon) {
+      const texts = groupedData[icon];
+      const combinedTexts = texts.map((text) => `<li>${text}</li>`).join("");
+
+      const $card = $(`
+  <div class="col col-12 col-lg-6 pt-5 pb-5 col-xl-4 p-3">
+    <div class="card p-5 h-100 text-center">
+      <span class="material-symbols-outlined fs-1">${icon}</span>
+      <ul class="mt-3 text-start">
+        ${combinedTexts}
+      </ul>
+    </div>
+  </div>
+`);
+
+      $("#objectives-container").append($card);
+    });
+  });
+
   checkCookie();
 
   setInterval(async () => {
@@ -425,7 +542,10 @@ function FetchEvents() {
 
       const textTime = timeAgo(element.feedbackTime);
       const isReadText = element.feedbackIsRead == 0 ? "" : "text-muted";
-      const isReadIcon = element.feedbackIsRead == 0 ? `<i class="fa-solid fa-circle text-primary position-absolute" style="font-size: 10px; top:10;"></i>` : "";
+      const isReadIcon =
+        element.feedbackIsRead == 0
+          ? `<i class="fa-solid fa-circle text-primary position-absolute" style="font-size: 10px; top:10;"></i>`
+          : "";
       const row = `
         <tr class="position-relative">
           <td class="ps-4" role="button">
@@ -516,8 +636,16 @@ function FetchEvents() {
     $("#newsLoading").show();
   }, 2000);
   setInterval(async () => {
-    const searchResult = sessionStorage.getItem("searchVal") == "" || sessionStorage.getItem("searchVal") == null ? "" : sessionStorage.getItem("searchVal");
-    const limitNews = sessionStorage.getItem("limitNews") == "" || sessionStorage.getItem("limitNews") == null ? "" : sessionStorage.getItem("limitNews");
+    const searchResult =
+      sessionStorage.getItem("searchVal") == "" ||
+      sessionStorage.getItem("searchVal") == null
+        ? ""
+        : sessionStorage.getItem("searchVal");
+    const limitNews =
+      sessionStorage.getItem("limitNews") == "" ||
+      sessionStorage.getItem("limitNews") == null
+        ? ""
+        : sessionStorage.getItem("limitNews");
     const response = await fetchNewsByCondition(searchResult, limitNews);
     const data = JSON.parse(response);
 
@@ -538,7 +666,10 @@ function FetchEvents() {
         for (let index = 0; index < Math.min(4, imageArray.length); index++) {
           const element = imageArray[index];
 
-          const hasReminder = imageArray.length - Math.min(4, imageArray.length) > 0 ? imageArray.length - Math.min(4, imageArray.length) : "";
+          const hasReminder =
+            imageArray.length - Math.min(4, imageArray.length) > 0
+              ? imageArray.length - Math.min(4, imageArray.length)
+              : "";
 
           const reminder =
             index === Math.min(4, imageArray.length) - 1 && hasReminder
@@ -573,7 +704,10 @@ function FetchEvents() {
         newsContainer.append(row);
       });
 
-      if (parseInt(sessionStorage.getItem("limitNews")) > parseInt(sessionStorage.getItem("newsRows"))) {
+      if (
+        parseInt(sessionStorage.getItem("limitNews")) >
+        parseInt(sessionStorage.getItem("newsRows"))
+      ) {
         $("#newsLoading").hide();
       }
     } else {
@@ -619,13 +753,11 @@ function FetchEvents() {
   fetchAllFoundation().then((response) => {
     const data = JSON.parse(response);
 
-    //Admin Side
     $("#missionTxt").html(data[0].foundationTxt);
     $("#visionTxt").html(data[1].foundationTxt);
     $("#goalTxt").html(data[2].foundationTxt);
     $("#objectivesTxt").html(data[3].foundationTxt);
 
-    //User Side
     const foundationCont = $("#foundationCont");
     data.forEach((element, index) => {
       let isIndex;
@@ -709,7 +841,10 @@ function FetchEvents() {
 color: white;"`
           : "";
 
-      const indexVisible = index == 0 ? `style="right: 2; visibility: visible;"` : `style="right: 2; visibility: hidden;"`;
+      const indexVisible =
+        index == 0
+          ? `style="right: 2; visibility: visible;"`
+          : `style="right: 2; visibility: hidden;"`;
       const content = `
       <div class="d-flex align-items-center" role="button">
           <li class="guideBtn p-3 ps-4 pe-5 w-100" ${isIndexFirst}>${element.guidelineName}</li>
@@ -812,7 +947,12 @@ function ModalEvents() {
       $("#cancelReply").hide();
       $("#sendReply").hide();
       $("#submitReplyLoading").show();
-      submitReplyFeedback(feedbackId, feedbackName, feedbackEmail, feedbackReply).then((response) => {
+      submitReplyFeedback(
+        feedbackId,
+        feedbackName,
+        feedbackEmail,
+        feedbackReply
+      ).then((response) => {
         alert(response);
         location.reload();
       });
@@ -913,6 +1053,7 @@ function ModalEvents() {
       });
     });
   });
+
   $("#addFaqModal").on("hide.bs.modal", function () {
     $("#addFaqForm").trigger("reset");
   });
@@ -1002,8 +1143,92 @@ function ModalEvents() {
     });
   });
 
+  $("#addObjectivesForm").on("submit", function (e) {
+    e.preventDefault();
+
+    const icon = $("#objectiveIcon").val().trim();
+    const text = $("#objectiveText").val().trim();
+
+    icons.forEach((icon) => {
+      $("#iconList").append(`<option value="${icon}"></option>`);
+    });
+
+    $("#objectiveIcon").on("input", function () {
+      const iconInput = $(this).val().trim();
+      const $feedback = $("#addIconFeedback");
+      const $input = $(this);
+
+      if (iconInput === "") {
+        $input.removeClass("is-invalid");
+        $feedback.hide();
+        return;
+      }
+
+      const matches = icons.filter((icon) => icon.startsWith(iconInput));
+
+      if (iconInput.length === 1 || matches.length === 0) {
+        $input.addClass("is-invalid");
+        $feedback
+          .text(
+            "Please enter a valid icon name. It must be at least 2 characters and match the icon list."
+          )
+          .show();
+      } else {
+        $input.removeClass("is-invalid");
+        $feedback.hide();
+      }
+    });
+
+    $("#addObjectivesForm").on("submit", function (e) {
+      e.preventDefault();
+
+      const icon = $("#objectiveIcon").val().trim();
+      const text = $("#objectiveText").val().trim();
+      const $iconInput = $("#objectiveIcon");
+      const $feedback = $("#addIconFeedback");
+
+      if (icon === "" || icon.length === 1 || !icons.includes(icon)) {
+        $iconInput.addClass("is-invalid");
+        $feedback
+          .text(
+            "Please select a valid icon from the list. It must be a full name, not a single letter."
+          )
+          .show();
+        return;
+      }
+
+      $iconInput.removeClass("is-invalid");
+      $feedback.hide();
+
+      addObjectives(icon, text).then((response) => {
+        if (response == 1) {
+          alert("Objective saved successfully!");
+          location.reload();
+        } else {
+          alert(response);
+        }
+      });
+    });
+  });
+
   $("#editToolModal").on("hide.bs.modal", function () {
     $("#editToolForm").trigger("reset");
+  });
+
+  $("#addObjectivesModal").on("hide.bs.modal", function () {
+    $("#addObjectivesForm").trigger("reset");
+    $("#iconPreview").hide();
+  });
+
+  $("#addObjectivesModal").on("show.bs.modal", function () {
+    $("#addObjectivesForm").submit((event) => {
+      event.preventDefault();
+    });
+  });
+
+  arrayIcons();
+  $("#editObjectiveModal").on("hide.bs.modal", function () {
+    $("#editSelectedIcon").empty();
   });
 }
 
@@ -1156,7 +1381,10 @@ function DataTable() {
           title: "Name",
           render: function (data, type, row) {
             const isReadText = row.feedbackIsRead == 0 ? "" : "text-muted";
-            const isReadIcon = row.feedbackIsRead == 0 ? `<i class="fa-solid fa-circle text-primary position-absolute" style="font-size: 10px; top:10px;"></i>` : "";
+            const isReadIcon =
+              row.feedbackIsRead == 0
+                ? `<i class="fa-solid fa-circle text-primary position-absolute" style="font-size: 10px; top:10px;"></i>`
+                : "";
 
             return `
               <span class='mb-2 p-0 m-0 ${isReadText}'>${row.feedbackName}</span><br>
@@ -1198,6 +1426,7 @@ function DataTable() {
       },
     });
   });
+
   fetchAllGuidelines().then((response) => {
     const data = JSON.parse(response);
     $("#table_guidelines").DataTable({
@@ -1377,4 +1606,243 @@ function DataTable() {
       ],
     });
   });
+
+  fetchTotalObjectives().then((response) => {
+    const data = JSON.parse(response);
+
+    const table = $("#table_Objectives").DataTable({
+      destroy: true,
+      data: data,
+      columnDefs: [
+        {
+          targets: 0,
+          width: "10px",
+          className: "text-center",
+        },
+      ],
+      columns: [
+        {
+          data: "id",
+          title: "#",
+          render: function (data) {
+            return `<span class='badge bg-success' >${data}</span>`;
+          },
+        },
+        {
+          data: "objectives_icon",
+          title: "Icons",
+          render: function (data) {
+            return `<span>${data}</span>`;
+          },
+        },
+        {
+          data: "objectives_text",
+          title: "Descriptions",
+          render: function (data, type, row) {
+            return `<span>${sliceText(data, 30)}</span>`;
+          },
+        },
+        {
+          data: "objectives_date",
+          title: "Date",
+          render: function (data) {
+            return `<span data="${data}">${data}</span>`;
+          },
+        },
+        {
+          data: null,
+          title: "Action",
+          render: function (data, type, row) {
+            return `
+             <button class="editObjective btn btn-success" data-bs-toggle="modal" data-bs-target="#editObjectiveModal" data-objective-id="${row.id}"  data-objectives-text="${row.objectives_text}" data-objectives-icon="${row.objectives_icon}"><i class="fa-solid fa-pen"></i></button>
+              <button class="btn btn-danger delete-btn" data-id="${row.id}" >
+                <span class="material-symbols-outlined">delete</span>
+              </button>
+            `;
+          },
+        },
+      ],
+      rowCallback: function (row, data, index) {
+        $(row).addClass("position-relative");
+      },
+    });
+
+    $("#table_Objectives").on("click", ".delete-btn", function () {
+      const id = $(this).data("id");
+
+      deleteDisplayObjectives(id).then(function (message) {
+        alert(message);
+
+        table.row($(this).parents("tr")).remove().draw();
+      });
+    });
+  });
+
+  function deleteDisplayObjectives(id) {
+    return new Promise((resolve, reject) => {
+      if (confirm("Are you sure you want to delete this objective?")) {
+        objectivesDelete(id).then(function (response) {
+          if (response) {
+            resolve("Deleted successfully!");
+            location.reload();
+          } else {
+            reject("Failed to delete objective.");
+          }
+        });
+      }
+    });
+  }
 }
+const icons = [
+  "home",
+  "menu",
+  "backspace",
+  "arrow_back",
+  "arrow_forward",
+  "arrow_upward",
+  "arrow_downward",
+  "star",
+  "favorite",
+  "check",
+  "close",
+  "search",
+  "settings",
+  "alarm",
+  "account_circle",
+  "shopping_cart",
+  "delete",
+  "edit",
+  "visibility",
+  "mail",
+  "message",
+  "phone",
+  "volume_up",
+  "volume_down",
+  "save",
+  "download",
+  "upload",
+  "folder",
+  "file_download",
+  "warning",
+  "error",
+  "info",
+  "notification_important",
+  "camera",
+  "image",
+  "photo",
+  "picture_in_picture",
+  "map",
+  "location_on",
+  "directions",
+  "compass_calibration",
+  "share",
+  "person_add",
+  "group",
+  "people",
+  "toggle_on",
+  "toggle_off",
+  "fullscreen",
+  "fullscreen_exit",
+  "help",
+  "lock",
+  "lock_open",
+  "vpn_key",
+  "event",
+  "event_note",
+  "lightbulb",
+  "thumb_up",
+  "thumb_down",
+  "star_border",
+  "star_half",
+  "assignment",
+  "assignment_turned_in",
+  "calendar_today",
+  "access_time",
+  "schedule",
+  "history",
+  "language",
+  "public",
+  "translate",
+  "cloud",
+  "cloud_upload",
+  "cloud_download",
+  "battery_full",
+  "battery_charging_full",
+  "wifi",
+  "bluetooth",
+  "security",
+  "build",
+  "bug_report",
+  "code",
+  "dashboard",
+  "assessment",
+  "trending_up",
+  "trending_down",
+  "bar_chart",
+  "pie_chart",
+  "insert_chart",
+  "check_circle",
+  "radio_button_checked",
+  "radio_button_unchecked",
+  "star_rate",
+  "school",
+  "emoji_events",
+  "mediation",
+  "diversity_3",
+  "volunteer_activism",
+  "add",
+  "remove",
+  "more_vert",
+  "more_horiz",
+  "menu_open",
+  "expand_more",
+  "expand_less",
+  "play_arrow",
+  "pause",
+  "stop",
+  "refresh",
+  "redo",
+  "undo",
+  "print",
+  "visibility_off",
+  "notifications",
+  "notifications_active",
+  "notifications_none",
+  "notifications_off",
+  "bookmark",
+  "bookmark_border",
+  "flag",
+  "label",
+  "label_important",
+  "add_circle",
+  "remove_circle",
+  "check_circle_outline",
+  "error_outline",
+  "warning_amber",
+  "info_outline",
+  "help_outline",
+  "question_mark",
+  "cancel",
+  "clear",
+  "done",
+  "done_all",
+  "done_outline",
+  "drag_handle",
+  "drag_indicator",
+  "drag_handle",
+  "format_paint",
+  "format_textdirection_r_to_l",
+  "format_textdirection_l_to_r",
+  "format_bold",
+  "format_italic",
+  "format_underline",
+  "format_list_bulleted",
+  "format_list_numbered",
+  "format_quote",
+  "format_align_left",
+  "format_align_center",
+  "format_align_right",
+  "format_align_justify",
+  "format_indent_decrease",
+  "format_indent_increase",
+];
