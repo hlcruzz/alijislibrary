@@ -1,0 +1,60 @@
+:root {
+  --primary-color: #13bc27;
+  --secondary-color: #106d21;
+  --bg-color: #def4df;
+  --txt-color: #595f59;
+  --line-color: #d9d9d9;
+  --bg-green: #def4df;
+}
+.nav-container {
+  box-shadow: 0px 0px 3px 1px grey;
+}
+
+.links {
+  position: relative;
+  padding: 5px 15px;
+}
+.links::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  transition: 0.3s ease;
+  border-top: 4px solid var(--primary-color);
+  border-radius: 20px;
+}
+.links:hover::before {
+  width: 100%;
+}
+.m-link {
+  color: white;
+  transition: 0.3s ease;
+  font-weight: 400;
+  padding: 10px 0px;
+}
+.m-link:hover {
+  color: var(--primary-color);
+  transform: translateX(20px);
+}
+
+#menu:hover {
+  transition: 0.3s ease;
+  box-shadow: 0px 0px 4px 0px grey;
+}
+#m-x {
+  color: white;
+  transition: 0.3s ease;
+}
+#m-x:hover {
+  color: var(--primary-color);
+  transform: rotate(180deg);
+}
+.m-icons {
+  color: white;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+.m-icons:hover {
+  color: var(--primary-color);
+}

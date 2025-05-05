@@ -1,0 +1,57 @@
+:root {
+  --primary-color: #13bc27;
+  --secondary-color: #106d21;
+  --bg-color: #def4df;
+  --txt-color: #595f59;
+  --line-color: #d9d9d9;
+  --bg-green: #def4df;
+  --light-bg: #2a983e;
+}
+#about1 {
+  background-color: var(--bg-green);
+}
+.card-about {
+  transition: 0.5s ease;
+  cursor: pointer;
+}
+.foundationCont:nth-child(1):hover .card-about {
+  border: 2px solid #0d6efd !important;
+  transform: translateY(-20px);
+  box-shadow: 0px 5px 5px rgb(139, 139, 139);
+}
+.foundationCont:nth-child(2):hover .card-about {
+  border: 2px solid #dc3545 !important;
+  transform: translateY(-20px);
+  box-shadow: 0px 5px 5px rgb(139, 139, 139);
+}
+
+.foundationCont:nth-child(3):hover .card-about {
+  border: 2px solid #198754 !important;
+  transform: translateY(-20px);
+  box-shadow: 0px 5px 5px rgb(139, 139, 139);
+}
+
+.foundationCont:nth-child(4):hover .card-about {
+  border: 2px solid #ffc107 !important;
+  transform: translateY(-20px);
+  box-shadow: 0px 5px 5px rgb(139, 139, 139);
+}
+.guideBtn {
+  background-color: var(--bg-green);
+  transition: 0.3s ease;
+  white-space: nowrap;
+}
+.guideBtn:hover {
+  background-color: var(--primary-color);
+  color: white;
+}
+.guideArrow {
+  display: none;
+  color: var(--primary-color);
+}
+.rules {
+  display: none;
+}
+.rules:nth-child(1) {
+  display: block;
+}
