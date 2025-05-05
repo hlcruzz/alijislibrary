@@ -91,15 +91,15 @@
                             </div>
 
                             <div class="mt-4 d-flex flex-column gap-2">
-                                <a href="/" class="foot-page text-decoration-none "><small><i
+                                <a href="./?page=home" class="foot-page text-decoration-none "><small><i
                                             class="fa-solid fa-angles-right"></i> Home</small></a>
-                                <a href="/about" class="foot-page text-decoration-none "><small><i
+                                <a href="./?page=about" class="foot-page text-decoration-none "><small><i
                                             class="fa-solid fa-angles-right"></i> About Us</small></a>
-                                <a href="/program" class="foot-page text-decoration-none "><small><i
+                                <a href="./?page=program" class="foot-page text-decoration-none "><small><i
                                             class="fa-solid fa-angles-right"></i> Programs</small></a>
-                                <a href="/services" class="foot-page text-decoration-none "><small><i
+                                <a href="./?page=services" class="foot-page text-decoration-none "><small><i
                                             class="fa-solid fa-angles-right"></i> Services</small></a>
-                                <a href="/contacts" class="foot-page text-decoration-none "><small><i
+                                <a href="./?page=contacts" class="foot-page text-decoration-none "><small><i
                                             class="fa-solid fa-angles-right"></i> Contacts</small></a>
                             </div>
                         </div>
@@ -115,13 +115,13 @@
                             </div>
 
                             <div class="mt-4 d-flex flex-column gap-2">
-                                <a href="/library-news" class="foot-page text-decoration-none "><small><i
+                                <a href="./?page=library-news" class="foot-page text-decoration-none "><small><i
                                             class="fa-solid fa-angles-right"></i> Library News</small></a>
-                                <a href="/gallery" class="foot-page text-decoration-none "><small><i
+                                <a href="./?page=gallery" class="foot-page text-decoration-none "><small><i
                                             class="fa-solid fa-angles-right"></i> Gallery</small></a>
-                                <a href="/periodicals" class="foot-page text-decoration-none "><small><i
+                                <a href="./?page=periodicals" class="foot-page text-decoration-none "><small><i
                                             class="fa-solid fa-angles-right"></i> New Arrival: Periodicals</small></a>
-                                <a href="/sections" class="foot-page text-decoration-none "><small><i
+                                <a href="./?page=sections" class="foot-page text-decoration-none "><small><i
                                             class="fa-solid fa-angles-right"></i> Library Sections</small></a>
                             </div>
                         </div>

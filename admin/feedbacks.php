@@ -7,7 +7,7 @@
     <title>Admin - Feedbacks</title>
     <?php include "./components/admin/admin-links.php" ?>
 </head>
-<?php $page = "feedbacks" ?>
+<?php $_GET['page'] = "feedbacks" ?>
 <?php include "./components/admin/admin-modal.php" ?>
 
 <body data-bs-theme="" id="admin-body">

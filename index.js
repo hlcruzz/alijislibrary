@@ -136,7 +136,7 @@ function ClickEvents() {
     if (confirmLogout) {
       adminLogout($.cookie("admin_id"));
       $.removeCookie("admin_id");
-      window.location.href = "/admin-login";
+      window.location.href = "./?page=admin-login";
     }
   });
 
@@ -3021,12 +3021,10 @@ function DataTable() {
           title: "Name",
           render: function (data, type, row) {
             const isReadText = row.feedbackIsRead == 0 ? "" : "text-muted";
-            const isReadIcon = row.feedbackIsRead == 0 ? `<i class="fa-solid fa-circle text-primary position-absolute" style="font-size: 10px; top:10px;"></i>` : "";
 
             return `
               <span class='mb-2 p-0 m-0 ${isReadText}'>${row.feedbackName}</span><br>
               <small class='${isReadText} p-0 m-0'>${row.feedbackEmail}</small>
-              ${isReadIcon}
             `;
           },
         },

@@ -16,63 +16,63 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-    #main-cont {
-        background-image: url(../assets/img/alijis-campus.png);
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-    }
-
-    .shadow {
-        background-color: rgb(0, 0, 0, 0.4);
-    }
-
-    .content {
-        width: 500px;
-        animation: fade 1.5s ease-in-out;
-    }
-
-    @keyframes fade {
-        from {
-            opacity: 0;
-            transform: translateY(-200px);
-        }
-    }
-
-    input.inputForm {
-        padding: 10px;
-        border: none;
-        outline: none;
-        width: 100%;
-    }
-
-    input.inputForm+label {
-        position: absolute;
-        left: 10px;
-        top: 10px;
-        background-color: white;
-        transition: 0.3s ease;
-        padding: 0px;
-        cursor: auto;
-        font-weight: 400;
-    }
-
-    input.inputForm:focus+label,
-    input.inputForm:not(:placeholder-shown)+label {
-        top: -20px;
-        color: var(--light-bg);
-    }
-
-    @media (max-width: 600px) {
-        .content {
-            width: 100%;
-            padding: 0px;
+        #main-cont {
+            background-image: url(./assets/img/alijis-campus.png);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
         }
 
         .shadow {
-            background-color: white;
+            background-color: rgb(0, 0, 0, 0.4);
         }
-    }
+
+        .content {
+            width: 500px;
+            animation: fade 1.5s ease-in-out;
+        }
+
+        @keyframes fade {
+            from {
+                opacity: 0;
+                transform: translateY(-200px);
+            }
+        }
+
+        input.inputForm {
+            padding: 10px;
+            border: none;
+            outline: none;
+            width: 100%;
+        }
+
+        input.inputForm+label {
+            position: absolute;
+            left: 10px;
+            top: 10px;
+            background-color: white;
+            transition: 0.3s ease;
+            padding: 0px;
+            cursor: auto;
+            font-weight: 400;
+        }
+
+        input.inputForm:focus+label,
+        input.inputForm:not(:placeholder-shown)+label {
+            top: -20px;
+            color: var(--light-bg);
+        }
+
+        @media (max-width: 600px) {
+            .content {
+                width: 100%;
+                padding: 0px;
+            }
+
+            .shadow {
+                background-color: white;
+            }
+        }
     </style>
     <script type="module" src="./assets/js/admin-login.js"></script>
 </head>

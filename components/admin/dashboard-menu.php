@@ -1,38 +1,53 @@
 <style>
-<?php switch ($page) {
-    case 'dashboard': echo ".menu-links:nth-child(1) {background-color: #66c28e;color: white;}";
-    break;
-    case 'library-news': echo ".menu-links:nth-child(2) {background-color: #66c28e;color: white;}";
-    break;
-    case 'feedbacks': echo ".menu-links:nth-child(3) {background-color: #66c28e;color: white;}";
-    break;
-    case 'admin-tools-and-resources': echo ".menu-links:nth-child(4) {background-color: #66c28e;color: white;}";
-    break;
-    case 'admin-gallery': echo ".menu-links:nth-child(5) {background-color: #66c28e;color: white;}";
-    break;
-    case 'admin-services': echo ".menu-links:nth-child(6) {background-color: #66c28e;color: white;}";
-    break;
-    case 'admin-periodicals': echo ".menu-links:nth-child(7) {background-color: #66c28e;color: white;}";
-    break;
-    case 'admin-sections': echo ".menu-links:nth-child(8) {background-color: #66c28e;color: white;}";
-    break;
-    case 'admin-about-us': echo ".settings-links:nth-child(1) {background-color: #66c28e;color: white;}";
-    break;
-    case 'admin-contacts': echo ".settings-links:nth-child(2) {background-color: #66c28e;color: white;}";
-    break;
-    case 'admin-personnel': echo ".settings-links:nth-child(3) {background-color: #66c28e;color: white;}";
-    break;
-    case 'settings-archive': echo ".settings-links:nth-child(5) {background-color: #66c28e;color: white;}";
-    break;
-    default:
-}
+    <?php switch ($_GET['page']) {
+        case 'dashboard':
+            echo ".menu-links:nth-child(1) {background-color: #66c28e;color: white;}";
+            break;
+        case 'library-news':
+            echo ".menu-links:nth-child(2) {background-color: #66c28e;color: white;}";
+            break;
+        case 'feedbacks':
+            echo ".menu-links:nth-child(3) {background-color: #66c28e;color: white;}";
+            break;
+        case 'admin-tools-and-resources':
+            echo ".menu-links:nth-child(4) {background-color: #66c28e;color: white;}";
+            break;
+        case 'admin-gallery':
+            echo ".menu-links:nth-child(5) {background-color: #66c28e;color: white;}";
+            break;
+        case 'admin-services':
+            echo ".menu-links:nth-child(6) {background-color: #66c28e;color: white;}";
+            break;
+        case 'admin-periodicals':
+            echo ".menu-links:nth-child(7) {background-color: #66c28e;color: white;}";
+            break;
+        case 'admin-sections':
+            echo ".menu-links:nth-child(8) {background-color: #66c28e;color: white;}";
+            break;
+        case 'admin-activity-logs':
+            echo ".menu-links:nth-child(9) {background-color: #66c28e;color: white;}";
+            break;
+        case 'admin-about-us':
+            echo ".settings-links:nth-child(1) {background-color: #66c28e;color: white;}";
+            break;
+        case 'admin-contacts':
+            echo ".settings-links:nth-child(2) {background-color: #66c28e;color: white;}";
+            break;
+        case 'admin-personnel':
+            echo ".settings-links:nth-child(3) {background-color: #66c28e;color: white;}";
+            break;
+        case 'settings-archive':
+            echo ".settings-links:nth-child(5) {background-color: #66c28e;color: white;}";
+            break;
+        default:
+    }
 
-?>
+    ?>
 </style>
 <div class="vh-100 position-sticky top-0 start-0 w-auto" id="admin-menu" style="z-index: 1000;">
     <div class="p-0 px-4 py-4 d-flex flex-column h-100">
         <div class="d-flex align-items-center justify-content-center gap-3">
-            <img src="/assets/img/logo.png" class="object-fit-contain" width="50px" height="50px" alt="">
+            <img src="./assets/img/logo.png" class="object-fit-contain" width="50px" height="50px" alt="">
             <div
                 class="navText w-100 d-flex justify-content-between align-items-center d-flex align-items-center justify-content-between w-100">
                 <h1 class="p-0 m-0 fs-6">Alijis Campus Library</h1>
@@ -42,8 +57,8 @@
         <div class="d-flex flex-column flex-grow-1 justify-content-between mt-4 overflow-auto ms-2"
             style="scrollbar-gutter: stable; scrollbar-width: thin;">
             <div class="d-flex flex-column gap-2">
-                <a href="/admin-dashboard" class="menu-links p-3 text-decoration-none d-flex align-items-center gap-2"
-                    title="Dashboard">
+                <a href="./?page=admin-dashboard"
+                    class="menu-links p-3 text-decoration-none d-flex align-items-center gap-2" title="Dashboard">
                     <span class="material-symbols-outlined menu-icon">
                         dashboard
                     </span>
@@ -54,7 +69,7 @@
                         </div>
                     </div>
                 </a>
-                <a href="/admin-library-news"
+                <a href="./?page=admin-library-news"
                     class="menu-links p-3 text-decoration-none d-flex align-items-center gap-2" title="Library News">
                     <span class="material-symbols-outlined">
                         newspaper
@@ -66,7 +81,8 @@
                         </div>
                     </div>
                 </a>
-                <a href="/admin-feedbacks" class="menu-links p-3 text-decoration-none d-flex align-items-center gap-2"
+                <a href="./?page=admin-feedbacks"
+                    class="menu-links p-3 text-decoration-none d-flex align-items-center gap-2"
                     title="Library Feedbacks">
                     <span class="material-symbols-outlined">
                         chat
@@ -79,7 +95,7 @@
                     </div>
                 </a>
 
-                <a href="/admin-tools-and-resources"
+                <a href="./?page=admin-tools-and-resources"
                     class="menu-links p-3 text-decoration-none d-flex align-items-center gap-2"
                     title="Tools and Resources">
                     <span class="material-symbols-outlined">
@@ -93,8 +109,8 @@
                     </div>
                 </a>
 
-                <a href="/admin-gallery" class="menu-links p-3 text-decoration-none d-flex align-items-center gap-2"
-                    title="Library Gallery">
+                <a href="./?page=admin-gallery"
+                    class="menu-links p-3 text-decoration-none d-flex align-items-center gap-2" title="Library Gallery">
                     <span class="material-symbols-outlined">
                         gallery_thumbnail
                     </span>
@@ -107,8 +123,8 @@
                     </div>
                 </a>
 
-                <a href="/admin-services" class="menu-links p-3 text-decoration-none d-flex align-items-center gap-2"
-                    title="Services">
+                <a href="./?page=admin-services"
+                    class="menu-links p-3 text-decoration-none d-flex align-items-center gap-2" title="Services">
                     <span class="material-symbols-outlined">
                         local_library
                     </span>
@@ -120,8 +136,8 @@
                         </div>
                     </div>
                 </a>
-                <a href="/admin-periodicals" class="menu-links p-3 text-decoration-none d-flex align-items-center gap-2"
-                    title="Periodicals">
+                <a href="./?page=admin-periodicals"
+                    class="menu-links p-3 text-decoration-none d-flex align-items-center gap-2" title="Periodicals">
                     <span class="material-symbols-outlined">
                         newsstand
                     </span>
@@ -133,8 +149,8 @@
                     </div>
                 </a>
 
-                <a href="/admin-sections" class="menu-links p-3 text-decoration-none d-flex align-items-center gap-2"
-                    title="Periodicals">
+                <a href="./?page=admin-sections"
+                    class="menu-links p-3 text-decoration-none d-flex align-items-center gap-2" title="Periodicals">
                     <span class="material-symbols-outlined">
                         tile_large
                     </span>
@@ -145,7 +161,7 @@
                         </div>
                     </div>
                 </a>
-                <a href="/admin-activity-logs"
+                <a href="./?page=admin-activity-logs"
                     class="menu-links p-3 text-decoration-none d-flex align-items-center gap-2" title="Activity Logs">
                     <span class="material-symbols-outlined">
                         groups
@@ -176,7 +192,7 @@
                 </a>
                 <div class="overflow-hidden d-flex flex-column gap-2"
                     style="max-height: 0; transition: max-height 1s ease;" id="settingsNav">
-                    <a href="/admin-about-us"
+                    <a href="./?page=admin-about-us"
                         class="settings-links p-3 text-decoration-none d-flex align-items-center gap-2"
                         title="About Us">
                         <span class="material-symbols-outlined">
@@ -189,7 +205,7 @@
                             </div>
                         </div>
                     </a>
-                    <a href="/admin-contacts"
+                    <a href="./?page=admin-contacts"
                         class="settings-links p-3 text-decoration-none d-flex align-items-center gap-2"
                         title="Contacts">
                         <span class="material-symbols-outlined">
@@ -202,7 +218,7 @@
                             </div>
                         </div>
                     </a>
-                    <a href="/admin-personnel"
+                    <a href="./?page=admin-personnel"
                         class="settings-links p-3 text-decoration-none d-flex align-items-center gap-2"
                         title="Personnel">
                         <span class="material-symbols-outlined">
@@ -215,7 +231,7 @@
                             </div>
                         </div>
                     </a>
-                    <a href="/admin-settings-archive"
+                    <a href="./?page=admin-settings-archive"
                         class="settings-links p-3 text-decoration-none d-flex align-items-center gap-2" title="Archive">
                         <span class="material-symbols-outlined">
                             archive
@@ -232,7 +248,7 @@
 
             </div>
             <div class="d-flex flex-column gap-4 mt-2">
-                <a href="" class="menu-links p-3 text-decoration-none d-flex align-items-center gap-2" id="logout"
+                <a class="menu-links p-3 text-decoration-none d-flex align-items-center gap-2" id="logout"
                     title="Logout">
                     <span class="material-symbols-outlined menu-icon">
                         logout

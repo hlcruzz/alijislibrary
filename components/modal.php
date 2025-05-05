@@ -102,7 +102,7 @@
                             </div>
                         </div>
                         <div class="col d-none d-lg-block">
-                            <img src="../assets/img/alijis-campus.png" class="w-100 h-100 object-fit-cover rounded-2"
+                            <img src="./assets/img/alijis-campus.png" class="w-100 h-100 object-fit-cover rounded-2"
                                 alt="">
                         </div>
                     </div>

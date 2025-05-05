@@ -47,7 +47,7 @@ $("#adminForm").submit(function (event) {
           $.removeCookie("rememberMe");
         }
         addLoginHistory(admin_id);
-        window.location.href = "/admin-dashboard";
+        window.location.href = "./?page=admin-dashboard";
         break;
     }
   });
@@ -73,7 +73,7 @@ $("#adminForgotForm").submit(function (e) {
       alert("Invalid Verification Code");
     } else if (response == 1) {
       alert("Account Password Changed");
-      window.location.href = "/admin-login";
+      window.location.href = "./?page=admin-login";
     } else {
       alert(response);
     }

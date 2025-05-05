@@ -10,7 +10,7 @@
             </div>
             <div class="modal-body">
                 <div class="d-flex gap-3 align-items-center">
-                    <img src="/assets/img/default.jpg" alt="" width="50px" height="50px" class="object-fit-cover"
+                    <img src="./assets/img/default.jpg" alt="" width="50px" height="50px" class="object-fit-cover"
                         style="border-radius: 50%;">
                     <div>
                         <h1 class="fs-5 m-0 p-0" id="displayFeedbackName"></h1>
@@ -117,8 +117,7 @@
                     <input type="hidden" name="editNewsId" id="editNewsId">
                     <div class="form-group d-flex flex-column gap-2">
                         <label for="">Upload New Images: (Optional)</label>
-                        <input type="file" name="files[]" id="files" class="form-control" accept=".jpg, .jpeg, .png"
-                            multiple>
+                        <input type="file" name="files[]" class="form-control" accept=".jpg, .jpeg, .png" multiple>
                     </div>
                     <div class="form-group d-flex flex-column gap-2">
                         <label for="">Subject:</label>
@@ -153,7 +152,7 @@
                 <div class="modal-body d-flex flex-column gap-2">
                     <div class="form-group d-flex flex-column gap-2">
                         <label for="">File Upload:</label>
-                        <input type="file" name="file" id="file" class="form-control"
+                        <input type="file" name="file" class="form-control"
                             accept="application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,
               application/msword,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" required>
                     </div>
@@ -331,8 +330,7 @@
                 <div class="modal-body d-flex flex-column gap-2">
                     <div>
                         <label for="file">Image: ( jpeg, jpg, png ) </label>
-                        <input type="file" name="file" id="file" class="form-control mt-2" accept=".jpg, .jpeg, .png"
-                            required>
+                        <input type="file" name="file" class="form-control mt-2" accept=".jpg, .jpeg, .png" required>
                     </div>
                     <div class="input-group mt-3">
                         <label class="input-group-text" for="online_reference_type">Type</label>
@@ -434,8 +432,8 @@
                 <div class="modal-body d-flex flex-column gap-2">
                     <div>
                         <label for="file">Select Images: ( jpeg, jpg, png )</label>
-                        <input type="file" name="file[]" id="file" class="form-control mt-2" accept=".jpg, .jpeg, .png"
-                            multiple required>
+                        <input type="file" name="file[]" class="form-control mt-2" accept=".jpg, .jpeg, .png" multiple
+                            required>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -476,7 +474,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" id="addDatabaseBtn" class="btn btn-success">Submit</button>
+                    <button type="submit" class="btn btn-success">Submit</button>
                 </div>
             </form>
         </div>
@@ -509,7 +507,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" id="addDatabaseBtn" class="btn btn-success">Update</button>
+                    <button type="submit" class="btn btn-success">Update</button>
                 </div>
             </form>
         </div>
@@ -556,7 +554,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" id="addAutomatedCirculationBtn" class="btn btn-success">Add</button>
+                    <button type="submit" class="btn btn-success">Add</button>
                 </div>
             </form>
         </div>
@@ -595,7 +593,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" id="addAutomatedCirculationBtn" class="btn btn-success">Update</button>
+                    <button type="submit" class="btn btn-success">Update</button>
                 </div>
             </form>
         </div>
@@ -634,7 +632,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" id="addAutomatedCirculationBtn" class="btn btn-success">Submit</button>
+                    <button type="submit" class="btn btn-success">Submit</button>
                 </div>
             </form>
         </div>
@@ -678,7 +676,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" id="addAutomatedCirculationBtn" class="btn btn-success">Update</button>
+                    <button type="submit" class="btn btn-success">Update</button>
                 </div>
             </form>
         </div>
@@ -857,8 +855,8 @@
                 <div class="modal-body d-flex flex-column gap-2">
                     <div class="form-group d-flex flex-column gap-2">
                         <label for="files">Upload Images: ( jpeg, jpg, png)</label>
-                        <input type="file" name="files[]" id="files" class="form-control" accept=".jpg, .jpeg, .png"
-                            multiple required>
+                        <input type="file" name="files[]" class="form-control" accept=".jpg, .jpeg, .png" multiple
+                            required>
                     </div>
                     <div class="d-flex flex-column flex-lg-row gap-3 align-items-center mt-3">
                         <div class="input-group">
@@ -942,8 +940,7 @@
                     <input type="hidden" id="periodical_pk_id" name="periodical_pk_id">
                     <div class="form-group d-flex flex-column gap-2">
                         <label for="files">Upload New Images: ( jpeg, jpg, png)</label>
-                        <input type="file" name="files[]" id="files" class="form-control" accept=".jpg, .jpeg, .png"
-                            multiple>
+                        <input type="file" name="files[]" class="form-control" accept=".jpg, .jpeg, .png" multiple>
                     </div>
                     <div class="d-flex flex-column flex-lg-row gap-3 align-items-center mt-3">
                         <div class="input-group">
@@ -1017,8 +1014,7 @@
                 <div class="modal-body d-flex flex-column gap-2">
                     <div>
                         <label for="file">Section Image: ( jpg, jpeg, png )</label>
-                        <input type="file" name="file" id="file" class="form-control mt-2" accept=".jpg, .jpeg, .png"
-                            required>
+                        <input type="file" name="file" class="form-control mt-2" accept=".jpg, .jpeg, .png" required>
                     </div>
                     <div class="mt-2">
                         <label for="sectionTitle">Section Title: </label>

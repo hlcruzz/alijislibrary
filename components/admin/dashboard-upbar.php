@@ -35,7 +35,7 @@
                                 <th colspan="3">
                                     <div class="ps-3 pe-2 d-flex align-items-center justify-content-between">
                                         <h1 class="p-0 m-0 fs-6 fw-light">Uploaded by</h1>
-                                        <a href="/admin-feedbacks"
+                                        <a href="./?page=admin-feedbacks"
                                             class="text-decoration-none fw-semibold text-success p-0 m-0 fs-6">View
                                             all</a>
                                     </div>
@@ -63,7 +63,7 @@
                 </div>
             </div>
             <div class="" style=" height: max-content; width: max-content;">
-                <a href="/admin-profile" class="admin-cont text-decoration-none d-flex align-items-center gap-2 "
+                <a href="./?page=admin-profile" class="admin-cont text-decoration-none d-flex align-items-center gap-2 "
                     style=" width: max-content; white-space: nowrap;">
                     <div class="position-relative">
                         <img src="" class="object-fit-cover" style="border-radius: 50%;" width="40px" height="40px"

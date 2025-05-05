@@ -1,7 +1,7 @@
-<?php if (!empty($page)) { ?>
+<?php if (!empty($_GET['page'])) { ?>
     <style>
-        <?php switch ($page) {
-            case "index":
+        <?php switch ($_GET['page']) {
+            case "home":
                 echo ".links:nth-child(1)::before {width: 100%;}";
                 break;
             case "about":
@@ -34,11 +34,11 @@
                 </div>
             </div>
             <div class="d-flex justify-content-between align-items-center col-6" style="white-space: nowrap;">
-                <a class="links text-decoration-none text-dark fw-medium fs-6" href="/">Home</a>
-                <a class="links text-decoration-none text-dark fw-medium fs-6" href="/about">About Us</a>
-                <a class="links text-decoration-none text-dark fw-medium fs-6" href="/program">Programs</a>
-                <a class="links text-decoration-none text-dark fw-medium fs-6" href="/services">Services</a>
-                <a class="links text-decoration-none text-dark fw-medium fs-6" href="/contacts">Contacts</a>
+                <a class="links text-decoration-none text-dark fw-medium fs-6" href="./?page=home">Home</a>
+                <a class="links text-decoration-none text-dark fw-medium fs-6" href="./?page=about">About Us</a>
+                <a class="links text-decoration-none text-dark fw-medium fs-6" href="./?page=program">Programs</a>
+                <a class="links text-decoration-none text-dark fw-medium fs-6" href="./?page=services">Services</a>
+                <a class="links text-decoration-none text-dark fw-medium fs-6" href="./?page=contacts">Contacts</a>
             </div>
         </div>
     </div>
@@ -60,16 +60,20 @@
                 </div>
                 <div class="container-lg">
                     <div class="d-flex flex-column gap-3 mt-5 ms-3">
-                        <a class="m-link text-decoration-none fs-5 d-flex align-items-center" href="/">Home
+                        <a class="m-link text-decoration-none fs-5 d-flex align-items-center" href="./?page=home">Home
                             <span class="material-symbols-outlined" style="font-size: 35px"> chevron_right </span></a>
-                        <a class="m-link text-decoration-none fs-5 d-flex align-items-center" href="/about">About Us
+                        <a class="m-link text-decoration-none fs-5 d-flex align-items-center" href="./?page=about">About
+                            Us
                             <span class="material-symbols-outlined" style="font-size: 35px"> chevron_right </span></a>
-                        <a class="m-link text-decoration-none fs-5 d-flex align-items-center" href="/program">Programs
+                        <a class="m-link text-decoration-none fs-5 d-flex align-items-center"
+                            href="./?page=program">Programs
                             <span class="material-symbols-outlined" style="font-size: 35px">
                                 chevron_right </span></a>
-                        <a class="m-link text-decoration-none fs-5 d-flex align-items-center" href="/services">Services
+                        <a class="m-link text-decoration-none fs-5 d-flex align-items-center"
+                            href="./?page=services">Services
                             <span class="material-symbols-outlined" style="font-size: 35px"> chevron_right </span></a>
-                        <a class="m-link text-decoration-none fs-5 d-flex align-items-center" href="/contacts">Contacts
+                        <a class="m-link text-decoration-none fs-5 d-flex align-items-center"
+                            href="./?page=contacts">Contacts
                             <span class="material-symbols-outlined" style="font-size: 35px"> chevron_right </span></a>
                     </div>
                 </div>

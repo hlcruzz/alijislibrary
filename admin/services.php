@@ -8,7 +8,7 @@
     <?php include "./components/admin/admin-links.php" ?>
 
 </head>
-<?php $page = "admin-services" ?>
+<?php $_GET['page'] = "admin-services" ?>
 <?php include "./components/admin/admin-modal.php" ?>
 
 <body data-bs-theme="" id="admin-body">
