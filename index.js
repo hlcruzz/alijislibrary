@@ -1,8 +1,8 @@
 import {
   addAccount,
+  checkToken,
   adminLogout,
   fetchAllAccounts,
-  fetchAccountById,
   submitFeedback,
   fetchTotalRowsFeedbacks,
   fetchFeedbackById,
@@ -1030,13 +1030,8 @@ function FetchEvents() {
     });
   });
   checkCookie();
-
-  fetchAccountById($.cookie("admin_id")).then((response) => {
-    const data = JSON.parse(response);
-
-    $("#upbarImg").attr("src", data.accountImg ?? "./assets/img/default.jpg");
-    $("#upbarUsername").html(data.accountUsername);
-    $("#upbarEmail").html(data.accountEmail);
+  checkToken($.cookie("token")).then((response) => {
+    console.log(response);
   });
   fetchTotalRowsFeedbacks().then((response) => {
     const data = JSON.parse(response);
@@ -2865,9 +2860,9 @@ function DataTable() {
           },
         },
       ],
-      rowCallback: function (row, data, index) {
-        $.cookie("admin_id") == data.id ? $(row).addClass("table-success") : "";
-      },
+      // rowCallback: function (row, data, index) {
+      //   $.cookie("admin_id") == data.id ? $(row).addClass("table-success") : "";
+      // },
     });
   });
   fetchAllNews().then((response) => {

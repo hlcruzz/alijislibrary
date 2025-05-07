@@ -1,4 +1,4 @@
-import { fetchFeedbacks, fetchTotalReadFeedbacks, checkAdminStatus } from "../../router/index-route.js";
+import { fetchFeedbacks, fetchTotalReadFeedbacks } from "../../router/index-route.js";
 import { setSession } from "../../utils/session.js";
 import { timeAgo, sliceText } from "../../assets/js/admin.js";
 
@@ -44,13 +44,3 @@ setInterval(async () => {
 }, 1000);
 
 setSession("notifLimit", 10);
-checkAdminStatus($.cookie("admin_id")).then((response) => {
-  if (response !== "false") {
-    alert("Your admin account has been deleted or disabled.\nPlease contact another administrator for assistance.");
-    $.removeCookie("admin_id");
-    $.removeCookie("username");
-    $.removeCookie("password");
-    $.removeCookie("rememberMe");
-    window.location.href = "./?page=admin-login";
-  }
-});

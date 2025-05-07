@@ -118,19 +118,15 @@
                                 </span>
                             </div>
                         </div>
-                        <div class=" d-flex justify-content-between align-items-center gap-2">
-                            <div class="d-flex align-items-center gap-2">
-                                <input type="checkbox" name="rememberCheck" id="rememberCheck"
-                                    style="width: 18px; height: 18px; accent-color: #2a983e;">
-                                <label class="m-0 p-0 fs-6 text-success" for="rememberCheck">Remember me</label>
-                            </div>
+
+
+                        <button class="btn btn-success w-100 p-3 mt-2">Login</button>
+                        <div class=" d-flex justify-content-center align-items-center gap-2">
                             <div>
-                                <a href="/admin-forgot-password" class="text-success text-decoration-none">Forgot
+                                <a href="./?page=admin-forgot-password" class="text-success text-decoration-none">Forgot
                                     Password?</a>
                             </div>
                         </div>
-
-                        <button class="btn btn-success w-100 p-3 mt-2">Login</button>
                     </form>
 
                 </div>

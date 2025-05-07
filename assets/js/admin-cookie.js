@@ -1,5 +1,5 @@
-const admin_id = $.cookie("admin_id");
+// const admin_id = $.cookie("admin_id");
 
-if (!admin_id) {
-  window.location.href = "./?page=admin-login";
-}
+// if (!admin_id) {
+//   window.location.href = "./?page=admin-login";
+// }

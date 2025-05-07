@@ -13,42 +13,13 @@ $("#adminForm").submit(function (event) {
   const remember = $("#rememberCheck").is(":checked");
 
   adminLogin(username, password).then((response) => {
-    switch (response) {
-      case "Invalid Password":
-        $("#response").html(response);
-        $(".input-cont").eq(1).css("border-color", "red");
-        $("label").eq(1).css("color", "red");
-        setTimeout(function () {
-          $("#response").html("");
-          $(".input-cont").eq(1).css("border-color", "");
-          $("label").eq(1).css("color", "");
-        }, 3500);
-        break;
-      case "Account not found":
-        $("#response").html(response);
-        $("label").css("color", "red");
-        $(".input-cont").css("border-color", "red");
-        setTimeout(function () {
-          $("#response").html("");
-          $(".input-cont").css("border-color", "");
-          $("label").css("color", "");
-        }, 3500);
-        break;
-      default:
-        const admin_id = response;
-        $.cookie("admin_id", admin_id, { expires: 1 });
-        if (remember) {
-          $.cookie("username", username, { expires: 1 });
-          $.cookie("password", password, { expires: 1 });
-          $.cookie("rememberMe", true, { expires: 1 });
-        } else {
-          $.removeCookie("username");
-          $.removeCookie("password");
-          $.removeCookie("rememberMe");
-        }
-        addLoginHistory(admin_id);
-        window.location.href = "./?page=admin-dashboard";
-        break;
+    const data = JSON.parse(response);
+    console.log(data);
+
+    if (data.status == "success") {
+      window.location.href = "./?page=admin-dashboard";
+    } else {
+      $("#response").html(data.message);
     }
   });
 });

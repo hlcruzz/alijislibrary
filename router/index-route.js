@@ -32,14 +32,14 @@ export function adminLogout(id) {
     });
   });
 }
-export function fetchAccountById(id) {
+export function checkToken(token) {
   return new Promise((resolve, reject) => {
     $.ajax({
-      url: "./api/endpoint-fetchAccountById.php",
+      url: "./api/endpoint-checkToken.php",
+      method: "POST",
       data: {
-        id: id,
+        token: token,
       },
-      method: "GET",
       success: function (response) {
         resolve(response);
       },
@@ -49,6 +49,7 @@ export function fetchAccountById(id) {
     });
   });
 }
+
 export function fetchAllAccounts() {
   return new Promise((resolve, reject) => {
     $.ajax({
@@ -1853,24 +1854,6 @@ export function deleteAccount(id) {
   return new Promise((resolve, reject) => {
     $.ajax({
       url: "./api/endpoint-deleteAccount.php",
-      data: {
-        id: id,
-      },
-      method: "POST",
-      success: function (response) {
-        resolve(response);
-      },
-      error: function (response) {
-        reject(response);
-      },
-    });
-  });
-}
-
-export function checkAdminStatus(id) {
-  return new Promise((resolve, reject) => {
-    $.ajax({
-      url: "./api/endpoint-checkAdminStatus.php",
       data: {
         id: id,
       },
