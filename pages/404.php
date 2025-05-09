@@ -32,7 +32,7 @@ session_start();
             <div class="d-flex align-items-center flex-column text-center gap-3 mt-0 mt-lg-5">
                 <h1><strong class="text-warning">Oops!</strong> Page Not Found</h1>
                 <p>The page you are looking for does not exist</p>
-                <a href="/" style="max-width: max-content" class="btn btn-success d-flex align-items-center gap-2">Back
+                <a href="./" style="max-width: max-content" class="btn btn-success d-flex align-items-center gap-2">Back
                     to Home Page <span class="material-symbols-outlined">
                         trending_flat
                     </span></a>
