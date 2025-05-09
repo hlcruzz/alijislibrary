@@ -8,35 +8,46 @@ setInterval(async () => {
   const data = JSON.parse(response);
   const tbody = $("#tbody-notification");
   tbody.empty();
+  if (data.length === 0) {
+    $("#loadMoreCont").removeClass("d-flex").addClass("d-none");
+    tbody.append(`
+      <tr class="position-relative">
+        <td class="ps-4">
+          <div class="w-100 text-center alert alert-danger" role="alert">No Notification Found</div>
+        </td>
+      </tr>
+    
+    `);
+  } else {
+    data.forEach(function (element) {
+      const textLength = sliceText(element.feedbackMsg, 30);
 
-  data.forEach(function (element) {
-    const textLength = sliceText(element.feedbackMsg, 30);
-
-    const textTime = timeAgo(element.feedbackTime);
-    const isReadText = element.feedbackIsRead == 0 ? "" : "text-muted";
-    const isReadIcon = element.feedbackIsRead == 0 ? `<i class="fa-solid fa-circle text-primary position-absolute" style="font-size: 10px; top:10px;"></i>` : "";
-    const row = `
-        <tr class="position-relative">
-          <td class="ps-4" role="button">
-            <div class="position-relatived d-flex align-items-center gap-2" style="min-width: 400px;">
-              ${isReadIcon}
-              <img src="./assets/img/default.jpg" width="50px" style="border-radius: 50%;">
-              <div>
-                <h1 class="p-0 m-0 fs-6 isReadText ${isReadText}">${element.feedbackName}</h1>
-                <small class="p-0 m-0 ${isReadText}">${textLength}</small>
+      const textTime = timeAgo(element.feedbackTime);
+      const isReadText = element.feedbackIsRead == 0 ? "" : "text-muted";
+      const isReadIcon = element.feedbackIsRead == 0 ? `<i class="fa-solid fa-circle text-primary position-absolute" style="font-size: 10px; top:10px;"></i>` : "";
+      const row = `
+          <tr class="position-relative">
+            <td class="ps-4" role="button">
+              <div class="position-relatived d-flex align-items-center gap-2" style="min-width: 400px;">
+                ${isReadIcon}
+                <img src="./assets/img/default.jpg" width="50px" style="border-radius: 50%;">
+                <div>
+                  <h1 class="p-0 m-0 fs-6 isReadText ${isReadText}">${element.feedbackName}</h1>
+                  <small class="p-0 m-0 ${isReadText}">${textLength}</small>
+                </div>
               </div>
-            </div>
-          </td>
-          <td role="button">
-            <p class="p-0 m-0 ${isReadText}">${textTime}</p>
-          </td>
-          <td>
-            <a class="notif-link" data-id="${element.id}" role="button" data-bs-toggle="modal" data-bs-target="#viewNotifModal"></a>
-          </td>
-        </tr>
-      `;
-    tbody.append(row);
-  });
+            </td>
+            <td role="button">
+              <p class="p-0 m-0 ${isReadText}">${textTime}</p>
+            </td>
+            <td>
+              <a class="notif-link" data-id="${element.id}" role="button" data-bs-toggle="modal" data-bs-target="#viewNotifModal"></a>
+            </td>
+          </tr>
+        `;
+      tbody.append(row);
+    });
+  }
 
   const responseReadFeedback = await fetchTotalReadFeedbacks();
   const dataReadFeedback = JSON.parse(responseReadFeedback);

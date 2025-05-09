@@ -1,9 +1,4 @@
-import {
-  fetchNewsByCondition,
-  fetchGalleryImgByLimit,
-  fetchGalleryImgTotalRows,
-  fetchAllPeriodicalByCondition,
-} from "../../router/index-route.js";
+import { fetchNewsByCondition, fetchGalleryImgByLimit, fetchGalleryImgTotalRows, fetchAllPeriodicalByCondition } from "../../router/index-route.js";
 import { setSession } from "../../utils/session.js";
 setSession("searchVal", "");
 setSession("limitNews", 10);
@@ -29,16 +24,8 @@ if (newsLoadingIcon.length > 0) {
   obs.observe(newsLoadingIcon[0]);
 }
 setInterval(async () => {
-  const searchResult =
-    sessionStorage.getItem("searchVal") == "" ||
-    sessionStorage.getItem("searchVal") == null
-      ? ""
-      : sessionStorage.getItem("searchVal");
-  const limitNews =
-    sessionStorage.getItem("limitNews") == "" ||
-    sessionStorage.getItem("limitNews") == null
-      ? ""
-      : sessionStorage.getItem("limitNews");
+  const searchResult = sessionStorage.getItem("searchVal") == "" || sessionStorage.getItem("searchVal") == null ? "" : sessionStorage.getItem("searchVal");
+  const limitNews = sessionStorage.getItem("limitNews") == "" || sessionStorage.getItem("limitNews") == null ? "" : sessionStorage.getItem("limitNews");
   const response = await fetchNewsByCondition(searchResult, limitNews);
   const data = JSON.parse(response);
 
@@ -59,10 +46,7 @@ setInterval(async () => {
       for (let index = 0; index < Math.min(4, imageArray.length); index++) {
         const element = imageArray[index];
 
-        const hasReminder =
-          imageArray.length - Math.min(4, imageArray.length) > 0
-            ? imageArray.length - Math.min(4, imageArray.length)
-            : "";
+        const hasReminder = imageArray.length - Math.min(4, imageArray.length) > 0 ? imageArray.length - Math.min(4, imageArray.length) : "";
 
         const reminder =
           index === Math.min(4, imageArray.length) - 1 && hasReminder
@@ -97,10 +81,7 @@ setInterval(async () => {
       newsContainer.append(row);
     });
 
-    if (
-      parseInt(sessionStorage.getItem("limitNews")) >
-      parseInt(sessionStorage.getItem("newsRows"))
-    ) {
+    if (parseInt(sessionStorage.getItem("limitNews")) > parseInt(sessionStorage.getItem("newsRows"))) {
       $("#newsLoading").hide();
     }
   } else {
@@ -116,32 +97,33 @@ setTimeout(() => {
 
 setSession("galleryRow", 10);
 setInterval(async () => {
-  const response = await fetchGalleryImgByLimit(
-    sessionStorage.getItem("galleryRow") ?? 10
-  );
+  const response = await fetchGalleryImgByLimit(sessionStorage.getItem("galleryRow") ?? 10);
   const data = JSON.parse(response);
 
+  console.log(data);
   const galleryContainer = $("#galleryContainer");
   galleryContainer.empty();
 
-  data.forEach((element) => {
-    const img = element.gallery_path;
-    const row = `
+  if (data.length === 0) {
+    galleryContainer.append(`<div class="w-100 text-center alert alert-danger" role="alert">No Gallery Images Found</div>`);
+    $("#galleryLoading").hide();
+  } else {
+    data.forEach((element) => {
+      const img = element.gallery_path;
+      const row = `
       <div class="col p-0 p-2"><img src="${img}" alt=""
-                        class="galleryImg w-100 h-100 object-fit-cover rounded-4" role="button" data-bs-toggle="modal" data-bs-target="#previewGalleryModal" style="height: 350px">
+                        class="galleryImg w-100 h-100 object-fit-cover rounded-4" role="button" data-bs-toggle="modal" data-bs-target="#previewGalleryModal" style="min-height: 400px">
                 </div>`;
 
-    galleryContainer.append(row);
-  });
-  fetchGalleryImgTotalRows().then((response) => {
-    const data = JSON.parse(response);
-    if (
-      parseInt(sessionStorage.getItem("galleryRow")) >=
-      parseInt(data.total_rows)
-    ) {
-      $("#galleryLoading").hide();
-    }
-  });
+      galleryContainer.append(row);
+    });
+    fetchGalleryImgTotalRows().then((response) => {
+      const data = JSON.parse(response);
+      if (parseInt(sessionStorage.getItem("galleryRow")) >= parseInt(data.total_rows)) {
+        $("#galleryLoading").hide();
+      }
+    });
+  }
 }, 2000);
 
 if (galleryLoadingIcon.length > 0) {
@@ -159,8 +141,3 @@ if (galleryLoadingIcon.length > 0) {
 
   obs.observe(galleryLoadingIcon[0]);
 }
-$(document).ready(function () {
-  if (!$.cookie("visitor")) {
-    $("#addVisitorModal").modal("show");
-  }
-});

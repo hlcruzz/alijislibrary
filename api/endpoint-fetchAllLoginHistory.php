@@ -4,7 +4,6 @@ include "../lib/connection.php";
 if ($_SERVER['REQUEST_METHOD'] == "GET") {
     $query = "SELECT 
     login_history.id as history_id, 
-    login_history.account_id as account_id, 
     login_history.loginDate as history_date,
     accounts.accountImg as image,
     accounts.accountEmail as email,

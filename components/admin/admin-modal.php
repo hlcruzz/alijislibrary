@@ -132,7 +132,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-success">Submit</button>
+                    <button type="submit" class="btn btn-success">Update</button>
                 </div>
             </form>
         </div>
@@ -835,7 +835,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-success">Submit</button>
+                    <button type="submit" class="btn btn-success">Update</button>
                 </div>
             </form>
         </div>
@@ -954,14 +954,14 @@
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="type" value="Magazine"
                                         id="editMagazine" required>
-                                    <label class="form-check-label" for="magazine">
+                                    <label class="form-check-label" for="editMagazine">
                                         Magazine
                                     </label>
                                 </div>
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="type" id="editJournal"
                                         value="Journal" required>
-                                    <label class="form-check-label" for="journal">
+                                    <label class="form-check-label" for="editJournal">
                                         Journal
                                     </label>
                                 </div>
@@ -1247,14 +1247,14 @@
                     </div>
                     <div>
                         <label for="editObjectiveText">Objective Text</label>
-                        <textarea class="form-control mt-2" id="editObjectiveText" name="editObjectiveText"
-                            required></textarea>
+                        <textarea class="form-control mt-2" id="editObjectiveText" name="editObjectiveText" required
+                            rows="5"></textarea>
                     </div>
 
                 </div>
                 <div class="Modal-footer d-flex justify-content-end gap-3">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-success"> Submit </button>
+                    <button type="submit" class="btn btn-success"> Update </button>
                 </div>
             </form>
         </div>

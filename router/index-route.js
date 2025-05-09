@@ -1,45 +1,8 @@
-export function addAccount(formData) {
-  return new Promise((resolve, reject) => {
-    $.ajax({
-      url: "./api/endpoint-addAccount.php",
-      method: "POST",
-      data: formData,
-      processData: false,
-      contentType: false,
-      success: function (response) {
-        resolve(response);
-      },
-      error: function (response) {
-        reject(response);
-      },
-    });
-  });
-}
-export function adminLogout(id) {
+export function adminLogout() {
   return new Promise((resolve, reject) => {
     $.ajax({
       url: "./api/endpoint-adminLogout.php",
       method: "POST",
-      data: {
-        id: id,
-      },
-      success: function (response) {
-        resolve(response);
-      },
-      error: function (response) {
-        reject(response);
-      },
-    });
-  });
-}
-export function checkToken(token) {
-  return new Promise((resolve, reject) => {
-    $.ajax({
-      url: "./api/endpoint-checkToken.php",
-      method: "POST",
-      data: {
-        token: token,
-      },
       success: function (response) {
         resolve(response);
       },
@@ -50,20 +13,6 @@ export function checkToken(token) {
   });
 }
 
-export function fetchAllAccounts() {
-  return new Promise((resolve, reject) => {
-    $.ajax({
-      url: "./api/endpoint-fetchAllAccounts.php",
-      method: "GET",
-      success: function (response) {
-        resolve(response);
-      },
-      error: function (response) {
-        reject(response);
-      },
-    });
-  });
-}
 export function submitFeedback(feedbackName, feedbackEmail, feedbackMsg) {
   return new Promise((resolve, reject) => {
     $.ajax({
@@ -1604,13 +1553,14 @@ export function updateObjectives(formData) {
   });
 }
 
-export function addVisitor(visitorType) {
+export function addVisitor(visitorType, captcha) {
   return new Promise((resolve, reject) => {
     $.ajax({
       url: "./api/endpoint-addVisitor.php",
       method: "POST",
       data: {
         visitorType: visitorType,
+        captcha: captcha,
       },
       success: function (response) {
         resolve(response);
@@ -1797,12 +1747,11 @@ export function deleteLibraryHours(id) {
   });
 }
 
-export function addActivityLog(id, action, details) {
+export function addActivityLog(action, details) {
   return new Promise((resolve, reject) => {
     $.ajax({
       url: "./api/endpoint-addActivityLog.php",
       data: {
-        id: id,
         action: action,
         details: details,
       },
@@ -1832,48 +1781,13 @@ export function fetchAllActivityLogs() {
   });
 }
 
-export function updateAccount(formData) {
-  return new Promise((resolve, reject) => {
-    $.ajax({
-      url: "./api/endpoint-updateAccount.php",
-      data: formData,
-      method: "POST",
-      processData: false,
-      contentType: false,
-      success: function (response) {
-        resolve(response);
-      },
-      error: function (response) {
-        reject(response);
-      },
-    });
-  });
-}
-
-export function deleteAccount(id) {
-  return new Promise((resolve, reject) => {
-    $.ajax({
-      url: "./api/endpoint-deleteAccount.php",
-      data: {
-        id: id,
-      },
-      method: "POST",
-      success: function (response) {
-        resolve(response);
-      },
-      error: function (response) {
-        reject(response);
-      },
-    });
-  });
-}
-
-export function sendAuthCode(email) {
+export function sendAuthCode(email, captcha) {
   return new Promise((resolve, reject) => {
     $.ajax({
       url: "./api/endpoint-sendAuthCode.php",
       data: {
         email: email,
+        captcha: captcha,
       },
       method: "POST",
       success: function (response) {
@@ -1894,6 +1808,21 @@ export function changePassword(formData) {
       method: "POST",
       processData: false,
       contentType: false,
+      success: function (response) {
+        resolve(response);
+      },
+      error: function (response) {
+        reject(response);
+      },
+    });
+  });
+}
+
+export function checkRole() {
+  return new Promise((resolve, reject) => {
+    $.ajax({
+      url: "./api/endpoint-checkRole.php",
+      method: "POST",
       success: function (response) {
         resolve(response);
       },

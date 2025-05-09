@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -37,7 +40,7 @@
                     gallery_thumbnail
                 </span>
             </div>
-            <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-xl-5 mt-5" id="galleryContainer">
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 mt-5" id="galleryContainer">
 
             </div>
             <div class="text-center mt-3" id="galleryLoading" style="display: none;">

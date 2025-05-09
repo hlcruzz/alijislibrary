@@ -40,35 +40,49 @@ $("#adminForgotForm").submit(function (e) {
   e.preventDefault();
   const formData = new FormData(this);
   changePassword(formData).then((response) => {
-    if (response == "incorrect") {
-      alert("Invalid Verification Code");
-    } else if (response == 1) {
-      alert("Account Password Changed");
-      window.location.href = "./?page=admin-login";
+    const data = JSON.parse(response);
+
+    if (!data.status && data.auth) {
+      alert(data.message);
+    } else if (!data.status && !data.auth) {
+      alert(data.message);
+      window.location.href = "./?page=admin-forgot-password";
     } else {
-      alert(response);
+      alert(data.message);
+      window.location.href = "./?page=admin-login";
     }
   });
 });
 $("#sendCode").on("click", function (e) {
-  const form = $("#adminForgotForm")[0];
-  const email = $("#email").val();
-  $("#email").prop("readonly", true);
-  $(this).prop("disabled", true);
-  $("#sendIcon").hide();
-  $("#loadingIcon").show();
-  if (form.checkValidity()) {
-    sendAuthCode(email).then((response) => {
-      if (response == 0) {
+  e.preventDefault();
+  const emailInput = $("#email")[0];
+  const email = emailInput.value;
+
+  if (emailInput.checkValidity()) {
+    $("#email").prop("readonly", true);
+    const captchaResponse = grecaptcha.getResponse();
+
+    if (!captchaResponse) {
+      alert("Please verify you're not a robot.");
+      return;
+    }
+    $(this).prop("disabled", true);
+    $("#sendIcon").hide();
+    $("#loadingIcon").show();
+    sendAuthCode(email, captchaResponse).then((response) => {
+      const data = JSON.parse(response);
+
+      if (!data.status) {
         $("#email").prop("readonly", false);
         $(this).prop("disabled", false);
         $("#sendIcon").show();
         $("#loadingIcon").hide();
-        $("#response").html("Email not found");
+        $("#response").html(data.message);
         setTimeout(() => {
           $("#response").html("");
         }, 3000);
-      } else if (response == 1) {
+      } else {
+        $("#forgotCaptcha").addClass("d-none");
         $(this).hide();
         $("#response").removeClass("text-danger").addClass("text-success").html(`Verification Code sent to: ${email}`);
         $("#codeCont").show();
@@ -76,11 +90,9 @@ $("#sendCode").on("click", function (e) {
         $("#pwordCont").show();
         $("#password").prop("required", true);
         $("#submitBtn").prop("disabled", false).removeClass("btn-secondary").addClass("btn-success");
-      } else {
-        alert("Something went wrong, please try again");
       }
     });
   } else {
-    form.reportValidity();
+    emailInput.reportValidity(); // show browser validation
   }
 });

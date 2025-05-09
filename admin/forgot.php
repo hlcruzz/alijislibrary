@@ -75,6 +75,7 @@
         }
     </style>
     <script type="module" src="./assets/js/admin-login.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 
 <body>
@@ -83,7 +84,7 @@
             <div class="content p-5 bg-white">
                 <div class="">
                     <div class="text-center position-relative ">
-                        <img src="/assets/img/logo.png" class="" width="80px" alt="">
+                        <img src="./assets/img/logo.png" class="" width="80px" alt="">
                         <h1 class="fs-4 fw-medium mt-2">Alijis Campus Library</h1>
                     </div>
                     <form id="adminForgotForm" class="d-flex flex-column gap-3">
@@ -99,6 +100,7 @@
                                     <label for="email" class="fs-6">Email</label>
                                 </div>
                             </div>
+
                             <button type="button" id="sendCode" class="px-3 border-0 bg-success rounded-end-2"><span
                                     class="input-group-text p-0 border-0 bg-transparent" id="basic-addon1">
                                     <i class="fa-solid fa-paper-plane" style="color: white;" id="sendIcon"></i>
@@ -108,6 +110,11 @@
                                     </div>
 
                                 </span></button>
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            <div class="g-recaptcha" id="forgotCaptcha"
+                                data-sitekey="6LeuRjIrAAAAAPJGDMymd5BOp1Aih4QVfE220aOZ">
+                            </div>
                         </div>
                         <div class="input-group" id="codeCont" style="display: none;">
                             <div class="d-flex align-items-center input-cont form-control">
@@ -128,7 +135,7 @@
                                 </span>
                                 <div class="position-relative w-100 ">
                                     <input type="password" name="password" class="inputForm" id="password"
-                                        placeholder=" ">
+                                        placeholder=" " maxlength="16">
                                     <label for="password" class="fs-6">New Password</label>
                                 </div>
                                 <div class="me-2">

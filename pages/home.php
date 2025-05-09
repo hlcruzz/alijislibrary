@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -179,7 +182,7 @@
                         </div>
                         <div class="d-flex align-items-center mt-4">
                             <div class="border border-dark-subtle flex-grow-1"></div>
-                            <a href="/library-news" class="btn-readmore text-decoration-none" role="button">Read
+                            <a href="./?page=library-news" class="btn-readmore text-decoration-none" role="button">Read
                                 More</a>
                             <div class="border border-dark-subtle flex-grow-1"></div>
                         </div>

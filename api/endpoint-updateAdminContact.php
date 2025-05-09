@@ -25,7 +25,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $stmt->bindParam(':contactsWebsite', $website);
         $stmt->bindParam(':id', $id);
         $stmt->execute();
+
         echo 1;
+
     } catch (Exception $e) {
         echo $e->getMessage();
     }

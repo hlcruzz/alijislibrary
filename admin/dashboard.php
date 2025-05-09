@@ -1,3 +1,6 @@
+<?php
+include "./components/admin/session.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,7 +30,7 @@
                                         <i class="fa-solid fa-users fs-1 bg-primary p-4 text-light rounded-3"></i>
                                         <div>
                                             <p class="p-0 m-0">Visitors</p>
-                                            <h1 class="p-0 m-0" id="totalVisitor">1,298</h1>
+                                            <h1 class="p-0 m-0" id="totalVisitor"></h1>
                                         </div>
                                     </div>
                                 </div>

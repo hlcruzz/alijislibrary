@@ -1,8 +1,5 @@
 import {
-  addAccount,
-  checkToken,
   adminLogout,
-  fetchAllAccounts,
   submitFeedback,
   fetchTotalRowsFeedbacks,
   fetchFeedbackById,
@@ -100,8 +97,7 @@ import {
   deleteLibraryHours,
   addActivityLog,
   fetchAllActivityLogs,
-  updateAccount,
-  deleteAccount,
+  checkRole,
 } from "./router/index-route.js";
 import { checkCookie, darkTheme, lightTheme, sideMenu, setCookie } from "./utils/cookies.js";
 import { setSession, checkSessionSettings } from "./utils/session.js";
@@ -134,8 +130,7 @@ function ClickEvents() {
     const confirmLogout = confirm("Are you sure you want to logout?");
 
     if (confirmLogout) {
-      adminLogout($.cookie("admin_id"));
-      $.removeCookie("admin_id");
+      adminLogout();
       window.location.href = "./?page=admin-login";
     }
   });
@@ -235,7 +230,7 @@ function ClickEvents() {
     if (confirmDelete) {
       deleteNewsById(id).then((response) => {
         if (response == 1) {
-          addActivityLog($.cookie("admin_id"), "DELETE", "Deleted Library News");
+          addActivityLog("DELETE", "Deleted Library News");
           alert("News Deleted!");
           location.reload();
         } else {
@@ -252,7 +247,7 @@ function ClickEvents() {
     if (confirmDelete) {
       deleteNewsImgById(id).then((response) => {
         if (response == 1) {
-          addActivityLog($.cookie("admin_id"), "DELETE", "Deleted Library News Image");
+          addActivityLog("DELETE", "Deleted Library News Image");
           alert("Library News Image Deleted!");
           location.reload();
         } else {
@@ -262,21 +257,35 @@ function ClickEvents() {
     }
   });
 
-  $("#editNewsForm").submit(function (event) {
+  $("#editNewsForm").submit(async function (event) {
     event.preventDefault();
     const formData = new FormData(this);
-    if ($("#editNewsMsg").val() && $("#editNewsMsg").val().trim() !== "") {
-      updateNews(formData).then((response) => {
-        if (response == 1) {
-          addActivityLog($.cookie("admin_id"), "UPDATE", "Updated Library News");
-          alert("Library News Updated!");
-          location.reload();
-        } else {
-          alert(response);
-        }
-      });
-    } else {
+
+    const message = $("#editNewsMsg").val();
+    if (!message || message.trim() === "") {
       alert("Please Input News Message");
+      return;
+    }
+
+    try {
+      const response = await checkRole();
+      const data = JSON.parse(response);
+
+      if (!data.status) {
+        alert(data.message);
+        return;
+      }
+
+      const updateResponse = await updateNews(formData);
+      if (updateResponse == 1) {
+        addActivityLog("UPDATE", "Updated Library News");
+        alert("Library News Updated!");
+        location.reload();
+      } else {
+        alert(updateResponse);
+      }
+    } catch (error) {
+      alert(error);
     }
   });
 
@@ -286,7 +295,7 @@ function ClickEvents() {
     if (confirmDel) {
       deleteDownloadable(id).then((response) => {
         if (response == 1) {
-          addActivityLog($.cookie("admin_id"), "DELETE", "Deleted Downloadable File");
+          addActivityLog("DELETE", "Deleted Downloadable File");
           alert("Downloadble Deleted");
           location.reload();
         } else {
@@ -340,7 +349,7 @@ function ClickEvents() {
     const formData = new FormData(this);
     addDownloadble(formData).then((response) => {
       if (response == 1) {
-        addActivityLog($.cookie("admin_id"), "CREATE", "Added Downloadble File");
+        addActivityLog("CREATE", "Added Downloadble File");
         alert("File Uploaded");
         location.reload();
       } else {
@@ -375,21 +384,33 @@ function ClickEvents() {
 
   openFoundationWidget();
 
-  $("#foundationForm").submit((event) => {
+  $("#foundationForm").submit(async (event) => {
     event.preventDefault();
 
     const foundationName = $("#foundationName").val();
     const foundationTxt = $("#foundationTxt").val();
 
-    updateFoundation(foundationName, foundationTxt).then((response) => {
-      if (response == foundationName) {
-        addActivityLog($.cookie("admin_id"), "UPDATE", `Updated Foundation (${response})`);
-        alert(`${response} Updated`);
+    try {
+      const response = await checkRole();
+      const data = JSON.parse(response);
+
+      if (!data.status) {
+        alert(data.message);
+        return;
+      }
+
+      const updateResponse = await updateFoundation(foundationName, foundationTxt);
+
+      if (updateResponse == foundationName) {
+        addActivityLog("UPDATE", `Updated Foundation (${updateResponse})`);
+        alert(`${updateResponse} Updated`);
         location.reload();
       } else {
-        alert(response);
+        alert(updateResponse);
       }
-    });
+    } catch (error) {
+      alert(error);
+    }
   });
 
   $(document).on("click", ".editGuidlineBtn", function () {
@@ -422,7 +443,7 @@ function ClickEvents() {
     const indexVal = $(this).attr("data-index");
     deleteGuidelineRuleById(id).then((response) => {
       if (response == 1) {
-        addActivityLog($.cookie("admin_id"), "DELETE", "Deleted Guideline Rule");
+        addActivityLog("DELETE", "Deleted Guideline Rule");
         $(".rulesCont").eq(indexVal)[0].style.setProperty("display", "none", "important");
       } else {
         alert(response);
@@ -448,7 +469,7 @@ function ClickEvents() {
     if (confirmDel) {
       deleteFaq(id).then((response) => {
         if (response == 1) {
-          addActivityLog($.cookie("admin_id"), "DELETE", "Deleted FAQ");
+          addActivityLog("DELETE", "Deleted FAQ");
           alert("FAQ Deleted");
           location.reload();
         } else {
@@ -464,7 +485,7 @@ function ClickEvents() {
     if (confirmDel) {
       deleteReferenceTools(id).then((response) => {
         if (response == 1) {
-          addActivityLog($.cookie("admin_id"), "DELETE", "Deleted Reference Tools");
+          addActivityLog("DELETE", "Deleted Reference Tools");
           alert("Online Reference Deleted");
           location.reload();
         } else {
@@ -579,7 +600,7 @@ function ClickEvents() {
       if (confirmDelete) {
         deleteGalleryImg(ids).then((response) => {
           if (response == 1) {
-            addActivityLog($.cookie("admin_id"), "DELETE", "Deleted Gallery Image");
+            addActivityLog("DELETE", "Deleted Gallery Image");
             alert("Gallery Image Deleted!");
             location.reload();
           } else {
@@ -608,7 +629,7 @@ function ClickEvents() {
     if (confirmDel) {
       trArchive.eq(index).hide();
       restoreArchive(id, tableId, tableName);
-      addActivityLog($.cookie("admin_id"), "RESTORE", `Restored from Archive on table (${tableName})`);
+      addActivityLog("RESTORE", `Restored from Archive on table (${tableName})`);
     }
   });
 
@@ -617,7 +638,7 @@ function ClickEvents() {
 
     deleteOpenSourceDatabase(id).then((response) => {
       if (response == 1) {
-        addActivityLog($.cookie("admin_id"), "DELETE", "Deleted Open Source Database");
+        addActivityLog("DELETE", "Deleted Open Source Database");
         alert("Open Source Database Deleted!");
         location.reload();
       } else {
@@ -635,7 +656,7 @@ function ClickEvents() {
     if (confirmDel) {
       deleteServices(id, tableName).then((response) => {
         if (response == 1) {
-          addActivityLog($.cookie("admin_id"), "DELETE", "Deleted Library Service");
+          addActivityLog("DELETE", "Deleted Library Service");
           alert("Services Deleted!");
           location.reload();
         } else {
@@ -652,7 +673,7 @@ function ClickEvents() {
     if (confirmDel) {
       deleteEjournal(id).then((response) => {
         if (response == 1) {
-          addActivityLog($.cookie("admin_id"), "DELETE", "Deleted E-Journal");
+          addActivityLog("DELETE", "Deleted E-Journal");
           alert("E-Journal Deleted!");
           location.reload();
         } else {
@@ -661,18 +682,28 @@ function ClickEvents() {
       });
     }
   });
-  $("#adminContactForm").submit(function (event) {
+  $("#adminContactForm").submit(async function (event) {
     event.preventDefault();
     const formData = new FormData(this);
-    updateAdminContact(formData).then((response) => {
-      if (response == 1) {
-        addActivityLog($.cookie("admin_id"), "UPDATE", "Updated Admin Contacts");
+    try {
+      const response = await checkRole();
+      const data = JSON.parse(response);
+      if (!data.status) {
+        alert(data.message);
+        return;
+      }
+
+      const updateResponse = await updateAdminContact(formData);
+      if (updateResponse == 1) {
+        addActivityLog("UPDATE", "Updated Admin Contacts");
         alert("Admin Contacts Updated!");
         location.reload();
       } else {
         alert(response);
       }
-    });
+    } catch (error) {
+      alert(error);
+    }
   });
   $("#addRoleBtn").on("click", function () {
     const newRole = $("#newRole");
@@ -687,21 +718,32 @@ function ClickEvents() {
     } else {
     }
   });
-  $("#aboutForm").submit(function (event) {
+  $("#aboutForm").submit(async function (event) {
     event.preventDefault();
     const formData = new FormData(this);
-    if ($("#aboutTextarea").val() && $("#aboutTextarea").val().trim() !== "") {
-      updateAbout(formData).then((response) => {
-        if (response == 1) {
-          addActivityLog($.cookie("admin_id"), "UPDATE", "Updated About Us Page");
+    try {
+      if ($("#aboutTextarea").val() && $("#aboutTextarea").val().trim() !== "") {
+        const response = await checkRole();
+        const data = JSON.parse(response);
+
+        if (!data.status) {
+          alert(data.message);
+          return;
+        }
+
+        const updateResponse = await updateAbout(formData);
+        if (updateResponse == 1) {
+          addActivityLog("UPDATE", "Updated About Us Page");
           alert("About Page Updated!");
           location.reload();
         } else {
-          alert(response);
+          alert(updateResponse);
         }
-      });
-    } else {
-      alert("Please Input About Context");
+      } else {
+        alert("Please Input About Context");
+      }
+    } catch (error) {
+      alert(error);
     }
   });
   $(document).on("click", ".deletePeriodicalImg", function () {
@@ -710,7 +752,7 @@ function ClickEvents() {
     if (confirmDel) {
       deletePeriodicalImg(id).then((response) => {
         if (response == 1) {
-          addActivityLog($.cookie("admin_id"), "DELETE", "Deleted Periodicals Magazine/Journal Image");
+          addActivityLog("DELETE", "Deleted Periodicals Magazine/Journal Image");
           alert("Periodicals Magazine/Journal Image Deleted!");
           location.reload();
         } else {
@@ -726,7 +768,7 @@ function ClickEvents() {
     if (confirmDel) {
       deletePeriodical(id).then((response) => {
         if (response == 1) {
-          addActivityLog($.cookie("admin_id"), "DELETE", "Deleted Periodicals Magazine/Journal");
+          addActivityLog("DELETE", "Deleted Periodicals Magazine/Journal");
           alert("Periodicals Magazine/Journal Deleted");
           location.reload();
         } else {
@@ -762,7 +804,7 @@ function ClickEvents() {
     if (confirmDel) {
       deleteSection(id).then((response) => {
         if (response == 1) {
-          addActivityLog($.cookie("admin_id"), "DELETE", "Deleted Library Section");
+          addActivityLog("DELETE", "Deleted Library Section");
           alert("Library Section Deleted");
           location.reload();
         } else {
@@ -956,19 +998,32 @@ function ClickEvents() {
     }
   });
 
-  $("#editObjectiveForm").on("submit", function (event) {
+  $("#editObjectiveForm").submit(async function (event) {
     event.preventDefault();
     const formData = new FormData(this);
-    updateObjectives(formData).then((response) => {
-      if (response == 1) {
-        addActivityLog($.cookie("admin_id"), "UPDATE", "Updated Library Objectives");
+
+    try {
+      const response = await checkRole();
+      const data = JSON.parse(response);
+
+      if (!data.status) {
+        alert(data.message);
+        return;
+      }
+
+      const updateResponse = await updateObjectives(formData);
+      if (updateResponse == 1) {
+        addActivityLog("UPDATE", "Updated Library Objectives");
         alert("Objective Updated");
         location.reload();
       } else {
-        alert(response);
+        alert(updateResponse);
       }
-    });
+    } catch (error) {
+      alert(error);
+    }
   });
+
   $(document).on("click", ".deleteHoursBtn", function () {
     const id = $(this).attr("data-id");
 
@@ -976,24 +1031,8 @@ function ClickEvents() {
     if (confirmDel) {
       deleteLibraryHours(id).then((response) => {
         if (response == 1) {
-          addActivityLog($.cookie("admin_id"), "DELETE", "Deleted Library Hours");
+          addActivityLog("DELETE", "Deleted Library Hours");
           alert("Library Hours Deleted");
-          location.reload();
-        } else {
-          alert(response);
-        }
-      });
-    }
-  });
-  $(document).on("click", ".deleteAccount", function () {
-    const id = $(this).attr("data-id");
-
-    const confirmDel = confirm("Are you sure you want to delete this?");
-    if (confirmDel) {
-      deleteAccount(id).then((response) => {
-        if (response == 1) {
-          addActivityLog($.cookie("admin_id"), "DELETE", "Deleted Admin Account");
-          alert("Account Deleted");
           location.reload();
         } else {
           alert(response);
@@ -1030,9 +1069,6 @@ function FetchEvents() {
     });
   });
   checkCookie();
-  checkToken($.cookie("token")).then((response) => {
-    console.log(response);
-  });
   fetchTotalRowsFeedbacks().then((response) => {
     const data = JSON.parse(response);
     $("#totalFeedbackRows").html(data.totalRows);
@@ -1659,26 +1695,6 @@ function FetchEvents() {
   });
 }
 function ModalEvents() {
-  $("#addAccountForm").submit(function (event) {
-    event.preventDefault();
-    const formData = new FormData(this);
-    addAccount(formData).then((response) => {
-      if (response == 1) {
-        addActivityLog($.cookie("admin_id"), "CREATE", "Created Admin Account");
-        alert("Account Added!");
-        location.reload();
-      } else if (response == "exists") {
-        alert("Email or Username already exist");
-      } else {
-        alert(response);
-      }
-    });
-  });
-
-  $("#addAccountModal").on("hide.bs.modal", function () {
-    $("#addAccountForm").trigger("reset");
-    $("#accountImgPrev").attr("src", "");
-  });
   $(".notif-link").each(function () {
     $(this).on("click", function () {});
   });
@@ -1749,7 +1765,7 @@ function ModalEvents() {
     $("#sendReply").hide();
     $("#submitReplyLoading").show();
     submitReplyFeedback(feedbackId, feedbackName, feedbackEmail, feedbackReply).then((response) => {
-      addActivityLog($.cookie("admin_id"), "CREATE", "Sends Feedback Reply");
+      addActivityLog("CREATE", "Sends Feedback Reply");
       if (response == 1) {
         alert("Reply Sent!");
         location.reload();
@@ -1765,7 +1781,7 @@ function ModalEvents() {
     const formData = new FormData(this);
     if ($("#newsMsg").val() && $("#newsMsg").val().trim() !== "") {
       addNews(formData).then((response) => {
-        addActivityLog($.cookie("admin_id"), "CREATE", "Added Library News");
+        addActivityLog("CREATE", "Added Library News");
         event.preventDefault();
         alert(response);
         location.reload();
@@ -1798,7 +1814,7 @@ function ModalEvents() {
     const formData = new FormData(this);
     addGuidelines(formData).then((response) => {
       if (response == 1) {
-        addActivityLog($.cookie("admin_id"), "CREATE", "Added Guidelines");
+        addActivityLog("CREATE", "Added Guidelines");
         alert("Guidelines Added!");
         location.reload();
       } else {
@@ -1816,18 +1832,29 @@ function ModalEvents() {
     $("#editInputRules").empty();
   });
 
-  $("#editGuidelinesForm").submit(function (event) {
+  $("#editGuidelinesForm").submit(async function (event) {
     event.preventDefault();
-    const formData = new FormData(this);
-    updateGuidelines(formData).then((response) => {
-      if (response == 1) {
-        addActivityLog($.cookie("admin_id"), "UPDATE", "Updated Guidelines");
+    try {
+      const formData = new FormData(this);
+      const response = await checkRole();
+      const data = JSON.parse(response);
+
+      if (!data.status) {
+        alert(data.message);
+        return;
+      }
+
+      const updateResponse = await updateGuidelines(formData);
+      if (updateResponse == 1) {
+        addActivityLog("UPDATE", "Updated Guidelines");
         alert("Rules Updated!");
         location.reload();
       } else {
-        alert(response);
+        alert(updateResponse);
       }
-    });
+    } catch (error) {
+      alert(error);
+    }
   });
 
   $("#addFaqForm").submit(function (event) {
@@ -1837,7 +1864,7 @@ function ModalEvents() {
     const answer = $("#answer").val();
     addFAQ(question, answer).then((response) => {
       if (response == 1) {
-        addActivityLog($.cookie("admin_id"), "CREATE", "Added FAQ");
+        addActivityLog("CREATE", "Added FAQ");
         alert("FAQ Added!");
         location.reload();
       } else {
@@ -1849,21 +1876,31 @@ function ModalEvents() {
     $("#addFaqForm").trigger("reset");
   });
 
-  $("#editFaqForm").submit(function (event) {
+  $("#editFaqForm").submit(async function (event) {
     event.preventDefault();
 
     const editFaqId = $("#editFaqId").val();
     const editQuestion = $("#editQuestion").val();
     const editAnswer = $("#editAnswer").val();
-    updateFaq(editFaqId, editQuestion, editAnswer).then((response) => {
-      if (response == 1) {
-        addActivityLog($.cookie("admin_id"), "UPDATE", "Updated FAQ");
-        alert("FAQ Updated!");
-        location.reload();
-      } else {
-        alert(response);
+    try {
+      const response = await checkRole();
+      const data = JSON.parse(response);
+
+      if (!data.status) {
+        alert(data.message);
+        return;
       }
-    });
+
+      const updateResponse = await updateFaq(editFaqId, editQuestion, editAnswer);
+      if (updateResponse == 1) {
+        addActivityLog("UPDATE", "Updated FAQ");
+        alert("FAQ Updated!");
+      } else {
+        alert(updateResponse);
+      }
+    } catch (error) {
+      alert(error);
+    }
   });
   $("#editFaqModal").on("hide.bs.modal", function () {
     $("#editFaqForm").trigger("reset");
@@ -1875,7 +1912,7 @@ function ModalEvents() {
     const formData = new FormData(this);
     addReferenceTools(formData).then((response) => {
       if (response == 1) {
-        addActivityLog($.cookie("admin_id"), "CREATE", "Added Reference Tools");
+        addActivityLog("CREATE", "Added Reference Tools");
         alert("Online Reference Tool Added");
         location.reload();
       } else {
@@ -1915,19 +1952,25 @@ function ModalEvents() {
     });
   });
 
-  $("#editToolForm").submit(function (event) {
+  $("#editToolForm").submit(async function (event) {
     event.preventDefault();
 
     const formData = new FormData(this);
-    updateReferenceTools(formData).then((response) => {
-      if (response == 1) {
-        addActivityLog($.cookie("admin_id"), "UPDATE", "Updated Reference Tools");
-        alert("Online Reference Tool Updated");
-        location.reload();
-      } else {
-        alert(response);
-      }
-    });
+    const response = await checkRole();
+    const data = JSON.parse(response);
+
+    if (!data.status) {
+      alert(data.message);
+      return;
+    }
+    const updateResponse = await updateReferenceTools(formData);
+    if (updateResponse == 1) {
+      addActivityLog("UPDATE", "Updated Reference Tools");
+      alert("Online Reference Tool Updated");
+      location.reload();
+    } else {
+      alert(updateResponse);
+    }
   });
 
   $("#editToolModal").on("hide.bs.modal", function () {
@@ -1940,7 +1983,7 @@ function ModalEvents() {
     if (form[0].checkValidity()) {
       addGalleryImg(formData).then((response) => {
         if (response == 1) {
-          addActivityLog($.cookie("admin_id"), "CREATE", "Added Gallery Image");
+          addActivityLog("CREATE", "Added Gallery Image");
           alert("Gallery Image Added!");
           location.reload();
         } else {
@@ -1962,7 +2005,7 @@ function ModalEvents() {
     const formData = new FormData(this);
     addOpenSourceDatabase(formData).then((response) => {
       if (response == 1) {
-        addActivityLog($.cookie("admin_id"), "CREATE", "Added Open Source Database");
+        addActivityLog("CREATE", "Added Open Source Database");
         alert("Open Source Database Added!");
         location.reload();
       } else {
@@ -1985,19 +2028,29 @@ function ModalEvents() {
     });
   });
 
-  $("#editDatabaseForm").submit(function (event) {
+  $("#editDatabaseForm").submit(async function (event) {
     event.preventDefault();
     const formData = new FormData(this);
+    try {
+      const response = await checkRole();
+      const data = JSON.parse(response);
 
-    updateOpenSourceDatabase(formData).then((response) => {
-      if (response == 1) {
-        addActivityLog($.cookie("admin_id"), "UPDATE", "Updated Open Source Database");
+      if (!data.status) {
+        alert(data.message);
+        return;
+      }
+
+      const updateResponse = await updateOpenSourceDatabase(formData);
+      if (updateResponse == 1) {
+        addActivityLog("UPDATE", "Updated Open Source Database");
         alert("Open Source Database Updated!");
         location.reload();
       } else {
-        alert(response);
+        alert(updateResponse);
       }
-    });
+    } catch (error) {
+      alert(error);
+    }
   });
 
   $("#editDatabaseModal").on("hide.bs.modal", function () {
@@ -2015,7 +2068,7 @@ function ModalEvents() {
     } else {
       addServices(tableName, servicesTitle, servicesTxt).then((response) => {
         if (response == 1) {
-          addActivityLog($.cookie("admin_id"), "CREATE", "Added New Library Services");
+          addActivityLog("CREATE", "Added New Library Services");
           alert("New Automated Circulation Added!");
           location.reload();
         } else {
@@ -2076,24 +2129,35 @@ function ModalEvents() {
   $("#editServicesModal").on("hide.bs.modal", function () {
     $("#editServicesForm").trigger("reset");
   });
-  $("#editServicesForm").submit(function (event) {
+  $("#editServicesForm").submit(async function (event) {
     event.preventDefault();
     const id = $("#servicesId").val();
     const table = $("#editServicesTable").val();
     const title = $("#editServicesTitle").val();
     const txt = tinymce.get("editServicesTxt").getContent();
-    if (txt && txt.trim() !== "") {
-      updateServices(id, table, title, txt).then((response) => {
-        if (response == 1) {
-          addActivityLog($.cookie("admin_id"), "UPDATE", "Updated Library Services");
+    try {
+      if (txt && txt.trim() !== "") {
+        const response = await checkRole();
+        const data = JSON.parse(response);
+
+        if (!data.status) {
+          alert(data.message);
+          return;
+        }
+
+        const updateResponse = await updateServices(id, table, title, txt);
+        if (updateResponse == 1) {
+          addActivityLog("UPDATE", "Updated Library Services");
           alert("Services Updated!");
           location.reload();
         } else {
-          alert(response);
+          alert(updateResponse);
         }
-      });
-    } else {
-      alert("Please Input Context!");
+      } else {
+        alert("Please Input Context!");
+      }
+    } catch (error) {
+      alert(error);
     }
   });
 
@@ -2103,7 +2167,7 @@ function ModalEvents() {
     const formData = new FormData(this);
     addEjournal(formData).then((response) => {
       if (response == 1) {
-        addActivityLog($.cookie("admin_id"), "CREATE", "Added New E-Journal");
+        addActivityLog("CREATE", "Added New E-Journal");
         alert("E-Journal Added!");
         location.reload();
       } else {
@@ -2129,18 +2193,28 @@ function ModalEvents() {
     $("#editEjournalForm").trigger("reset");
   });
 
-  $("#editEjournalForm").submit(function (event) {
+  $("#editEjournalForm").submit(async function (event) {
     event.preventDefault();
     const formData = new FormData(this);
-    updateEjournal(formData).then((response) => {
-      if (response == 1) {
-        addActivityLog($.cookie("admin_id"), "UPDATE", "Updated E-Journal");
+    try {
+      const response = await checkRole();
+      const data = JSON.parse(response);
+
+      if (!data.status) {
+        alert(data.message);
+      }
+
+      const updateResponse = await updateEjournal(formData);
+      if (updateResponse == 1) {
+        addActivityLog("UPDATE", "Updated E-Journal");
         alert("E-Journal Updated!");
         location.reload();
       } else {
-        alert(response);
+        alert(updateResponse);
       }
-    });
+    } catch (error) {
+      alert(error);
+    }
   });
 
   $("#addSocialsForm").submit(function (event) {
@@ -2149,7 +2223,7 @@ function ModalEvents() {
     const socialLink = $("#socialLink").val();
     addSocial(socialIcon, socialLink).then((response) => {
       if (response == 1) {
-        addActivityLog($.cookie("admin_id"), "DELETE", "Deleted Social Media");
+        addActivityLog("DELETE", "Deleted Social Media");
         alert("Social Media Added!");
         location.reload();
       } else {
@@ -2230,20 +2304,31 @@ function ModalEvents() {
     $("#editSocialsForm").trigger("reset");
   });
 
-  $("#editSocialsForm").submit(function (event) {
+  $("#editSocialsForm").submit(async function (event) {
     event.preventDefault();
     const id = $("#editSocialId").val();
     const icon = $("#editSocialIcon").val();
     const link = $("#editSocialLink").val();
-    updateSocial(id, icon, link).then((response) => {
-      if (response == 1) {
-        addActivityLog($.cookie("admin_id"), "UPDATE", "Updated Social Media");
+    try {
+      const response = await checkRole();
+      const data = JSON.parse(response);
+
+      if (!data.status) {
+        alert(data.message);
+        return;
+      }
+
+      const updateRespose = await updateSocial(id, icon, link);
+      if (updateRespose == 1) {
+        addActivityLog("UPDATE", "Updated Social Media");
         alert("Social Media Updated!");
         location.reload();
       } else {
-        alert(response);
+        alert(updateRespose);
       }
-    });
+    } catch (error) {
+      alert(error);
+    }
   });
 
   $("#addPersonnelForm").submit(function (event) {
@@ -2251,7 +2336,7 @@ function ModalEvents() {
     const formData = new FormData(this);
     addPersonnel(formData).then((response) => {
       if (response == 1) {
-        addActivityLog($.cookie("admin_id"), "CREATE", "Added New Library Personnel");
+        addActivityLog("CREATE", "Added New Library Personnel");
         alert("Personnel Added!");
         location.reload();
       } else {
@@ -2273,21 +2358,32 @@ function ModalEvents() {
     $("#editPersonnelName").val(name);
     $("#editPersonnelRole").val(role);
     $("#editPersonnelImgPreview").attr("src", image);
+  });
+  $("#updatePersonnelForm").submit(async function (event) {
+    event.preventDefault();
 
-    $("#updatePersonnelForm").submit(function (event) {
-      event.preventDefault();
+    const formData = new FormData(this);
 
-      const formData = new FormData(this);
-      updatePersonnel(formData).then((response) => {
-        if (response == 1) {
-          addActivityLog($.cookie("admin_id"), "UPDATE", "Updated Personnel");
-          alert("Personnel Updated!");
-          location.reload();
-        } else {
-          alert(response);
-        }
-      });
-    });
+    try {
+      const response = await checkRole();
+      const data = JSON.parse(response);
+
+      if (!data.status) {
+        alert(data.message);
+        return;
+      }
+
+      const updateResponse = await updatePersonnel(formData);
+      if (updateResponse == 1) {
+        addActivityLog("UPDATE", "Updated Personnel");
+        alert("Personnel Updated!");
+        location.reload();
+      } else {
+        alert(updateResponse);
+      }
+    } catch (error) {
+      alert(error);
+    }
   });
 
   $("#addPeriodicalForm").submit(function (event) {
@@ -2295,7 +2391,7 @@ function ModalEvents() {
     const formData = new FormData(this);
     addPeriodical(formData).then((response) => {
       if (response == 1) {
-        addActivityLog($.cookie("admin_id"), "CREATE", "Added New Arrival: Periodicals");
+        addActivityLog("CREATE", "Added New Arrival: Periodicals");
         alert("New Arrival Added!");
         location.reload();
       } else {
@@ -2319,10 +2415,10 @@ function ModalEvents() {
     const type = $(this).attr("data-type");
     $("#periodical_pk_id").val(pk_id);
     $("#editTitle").val(title);
-    if (type == "journal") {
-      $("#editJournal").attr("checked", true);
+    if (type === "Journal") {
+      $("#editJournal").prop("checked", true);
     } else {
-      $("#editMagazine").attr("checked", true);
+      $("#editMagazine").prop("checked", true);
     }
     $("#editCategory").val(category);
     $("#editAuthor").val(author);
@@ -2362,19 +2458,32 @@ function ModalEvents() {
     });
   });
   //UPDATE PERIODICALS
-  $("#editPeriodicalForm").submit(function (event) {
+  $("#editPeriodicalForm").submit(async function (event) {
     event.preventDefault();
     const formData = new FormData(this);
-    updatePeriodical(formData).then((response) => {
-      if (response == 1) {
-        addActivityLog($.cookie("admin_id"), "UPDATE", "Updated Periodicals Magazine/Journal");
+
+    try {
+      const response = await checkRole();
+      const data = JSON.parse(response);
+
+      if (!data.status) {
+        alert(data.message);
+        return;
+      }
+
+      const updateResponse = await updatePeriodical(formData);
+      if (updateResponse == 1) {
+        addActivityLog("UPDATE", "Updated Periodicals Magazine/Journal");
         alert("Periodicals Magazine/Journal Updated!");
         location.reload();
       } else {
-        alert(response);
+        alert(updateResponse);
       }
-    });
+    } catch (error) {
+      alert(error);
+    }
   });
+
   $("#editPeriodicalModal").on("hide.bs.modal", function () {
     $("#editPeriodicalForm").trigger("reset");
     $("#periodicalsImages").empty();
@@ -2390,7 +2499,7 @@ function ModalEvents() {
     } else {
       addSection(formData).then((response) => {
         if (response == 1) {
-          addActivityLog($.cookie("admin_id"), "CREATE", "Added New Library Section");
+          addActivityLog("CREATE", "Added New Library Section");
           alert("Section Added!");
           location.reload();
         } else {
@@ -2403,23 +2512,33 @@ function ModalEvents() {
   $("#addSectionModal").on("hide.bs.modal", function () {
     $("#addSectionForm").trigger("reset");
   });
-
-  $("#editSectionForm").submit(function (event) {
+  $("#editSectionForm").submit(async function (event) {
     event.preventDefault();
-
     const formData = new FormData(this);
-    if ($("#editSectionTxt").val() && $("#editSectionTxt").val().trim() !== "") {
-      updateSection(formData).then((response) => {
-        if (response == 1) {
-          addActivityLog($.cookie("admin_id"), "UPDATE", "Updated Library Section");
+
+    try {
+      if ($("#editSectionTxt").val() && $("#editSectionTxt").val().trim() !== "") {
+        const response = await checkRole();
+        const data = JSON.parse(response);
+
+        if (!data.status) {
+          alert(data.message);
+          return;
+        }
+
+        const updateResponse = await updateSection(formData);
+        if (updateResponse == 1) {
+          addActivityLog("UPDATE", "Updated Library Section");
           alert("Section Updated!");
           location.reload();
         } else {
-          alert(response);
+          alert(updateResponse);
         }
-      });
-    } else {
-      alert("Pleast Input Context");
+      } else {
+        alert("Please Input Context");
+      }
+    } catch (error) {
+      alert(error);
     }
   });
 
@@ -2632,7 +2751,7 @@ function ModalEvents() {
 
       addObjectives(icon, text).then((response) => {
         if (response == 1) {
-          addActivityLog($.cookie("admin_id"), "CREATE", "Added New Library Objectives");
+          addActivityLog("CREATE", "Added New Library Objectives");
           alert("Library Objectives Added");
           location.reload();
         } else {
@@ -2654,15 +2773,25 @@ function ModalEvents() {
   $("#editObjectiveModal").on("hide.bs.modal", function () {
     $("#editSelectedIcon").empty();
   });
-
+  $("#addVisitorModal").modal("show");
   $("#addVisitorForm").submit(function (event) {
     event.preventDefault();
 
     const visitorTypeValue = $("input[name='visitorType']:checked").val();
-    addVisitor(visitorTypeValue).then((response) => {
+    const captchaResponse = grecaptcha.getResponse();
+
+    if (!captchaResponse) {
+      alert("Please verify you're not a robot.");
+      return;
+    }
+
+    addVisitor(visitorTypeValue, captchaResponse).then((response) => {
       if (response == 1) {
-        $("#addVisitorModal").modal("hide");
-        $.cookie("visitor", true, { expires: 7 });
+        const modal = bootstrap.Modal.getInstance(document.getElementById("addVisitorModal"));
+        modal.hide();
+        $("#modalBackdrop").hide();
+      } else {
+        alert(response);
       }
     });
   });
@@ -2673,7 +2802,7 @@ function ModalEvents() {
     const formData = new FormData(this);
     addLibraryHours(formData).then((response) => {
       if (response == 1) {
-        addActivityLog($.cookie("admin_id"), "CREATE", "Added New Library Hours");
+        addActivityLog("CREATE", "Added New Library Hours");
         alert("Library Hours Added");
         location.reload();
       } else {
@@ -2697,19 +2826,30 @@ function ModalEvents() {
     $("#editSemesterDateEnd").val(dateEnd);
   });
 
-  $("#editLibraryHoursForm").submit(function (event) {
+  $("#editLibraryHoursForm").submit(async function (event) {
     event.preventDefault();
     const formData = new FormData(this);
 
-    updateLibraryHours(formData).then((response) => {
-      if (response == 1) {
-        addActivityLog($.cookie("admin_id"), "UPDATE", "Updated Library Hours");
+    try {
+      const response = await checkRole();
+      const data = JSON.parse(response);
+
+      if (!data.status) {
+        alert(data.message);
+        return;
+      }
+
+      const updateResponse = await updateLibraryHours(formData);
+      if (updateResponse == 1) {
+        addActivityLog("UPDATE", "Updated Library Hours");
         alert("Library Hours Updated");
         location.reload();
       } else {
-        alert(response);
+        alert(updateResponse);
       }
-    });
+    } catch (error) {
+      alert(error);
+    }
   });
 
   $("#editLibraryHoursModal").on("hide.bs.modal", function () {
@@ -2726,145 +2866,9 @@ function ModalEvents() {
     $("#editAccountEmail").val(email);
     $("#editAccountUsername").val(username);
   });
-  $("#editAccountForm").submit(function (event) {
-    event.preventDefault();
-
-    const formData = new FormData(this);
-    const confirmUpdate = confirm("You can only update an account once every 7 days.\nAre you sure you want to proceed with the update?");
-    if (confirmUpdate) {
-      updateAccount(formData).then((response) => {
-        if (response == 1) {
-          addActivityLog($.cookie("admin_id"), "UPDATE", "Updated Admin Account");
-          alert("Admin Account Updated");
-          location.reload();
-        } else {
-          alert(response);
-        }
-      });
-    }
-  });
-  $("#editAccountModal").on("hide.bs.modal", function () {
-    $("#editAccountForm").trigger("reset");
-    $("#editAccountImgPrev").attr("src", "");
-  });
 }
 
 function DataTable() {
-  fetchAllAccounts().then((response) => {
-    const data = JSON.parse(response);
-    $("#table_accounts").DataTable({
-      data: data,
-      columnDefs: [
-        {
-          targets: 0,
-          width: "10px",
-          className: "text-center",
-        },
-      ],
-      columns: [
-        {
-          data: "id",
-          title: "#",
-          render: function (data, type, row) {
-            return `<span class='badge bg-success'>${data}</span>`;
-          },
-        },
-        {
-          data: "accountImg",
-          title: "Image",
-          render: function (data, type, row) {
-            return data === "" || data === null
-              ? `<div>
-                        <img src="./assets/img/default.jpg" width="40px" height="40px"
-                            class="object-fit-cover" alt="">
-                    </div>`
-              : `
-                    <div>
-                        <img src="${data}" width="40px" height="40px"
-                            class="object-fit-cover" alt="">
-                    </div>
-                  `;
-          },
-        },
-        {
-          data: "accountEmail",
-          title: "Email",
-          render: function (data, type, row) {
-            return data;
-          },
-        },
-        {
-          data: "accountUsername",
-          title: "Username",
-          render: function (data, type, row) {
-            return data;
-          },
-        },
-        {
-          data: "accountPassword",
-          title: "Password",
-          render: function (data, type, row) {
-            return `************`;
-          },
-        },
-        {
-          data: "accountLogin",
-          title: "Status",
-          render: function (data, type, row) {
-            return data == 0 ? `<span class="badge bg-danger">Offline</span>` : `<span class="badge bg-success">Online</span>`;
-          },
-        },
-        {
-          data: "accountDateAdded",
-          title: "Date Added",
-          render: function (data, type, row) {
-            return data;
-          },
-        },
-        {
-          data: "accountDateUpdated",
-          title: "Date Updated",
-          render: function (data, type, row) {
-            return data == null ? "" : `${timeAgo(data)} ago`;
-          },
-        },
-        {
-          data: null,
-          title: "Action",
-          render: function (data, type, row) {
-            const givenDate = new Date(row.accountDateUpdated);
-            const currentDate = new Date();
-
-            const diffInMs = currentDate - givenDate;
-            const diffInDays = diffInMs / (1000 * 60 * 60 * 24);
-
-            const isEditable = diffInDays > 7;
-            const btnColor = isEditable ? "btn-success" : "btn-secondary";
-            const titleText = isEditable ? "Click to edit account" : "Account can only be updated once every 7 days";
-
-            return `
-              <div title="${titleText}" style="display: inline-block;">
-                <button class="editAccount btn ${btnColor}"
-                  ${isEditable ? 'data-bs-toggle="modal" data-bs-target="#editAccountModal"' : "disabled"}
-                  data-id="${row.id}"
-                  data-img="${row.accountImg}"
-                  data-email="${row.accountEmail}"
-                  data-username="${row.accountUsername}">
-                  <i class="fa-solid fa-pen"></i>
-                </button>
-              </div>
-              <button class="deleteAccount btn btn-danger" data-id="${row.id}">
-                <i class="fa-solid fa-trash"></i>
-              </button>
-            `;
-          },
-        },
-      ],
-      // rowCallback: function (row, data, index) {
-      //   $.cookie("admin_id") == data.id ? $(row).addClass("table-success") : "";
-      // },
-    });
-  });
   fetchAllNews().then((response) => {
     const data = JSON.parse(response);
     $("#table_news").DataTable({
@@ -4078,7 +4082,7 @@ function DataTable() {
       if (confirm("Are you sure you want to delete this?")) {
         objectivesDelete(id).then(function (response) {
           if (response == 1) {
-            addActivityLog($.cookie("admin_id"), "DELETE", "Deleted Library Objectives");
+            addActivityLog("DELETE", "Deleted Library Objectives");
             alert("Library Objectives Deleted");
             location.reload();
           } else {
@@ -4109,13 +4113,6 @@ function DataTable() {
         {
           data: "history_id",
           title: "#",
-          render: function (data, type, row) {
-            return `<span class='badge bg-success'>${data}</span>`;
-          },
-        },
-        {
-          data: "account_id",
-          title: "Admin ID",
           render: function (data, type, row) {
             return `<span class='badge bg-success'>${data}</span>`;
           },
@@ -4182,13 +4179,6 @@ function DataTable() {
           },
         },
         {
-          data: "admin_id",
-          title: "Admin ID",
-          render: function (data, type, row) {
-            return `<span class='badge bg-success'>${data}</span>`;
-          },
-        },
-        {
           data: null,
           title: "Profile",
           render: function (data, type, row) {
@@ -4245,13 +4235,6 @@ function DataTable() {
           title: "Time Ago",
           render: function (data, type, row) {
             return `${timeAgo(data)} ago`;
-          },
-        },
-        {
-          data: "ip_address",
-          title: "IP Address",
-          render: function (data, type, row) {
-            return data;
           },
         },
       ],

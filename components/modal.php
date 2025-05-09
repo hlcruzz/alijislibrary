@@ -54,60 +54,66 @@
     </div>
 </div>
 
-<div class="modal fade modal-xl" id="addVisitorModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-    aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <form id="addVisitorForm">
-                <div class="modal-body">
-                    <div class="row row-cols-1 row-cols-lg-2">
-                        <div class="col">
-                            <div class="m-4">
-                                <div class="">
-                                    <h1 class="fs-1">Welcome to the Library!</h1>
-                                    <p class="fs-5">Please indicate your affiliation with our institution.</p>
+<?php
+$visitor = $_SESSION['visitor'] ?? null;
+if (!$visitor): ?>
+    <div class="modal fade modal-xl" id="addVisitorModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <form id="addVisitorForm">
+                    <div class="modal-body">
+                        <div class="row row-cols-1 row-cols-lg-2">
+                            <div class="col">
+                                <div class="m-4">
+                                    <div class="">
+                                        <h1 class="fs-1">Welcome to the Library!</h1>
+                                        <p class="fs-5">Please indicate your affiliation with our institution.</p>
+                                    </div>
+                                    <div class="d-flex flex-column gap-3">
+                                        <label class="me-3" style="font-size: large">
+                                            <input type="radio" name="visitorType" class="form-check-input me-2"
+                                                value="Student" required>
+                                            Student
+                                        </label>
+
+                                        <label class="me-3" style="font-size: large">
+                                            <input type="radio" name="visitorType" class="form-check-input me-2"
+                                                value="Faculty">
+                                            Faculty (teaching/research)
+                                        </label>
+
+                                        <label class="me-3" style="font-size: large">
+                                            <input type="radio" name="visitorType" class="form-check-input me-2"
+                                                value="Staff">
+                                            Staff (non-teaching)
+                                        </label>
+
+                                        <label class="me-3" style="font-size: large">
+                                            <input type="radio" name="visitorType" class="form-check-input me-2"
+                                                value="Alumni">
+                                            Alumni
+                                        </label>
+
+                                        <label class="me-3" style="font-size: large">
+                                            <input type="radio" name="visitorType" class="form-check-input me-2"
+                                                value="Guest">
+                                            Guest
+                                        </label>
+                                        <div class="g-recaptcha" data-sitekey="6LeuRjIrAAAAAPJGDMymd5BOp1Aih4QVfE220aOZ">
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-success px-5 mt-4">Proceed</button>
                                 </div>
-                                <div class="d-flex flex-column gap-3">
-                                    <label class="me-3" style="font-size: large">
-                                        <input type="radio" name="visitorType" class="form-check-input me-2"
-                                            value="Student" required>
-                                        Student
-                                    </label>
-
-                                    <label class="me-3" style="font-size: large">
-                                        <input type="radio" name="visitorType" class="form-check-input me-2"
-                                            value="Faculty">
-                                        Faculty (teaching/research)
-                                    </label>
-
-                                    <label class="me-3" style="font-size: large">
-                                        <input type="radio" name="visitorType" class="form-check-input me-2"
-                                            value="Staff">
-                                        Staff (non-teaching)
-                                    </label>
-
-                                    <label class="me-3" style="font-size: large">
-                                        <input type="radio" name="visitorType" class="form-check-input me-2"
-                                            value="Alumni">
-                                        Alumni
-                                    </label>
-
-                                    <label class="me-3" style="font-size: large">
-                                        <input type="radio" name="visitorType" class="form-check-input me-2"
-                                            value="Guest">
-                                        Guest
-                                    </label>
-                                </div>
-                                <button type="submit" class="btn btn-success px-5 mt-4">Proceed</button>
+                            </div>
+                            <div class="col d-none d-lg-block">
+                                <img src="./assets/img/alijis-campus.png" class="w-100 h-100 object-fit-cover rounded-2"
+                                    alt="">
                             </div>
                         </div>
-                        <div class="col d-none d-lg-block">
-                            <img src="./assets/img/alijis-campus.png" class="w-100 h-100 object-fit-cover rounded-2"
-                                alt="">
-                        </div>
                     </div>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
     </div>
-</div>
+<?php endif ?>

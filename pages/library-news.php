@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -32,7 +35,7 @@
             <button type="submit" id="searchNewsBtn"
                 class="form-control w-auto btn btn-success ps-4 pe-4">Search</button>
         </form>
-        <div class="text-center" id="searchResultDisplay"></div>
+        <div class="text-center mt-4" id="searchResultDisplay"></div>
         <div class="row row-cols-1" id="newsContainer">
 
         </div>

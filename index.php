@@ -40,9 +40,6 @@ switch ($_GET['page']) {
     case 'admin-dashboard':
         require './admin/dashboard.php';
         break;
-    case 'admin-profile':
-        require './admin/profile.php';
-        break;
     case 'admin-library-news':
         require './admin/library-news.php';
         break;

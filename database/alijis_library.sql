@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 04, 2025 at 01:43 PM
+-- Generation Time: May 09, 2025 at 09:32 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -52,19 +52,17 @@ CREATE TABLE `accounts` (
   `accountEmail` varchar(100) DEFAULT NULL,
   `accountUsername` varchar(100) NOT NULL,
   `accountPassword` varchar(255) NOT NULL,
-  `accountLogin` tinyint(1) NOT NULL DEFAULT 0,
   `accountDateAdded` timestamp NOT NULL DEFAULT current_timestamp(),
   `accountDateUpdated` timestamp NULL DEFAULT NULL,
-  `status` tinyint(4) NOT NULL DEFAULT 1,
-  `authCode` int(6) DEFAULT NULL
+  `status` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `accounts`
 --
 
-INSERT INTO `accounts` (`id`, `accountImg`, `accountEmail`, `accountUsername`, `accountPassword`, `accountLogin`, `accountDateAdded`, `accountDateUpdated`, `status`, `authCode`) VALUES
-(1, NULL, 'admin@gmail.com', 'admin', '$2y$10$5bjOiM3iRYplIBfrBXvKP.SfLzOKySPYo66EB25rxAodKeiBBT8FO', 1, '2025-05-04 11:33:01', NULL, 1, 179371);
+INSERT INTO `accounts` (`id`, `accountImg`, `accountEmail`, `accountUsername`, `accountPassword`, `accountDateAdded`, `accountDateUpdated`, `status`) VALUES
+(1, NULL, 'harold.cruz0407@gmail.com', 'admin', '$2y$10$mstWkXUvlWnR8KlDl6sXkeaQiRytwQzW/2pthUFhqgV5dZpgVePBu', '2025-05-04 11:33:01', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -77,9 +75,15 @@ CREATE TABLE `activity_logs` (
   `admin_id` int(11) NOT NULL,
   `action` varchar(255) NOT NULL,
   `details` text DEFAULT NULL,
-  `ip_address` varchar(45) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `activity_logs`
+--
+
+INSERT INTO `activity_logs` (`id`, `admin_id`, `action`, `details`, `created_at`) VALUES
+(1, 1, 'CREATE', 'Sends Feedback Reply', '2025-05-09 06:35:52');
 
 -- --------------------------------------------------------
 
@@ -232,6 +236,14 @@ CREATE TABLE `feedbacks` (
   `status` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `feedbacks`
+--
+
+INSERT INTO `feedbacks` (`id`, `feedbackName`, `feedbackEmail`, `feedbackMsg`, `feedbackTime`, `feedbackIsRead`, `status`) VALUES
+(1, 'test', 'test@gmail.com', 'test', '2025-05-09 06:34:01', 1, 1),
+(2, 'test', 'test@gmail.com', 'test', '2025-05-09 06:35:36', 1, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -244,6 +256,14 @@ CREATE TABLE `feedbacks_reply` (
   `feedbacks_reply_msg` varchar(250) NOT NULL,
   `feedbacks_reply_time` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `feedbacks_reply`
+--
+
+INSERT INTO `feedbacks_reply` (`id`, `feedbacks_id`, `feedbacks_reply_msg`, `feedbacks_reply_time`) VALUES
+(1, 1, 'test', '2025-05-09 06:34:50'),
+(2, 2, 'test', '2025-05-09 06:35:52');
 
 -- --------------------------------------------------------
 
@@ -280,37 +300,6 @@ CREATE TABLE `gallery` (
   `gallery_date` timestamp NOT NULL DEFAULT current_timestamp(),
   `status` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `gallery`
---
-
-INSERT INTO `gallery` (`id`, `gallery_path`, `gallery_date`, `status`) VALUES
-(1, './assets/img/galleryImg/pexels-13nuance-561463.jpg', '2025-04-03 05:55:40', 1),
-(2, './assets/img/galleryImg/pexels-lazybird-1212600.jpg', '2025-04-03 05:55:40', 1),
-(3, './assets/img/galleryImg/pexels-nout-gons-80280-248159.jpg', '2025-04-03 05:55:40', 1),
-(4, './assets/img/galleryImg/pexels-no-name-14543-66997.jpg', '2025-04-03 05:55:40', 1),
-(5, './assets/img/galleryImg/pexels-thai-hu-nh-2335830-3998365.jpg', '2025-04-03 05:55:40', 1),
-(6, './assets/img/galleryImg/pexels-steve-2003848.jpg', '2025-04-03 05:56:02', 1),
-(7, './assets/img/galleryImg/pexels-cottonbro-3826573.jpg', '2025-04-03 05:56:02', 1),
-(8, './assets/img/galleryImg/pexels-didsss-2911519.jpg', '2025-04-03 05:56:02', 1),
-(9, './assets/img/galleryImg/pexels-cottonbro-3826579.jpg', '2025-04-03 05:56:02', 1),
-(10, './assets/img/galleryImg/pexels-grizzlybear-965879.jpg', '2025-04-03 05:56:02', 1),
-(11, './assets/img/galleryImg/pexels-skylar-kang-6045281.jpg', '2025-04-03 05:56:14', 1),
-(12, './assets/img/galleryImg/pexels-ekrulila-29579034.jpg', '2025-04-03 05:56:14', 1),
-(13, './assets/img/galleryImg/pexels-iulian-sandu-294198313-31372131.jpg', '2025-04-03 05:56:14', 1),
-(14, './assets/img/galleryImg/pexels-optical-chemist-340351297-31419917.jpg', '2025-04-03 05:56:14', 1),
-(15, './assets/img/galleryImg/pexels-wolfgang-vrede-9996223-31415463.jpg', '2025-04-03 05:56:14', 1),
-(16, './assets/img/galleryImg/pexels-rakicevic-nenad-233369-801885.jpg', '2025-04-03 06:01:20', 1),
-(17, './assets/img/galleryImg/pexels-pixabay-57705.jpg', '2025-04-03 06:01:20', 1),
-(18, './assets/img/galleryImg/pexels-davidmceachan-92664.jpg', '2025-04-03 06:01:20', 1),
-(19, './assets/img/galleryImg/pexels-ithalu-907485.jpg', '2025-04-03 06:01:20', 1),
-(20, './assets/img/galleryImg/pexels-pixabay-206359.jpg', '2025-04-03 06:01:20', 1),
-(21, './assets/img/galleryImg/pexels-pixabay-315987.jpg', '2025-04-03 07:48:34', 0),
-(22, './assets/img/galleryImg/pexels-nuno-obey-34504-127160.jpg', '2025-04-03 07:48:34', 0),
-(23, './assets/img/galleryImg/pexels-samsilitongajr-848573.jpg', '2025-04-03 07:48:34', 0),
-(24, './assets/img/galleryImg/pexels-todd-trapani-488382-1420440.jpg', '2025-04-03 07:48:34', 0),
-(25, './assets/img/galleryImg/pexels-pixabay-159020.jpg', '2025-04-03 07:48:34', 0);
 
 -- --------------------------------------------------------
 
@@ -365,7 +354,7 @@ CREATE TABLE `guideline_rules` (
 --
 
 INSERT INTO `guideline_rules` (`id`, `guideline_id`, `guideline_rules_txt`, `status`) VALUES
-(2, 1, 'A visitor must present an Identification card and visitor’s I.D. issued by the College Security Guard.', 1),
+(2, 1, 'A visitor must present an Identification card and visitor’s I.D. issued by the College Security Guard. ', 1),
 (3, 2, 'Valuable things such as cell phones, money, laptops, jewelry, etc., should not be left in the depository area. The person in charge is not accountable for the loss of these items.', 1),
 (4, 2, 'Personal book/s may be brought inside the library provided that permission is first sought from the person assigned at the entrance.', 1),
 (5, 3, 'Customers must log in their library card number in the computer at the entrance upon entering the library.', 1),
@@ -388,7 +377,7 @@ INSERT INTO `guideline_rules` (`id`, `guideline_id`, `guideline_rules_txt`, `sta
 (22, 6, 'Payment of fines for overdue library materials and library card replacement should be made at the cashier’s office.', 1),
 (23, 7, 'Charging of cell phones is strictly prohibited.', 1),
 (24, 7, 'Home use of books is not allowed three days before the mid-term and final examinations as well as during the said examinations. It will resume on the last date of mid-term examination. Moreover, during and after signing of clearance, photocopying is allowed provided the clearance form is attached with the library card.', 1),
-(35, 15, 'Library customers with valid identification cards are allowed entrance to the library. For CHMSC students, they must be in proper uniform, with school I.D. and library card.', 1),
+(35, 15, 'Library customers with valid identification cards are allowed entrance to the library. For CHMSC students, they must be in proper uniform, with school I.D. and library card. ', 1),
 (38, 17, 'dasdasdas', 0),
 (39, 17, 'sdasdasd', 0),
 (40, 17, 'sadfaerbtewrtwer', 0),
@@ -487,9 +476,9 @@ CREATE TABLE `library_news` (
 INSERT INTO `library_news` (`id`, `library_news_subject`, `library_news_txt`, `library_news_date`, `status`) VALUES
 (1, 'New Books Available', 'We have just received a fresh batch of new fiction and non-fiction books for our collection this month. Make sure to stop by and explore a variety of genres, including mystery, romance, science, and history. Don\'t miss out on the latest titles!', '2025-05-04 09:09:53', 1),
 (2, 'Library Maintenance Notice', 'The library will be closed on May 10 for scheduled maintenance. This is to ensure that all our facilities are in top shape for your comfort and convenience. Please plan your visit accordingly and we apologize for any inconvenience caused.', '2025-05-04 09:09:53', 1),
-(3, 'Extended Library Hours', 'During exam week, the library will be open until 10 PM to accommodate students needing extra study time. Our quiet zones, study rooms, and Wi-Fi will be available, so you can focus on your exams without any disruptions. Take advantage of these extended hours!', '2025-05-04 09:09:53', 1),
+(3, 'Extended Library Hours', '<p>During exam week, the library will be open until 10 PM to accommodate students needing extra study time. Our quiet zones, study rooms, and Wi-Fi will be available, so you can focus on your exams without any disruptions. Take advantage of these extended hours!</p>', '2025-05-04 09:09:53', 1),
 (4, 'Reading Contest 2025', 'Join our Summer Reading Contest and get a chance to win exciting prizes! Read books from any genre, submit your entries, and earn points for every book you finish. The contest runs from June 1 to August 31, 2025. Don\'t miss this chance to win while enjoying great books!', '2025-05-04 09:09:53', 1),
-(5, 'Free Research Workshop', 'We are hosting a free workshop on academic research skills this Friday at 3 PM. The workshop will cover topics such as citation, how to use databases, and effective research techniques. It is open to all students, so feel free to join and enhance your academic skills!', '2025-05-04 09:09:53', 1);
+(5, 'Free Research Workshop', '<p>We are hosting a free workshop on academic research skills this Friday at 3 PM. The workshop will cover topics such as citation, how to use databases, and effective research techniques. It is open to all students, so feel free to join and enhance your academic skills!</p>', '2025-05-04 09:09:53', 1);
 
 -- --------------------------------------------------------
 
@@ -549,7 +538,8 @@ CREATE TABLE `login_history` (
 --
 
 INSERT INTO `login_history` (`id`, `account_id`, `loginDate`) VALUES
-(1, 1, '2025-05-04 11:34:38');
+(1, 1, '2025-05-09 06:04:46'),
+(2, 1, '2025-05-09 06:35:25');
 
 -- --------------------------------------------------------
 
@@ -675,8 +665,8 @@ CREATE TABLE `periodicals` (
 --
 
 INSERT INTO `periodicals` (`id`, `periodicalsTitle`, `periodicalsType`, `periodicalsCategory`, `periodicalsAuthor`, `periodicalsDesc`, `periodicalsDate`, `status`) VALUES
-(1, 'Art+ Magazine Issue 77: Jomike Tejido', 'magazine', 'Arts & Culture', 'Jomike Tejido', 'Sense of Wonder: In pursuing the fruitful life of an artist, Jomike Tejido creates works that hark back to the simple joys of art-making and creating.', '2025-05-04 09:03:06', 1),
-(2, 'Art+ Magazine Issue 78: Patrick Esmao', 'magazine', 'Arts & Culture', 'Patrick Esmao', 'Inside this issue:\r\n\r\nElmer Borlongan\r\nAlfredo Roces\r\nPaul Eric Roca\r\nMark Nicdao\r\nPio Abad\r\n', '2025-05-04 09:05:36', 1);
+(1, 'Art+ Magazine Issue 77: Jomike Tejido', 'Magazine', 'Arts & Culture', 'Jomike Tejido', 'Sense of Wonder: In pursuing the fruitful life of an artist, Jomike Tejido creates works that hark back to the simple joys of art-making and creating.', '2025-05-04 09:03:06', 1),
+(2, 'Art+ Magazine Issue 78: Patrick Esmao', 'Magazine', 'Arts & Culture', 'Patrick Esmao', 'Inside this issue:\r\n\r\nElmer Borlongan\r\nAlfredo Roces\r\nPaul Eric Roca\r\nMark Nicdao\r\nPio Abad\r\n', '2025-05-04 09:05:36', 1);
 
 -- --------------------------------------------------------
 
@@ -805,20 +795,6 @@ CREATE TABLE `visitor` (
   `visitor_type` varchar(50) NOT NULL,
   `visitor_date` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `visitor`
---
-
-INSERT INTO `visitor` (`id`, `visitor_type`, `visitor_date`) VALUES
-(1, 'Alumni', '2025-05-01 08:21:41'),
-(2, 'Alumni', '2025-05-01 08:21:41'),
-(3, 'Student', '2025-05-01 08:21:41'),
-(4, 'Faculty', '2025-05-01 08:21:41'),
-(5, 'Student', '2024-05-01 08:21:41'),
-(6, 'Staff', '2024-05-01 12:25:22'),
-(7, 'Guest', '2025-05-01 23:57:35'),
-(8, 'Guest', '2025-05-02 00:54:49');
 
 --
 -- Indexes for dumped tables
@@ -1048,13 +1024,13 @@ ALTER TABLE `accounts`
 -- AUTO_INCREMENT for table `activity_logs`
 --
 ALTER TABLE `activity_logs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `archive`
 --
 ALTER TABLE `archive`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `automated_circulation`
@@ -1090,13 +1066,13 @@ ALTER TABLE `faq`
 -- AUTO_INCREMENT for table `feedbacks`
 --
 ALTER TABLE `feedbacks`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `feedbacks_reply`
 --
 ALTER TABLE `feedbacks_reply`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `foundation`
@@ -1108,7 +1084,7 @@ ALTER TABLE `foundation`
 -- AUTO_INCREMENT for table `gallery`
 --
 ALTER TABLE `gallery`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `guidelines`
@@ -1162,7 +1138,7 @@ ALTER TABLE `library_objectives`
 -- AUTO_INCREMENT for table `login_history`
 --
 ALTER TABLE `login_history`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `news_current_events`
@@ -1228,7 +1204,7 @@ ALTER TABLE `virtual_library_orientation`
 -- AUTO_INCREMENT for table `visitor`
 --
 ALTER TABLE `visitor`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables

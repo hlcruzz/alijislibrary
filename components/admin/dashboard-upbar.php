@@ -48,7 +48,7 @@
 
                         </tbody>
                     </table>
-                    <div class="d-flex justify-content-center m-3">
+                    <div class="d-flex justify-content-center m-3" id="loadMoreCont">
                         <div class="d-flex align-items-center gap-3 w-100" id="load-cont">
                             <hr class="border w-50">
                             <button type="button" id="loadNotif" class="btn btn-success"
@@ -63,17 +63,18 @@
                 </div>
             </div>
             <div class="" style=" height: max-content; width: max-content;">
-                <a href="./?page=admin-profile" class="admin-cont text-decoration-none d-flex align-items-center gap-2 "
+                <a class="admin-cont text-decoration-none d-flex align-items-center gap-2 "
                     style=" width: max-content; white-space: nowrap;">
                     <div class="position-relative">
-                        <img src="" class="object-fit-cover" style="border-radius: 50%;" width="40px" height="40px"
-                            alt="" id="upbarImg">
+                        <img src="<?php echo $_COOKIE['accountImg'] ?? "./assets/img/default.jpg" ?>"
+                            class="object-fit-cover" style="border-radius: 50%;" width="40px" height="40px" alt=""
+                            id="upbarImg">
                         <i class="fa-solid fa-circle position-absolute bottom-0 end-0"
                             style="font-size: 10px; color: #13bc27;"></i>
                     </div>
                     <div class="" id="upbarProfile">
-                        <h1 class="p-0 m-0 fs-6" id="upbarUsername"></h1>
-                        <small class="fw-light" id="upbarEmail"></small>
+                        <h1 class="p-0 m-0 fs-6" id="upbarUsername"><?php echo $decoded->data->username ?></h1>
+                        <small class="fw-light" id="upbarEmail"><?php echo $decoded->data->email ?></small>
                     </div>
 
                 </a>

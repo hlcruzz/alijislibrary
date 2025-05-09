@@ -1,3 +1,6 @@
+<?php
+include "./components/admin/session.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 
