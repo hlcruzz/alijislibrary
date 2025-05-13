@@ -71,13 +71,9 @@
                                 success. Our friendly staff are ready to assist you!
                             </small>
                         </div>
-                        <div class="d-flex align-items-center gap-3 mt-4 flex-wrap">
-                            <a href="https://www.facebook.com/LIBRARYALIJIS/" target="_blank" class="text-white"><i
-                                    class="fa-brands fa-facebook-f fs-4"></i></a>
-                            <a href="https://www.youtube.com/@chmsualijislibrary4548" target="_blank"
-                                class="text-white"><i class="fa-brands fa-youtube fs-4"></i></a>
-                            <a href="https://x.com/chmsu_library" target="_blank" class="text-white"><i
-                                    class="fa-brands fa-x-twitter fs-4"></i></a>
+                        <div class="d-flex align-items-center gap-3 mt-4 flex-wrap" id="socialMediaCont">
+
+
                         </div>
                     </div>
                     <div class="col p-3 m-0">

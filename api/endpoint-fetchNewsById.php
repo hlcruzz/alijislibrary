@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
                                    library_news_img.*
                             FROM library_news
                             LEFT JOIN library_news_img ON library_news.id = library_news_img.library_news_id
-                            WHERE library_news.id = :id;");
+                            WHERE library_news.id = :id AND library_news_img.status = 1;");
     $stmt->bindParam(":id", $id);
     $stmt->execute();
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);

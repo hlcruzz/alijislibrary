@@ -67,6 +67,7 @@ import {
   addPersonnel,
   fetchAllPersonnel,
   updatePersonnel,
+  deletePersonnel,
   fetchAbout,
   updateAbout,
   addPeriodical,
@@ -208,7 +209,7 @@ function ClickEvents() {
           `;
           const carouselImg = `
           <div class="carousel-item ${isActiveClass} position-relative">
-            <i class="deleteNewsImg fa-solid fa-trash bg-danger fs-2 position-absolute top-0 start-0 p-4 z-3" role="button" data-id="${element.id}"></i>
+            <i class="deleteNewsImg text-light fa-solid fa-trash bg-danger fs-2 position-absolute top-0 start-0 p-4 z-3" role="button" data-id="${element.id}"></i>
             <img src="${images}" class="d-block w-100" alt="...">
           </div>
           `;
@@ -1040,6 +1041,21 @@ function ClickEvents() {
       });
     }
   });
+  $(document).on("click", ".deletePersonnelBtn", function () {
+    const id = $(this).attr("data-id");
+    const confirmDel = confirm("Are you sure you want to delete this?");
+    if (confirmDel) {
+      deletePersonnel(id).then((response) => {
+        if (response == 1) {
+          addActivityLog("DELETE", "Deleted Library Personnel");
+          alert("Library Personnel Deleted");
+          location.reload();
+        } else {
+          alert(response);
+        }
+      });
+    }
+  });
 }
 function FetchEvents() {
   fetchTotalObjectives().then(function (response) {
@@ -1691,6 +1707,35 @@ function FetchEvents() {
       `;
 
       container.append(content);
+    });
+  });
+  fetchAllSocial().then((response) => {
+    const data = JSON.parse(response);
+    const containerFooter = $("#socialMediaCont");
+
+    //FOOTER
+    data.forEach((element) => {
+      const icon = element.socialsIcon;
+      const link = element.socialsLink;
+
+      const content = `
+      <a href="${link}" target="_blank" class="text-white">
+      <i class="${icon} fs-4"></i></a>
+      `;
+      containerFooter.append(content);
+    });
+
+    //NAVBAR
+    const containerNavbar = $("#socialMediaContNavbar");
+    data.forEach((element) => {
+      const icon = element.socialsIcon;
+      const link = element.socialsLink;
+
+      const content = `
+      <a href="${link}" target="_blank" class="text-white">
+      <i class="${icon} fs-4"></i></a>
+      `;
+      containerNavbar.append(content);
     });
   });
 }

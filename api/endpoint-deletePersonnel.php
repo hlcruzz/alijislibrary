@@ -3,12 +3,12 @@ include "../lib/connection.php";
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $id = $_POST['id'];
-    $tableName = "library_news_img";
-    $page = "Library News Image";
+    $tableName = "personnel";
+    $page = "Library Personnel";
     try {
-        $stmt = $conn->prepare("UPDATE library_news_img SET status = 0 WHERE id = :id;");
-        $stmt->bindParam(":id", $id);
-        $stmt->execute();
+        $stmt1 = $conn->prepare("UPDATE personnel SET status = 0 WHERE id = :id;");
+        $stmt1->bindParam(":id", $id);
+        $stmt1->execute();
 
         $stmt2 = $conn->prepare("INSERT INTO archive (fk_id,tableName,pageName) VALUES (:fk_id, :tableName, :pageName);");
         $stmt2->bindParam(":fk_id", $id);

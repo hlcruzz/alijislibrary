@@ -654,7 +654,7 @@
                             style="max-height: 300px;">
                     </div>
                     <div>
-                        <label for="editJournalImg">Upload Image: ( jpeg, jpg, png ) </label>
+                        <label for="editJournalImg">Update Image: ( jpeg, jpg, png ) </label>
                         <input type="file" name="editJournalImg" id="editJournalImg" class="form-control mt-2"
                             accept=".jpg, .jpeg, .png">
                     </div>
@@ -1040,7 +1040,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel"> Add Library Section</h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel"> Edit Library Section</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form id="editSectionForm">
@@ -1069,7 +1069,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-success">Submit</button>
+                    <button type="submit" class="btn btn-success">Update</button>
                 </div>
             </form>
         </div>

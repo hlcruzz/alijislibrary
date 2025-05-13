@@ -8,7 +8,9 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
         personnelName, 
         DATE_FORMAT(personnelDateAdded, '%W, %M %d, %Y %h:%i:%s %p') AS personnelDateAdded,
          DATE_FORMAT(personnelDateUpdated, '%W, %M %d, %Y %h:%i:%s %p') AS personnelDateUpdated
-        FROM personnel;";
+        FROM personnel
+        WHERE status = 1
+        ;";
         $stmt = $conn->prepare($query);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);

@@ -99,8 +99,6 @@ setSession("galleryRow", 10);
 setInterval(async () => {
   const response = await fetchGalleryImgByLimit(sessionStorage.getItem("galleryRow") ?? 10);
   const data = JSON.parse(response);
-
-  console.log(data);
   const galleryContainer = $("#galleryContainer");
   galleryContainer.empty();
 

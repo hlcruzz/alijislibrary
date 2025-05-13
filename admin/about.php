@@ -7,7 +7,7 @@ include "./components/admin/session.php";
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin - Library News</title>
+    <title>Admin - About Us</title>
     <?php include "./components/admin/admin-links.php" ?>
 
 </head>

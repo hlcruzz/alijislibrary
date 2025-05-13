@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 09, 2025 at 09:32 AM
+-- Generation Time: May 13, 2025 at 04:57 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -38,7 +38,7 @@ CREATE TABLE `about` (
 --
 
 INSERT INTO `about` (`id`, `aboutImg`, `aboutTxt`) VALUES
-(1, './assets/img/about/alijis-campus.png', '<p class=\"\" data-start=\"148\" data-end=\"196\"><span style=\"color: rgb(45, 194, 107);\"><strong data-start=\"148\" data-end=\"196\">Welcome to the Alijis Campus Library&nbsp;</strong></span></p>\r\n<p class=\"\" data-start=\"198\" data-end=\"809\">Our library system is dedicated to supporting the instruction, research, extension, and production programs of the College. We strive to develop a well-balanced collection of resources and provide facilities that promote effective and meaningful use of library materials. By organizing accessible and reliable information sources, we aim to make your search for knowledge easier and more efficient. We also work closely with faculty members to support their academic needs and extend our services to customers with special requirements. Through this system, we bring the library closer to you&mdash;anytime, anywhere.</p>');
+(1, './assets/img/about/alijis-campus.png', '<h2><span style=\"color: rgb(45, 194, 107);\"><strong data-start=\"148\" data-end=\"196\">Welcome to the Alijis Campus Library&nbsp;</strong></span></h2>\r\n<p>Our library system is dedicated to supporting the instruction, research, extension, and production programs of the College. We strive to develop a well-balanced collection of resources and provide facilities that promote effective and meaningful use of library materials. By organizing accessible and reliable information sources, we aim to make your search for knowledge easier and more efficient. We also work closely with faculty members to support their academic needs and extend our services to customers with special requirements. Through this system, we bring the library closer to you&mdash;anytime, anywhere.</p>');
 
 -- --------------------------------------------------------
 
@@ -78,13 +78,6 @@ CREATE TABLE `activity_logs` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `activity_logs`
---
-
-INSERT INTO `activity_logs` (`id`, `admin_id`, `action`, `details`, `created_at`) VALUES
-(1, 1, 'CREATE', 'Sends Feedback Reply', '2025-05-09 06:35:52');
-
 -- --------------------------------------------------------
 
 --
@@ -122,8 +115,9 @@ INSERT INTO `automated_circulation` (`id`, `title`, `txt`, `date`, `status`) VAL
 (2, 'Returning & Check-In', '<p>All borrowed books and other library resources should be returned at the counter. Overdue fines are charged for items returned late</p>', '2025-04-10 05:10:12', 1),
 (3, 'Overnight or Home Use', '<div class=\" mt-4\">\n<h2 class=\"fs-6 text-success ms-3\"><span style=\"color: rgb(45, 194, 107);\">Undergraduate Students</span></h2>\n<ol class=\"d-flex flex-column gap-1 mt-3\">\n<li>Three (3) book titles from Circulation or Filipiniana sections are allowed.</li>\n<li>Unlimited fiction book for a period of one (1) week is allowed.</li>\n<li>Borrowing of books from Circulation and Filipiniana starts at 3:00 P.M.</li>\n<li>Borrowed books should be returned on or before 10:00 A.M. of the due date to avoid overdue fines.</li>\n<li>A fine slip issued to student who has overdue fines is valid for three (3) working days only. It can be used to avail of library services provided a student is not yet banned.</li>\n<li>A student is given a maximum of three (3) working days to return overdue book, or else he will be banned from library services for the rest of the current semester. The ban is not lifted even if the book is returned or fine is paid during the ban period.</li>\n<li>Students who borrowed book for home use and who cannot return on due date can make use of borrower&rsquo;s entry slip to avail of library services only for three working days as stipulated in the banning policy.</li>\n</ol>\n</div>\n<div class=\"mt-4\">\n<h2 class=\"fs-6 text-success ms-3\"><span style=\"color: rgb(45, 194, 107);\">Faculty Members</span></h2>\n<ol class=\"d-flex flex-column gap-1 mt-3\">\n<li>Unlimited number of books is allowed from Circulation and Filipiniana sections and renewable every 2 weeks.</li>\n<li>Two (2) serial titles for 1 week are allowed unless needed by another user.</li>\n<li>Borrowed books should be returned on due date otherwise they will be charged overdue fines.</li>\n<li>Borrowed books should be returned on or before 10:00 A.M. of the due date to avoid overdue fines.</li>\n<li>The Dean shall countersign the book card before the book can be borrowed by part-time faculty.</li>\n</ol>\n</div>\n<div class=\"mt-4\">\n<h2 class=\"fs-6 text-success ms-3\"><span style=\"color: rgb(45, 194, 107);\">Administrative Support Staff</span></h2>\n<ol class=\"d-flex flex-column gap-1 mt-3\">\n<li>One (1) book title for 1 week is allowed.</li>\n<li>Borrowed books should be returned on due date to avoid overdue fines.</li>\n</ol>\n</div>\n<div class=\"mt-4\">\n<h2 class=\"fs-6 text-success ms-3\"><span style=\"color: rgb(45, 194, 107);\">Administrative Support Staff</span></h2>\n<ol class=\"d-flex flex-column gap-1 mt-3\">\n<li>One (1) book title for 1 week is allowed.</li>\n<li>Borrowed books should be returned on due date to avoid overdue fines.</li>\n</ol>\n</div>', '2025-04-10 05:11:16', 1),
 (4, 'Book Renewal', '<p>To renew the books, they must be presented to the counter for a change of due date, unless otherwise called for by another user. They can be renewed twice a semester.</p>', '2025-04-10 05:12:46', 1),
-(5, 'Charges & Fines', '<h6><span style=\"color: rgb(45, 194, 107);\"><span class=\"bold urderline\">Researchers</span>&nbsp;<strong>(outsider)</strong></span></h6>\n<ul>\n<li>\n<p>Php 30.00/day is charged provided there is referral letter from the librarian of the school where they come from</p>\n</li>\n</ul>\n<h6><span style=\"color: rgb(45, 194, 107);\"><span class=\"bold urderline\">Photocopy</span>&nbsp;<strong>(outside the library)</strong>&nbsp;</span></h6>\n<ul>\n<li>Php 5.00/hour or a fraction of an hour is charged for every material returned 30 minutes after it was discharged from the counter</li>\n</ul>\n<h6><span style=\"color: rgb(45, 194, 107);\"><span class=\"bold\">Circulation and Filipiniana Sections</span> </span></h6>\n<ul>\n<li><span style=\"color: rgb(0, 0, 0);\">Php 1.00/hour for every book returned after 10:00 A.M. of the due date excluding holidays, Saturdays and Sundays.</span></li>\n</ul>\n<h6><span style=\"color: rgb(45, 194, 107);\"><span class=\"bold\">Fiction Books</span>&nbsp;</span></h6>\n<ul>\n<li>Php 1.00/day for every book returned after its due date</li>\n</ul>', '2025-04-10 05:13:34', 1),
-(6, 'asdasd', '<p>asdasd</p>', '2025-04-10 07:29:31', 0);
+(5, 'Charges & Fines', '<div class=\" mt-4\">\n<h2 class=\"fs-6 text-success ms-3\"><span style=\"color: rgb(45, 194, 107);\">Researcher (outsider)</span></h2>\n<ol class=\"d-flex flex-column gap-1 mt-3\">\n<li>\n<div>Php 30.00/day is charged provided there is referral letter from the librarian of the school where they come from</div>\n</li>\n</ol>\n</div>\n<div class=\"mt-4\">\n<h2 class=\"fs-6 text-success ms-3\"><span style=\"color: rgb(45, 194, 107);\">Photocopy</span></h2>\n<ol class=\"d-flex flex-column gap-1 mt-3\">\n<li>\n<div>Php 5.00/hour or a fraction of an hour is charged for every material returned 30 minutes after it was discharged from the counter</div>\n</li>\n</ol>\n</div>\n<div class=\"mt-4\">\n<h2 class=\"fs-6 text-success ms-3\"><span style=\"color: rgb(45, 194, 107);\">Circulation and Filipiniana Section</span></h2>\n<ol class=\"d-flex flex-column gap-1 mt-3\">\n<li>\n<div>Php 1.00/hour for every book returned after 10:00 A.M. of the due date excluding holidays, Saturdays and Sundays.</div>\n</li>\n</ol>\n</div>\n<div class=\"mt-4\">\n<h2 class=\"fs-6 text-success ms-3\"><span style=\"color: rgb(45, 194, 107);\">Fictional Books</span></h2>\n<ol class=\"d-flex flex-column gap-1 mt-3\">\n<li>\n<div>Php 1.00/day for every book returned after its due date</div>\n</li>\n</ol>\n</div>', '2025-04-10 05:13:34', 1),
+(6, 'asdasd', '<p>asdasd</p>', '2025-04-10 07:29:31', 0),
+(7, 'test', '<p>test asdasd</p>', '2025-05-13 01:38:27', 0);
 
 -- --------------------------------------------------------
 
@@ -167,7 +161,8 @@ CREATE TABLE `downloads` (
 
 INSERT INTO `downloads` (`id`, `downloads_name`, `downloads_path`, `downloads_type`, `downloads_date`, `status`) VALUES
 (1, 'CHMSC-L-F08-books-recommended.doc', './assets/download/CHMSC-L-F08-books-recommended.doc', 'doc', '2025-05-04 09:11:35', 1),
-(2, 'CHMSC-L-F16-AVR-REQUEST-FORM2.xlsx', './assets/download/CHMSC-L-F16-AVR-REQUEST-FORM2.xlsx', 'xlsx', '2025-05-04 09:11:43', 1);
+(2, 'CHMSC-L-F16-AVR-REQUEST-FORM2.xlsx', './assets/download/CHMSC-L-F16-AVR-REQUEST-FORM2.xlsx', 'xlsx', '2025-05-04 09:11:43', 1),
+(3, 'DataTables example - Bootstrap 5.pdf', './assets/download/DataTables example - Bootstrap 5.pdf', 'pdf', '2025-05-13 01:22:11', 0);
 
 -- --------------------------------------------------------
 
@@ -218,7 +213,8 @@ INSERT INTO `faq` (`id`, `faq_question`, `faq_answer`, `faq_date`, `status`) VAL
 (1, 'How do I borrow reading materials from the CHMSC Alijis Campus Library?', 'To borrow reading materials from the CHMSC Alijis Campus Library, students, faculty, and staff must have a valid, properly validated library card. Students can borrow up to three books from the Circulation or Filipiniana sections and unlimited fiction books for one week, while faculty members can borrow unlimited books from these sections with renewals allowed every two weeks. Administrative support staff may borrow one book for one week. Borrowing starts at 3:00 P.M., and borrowed books must be returned by 10:00 A.M. the next day to avoid overdue fines. Books can be renewed up to twice a semester, and overdue materials must be returned before borrowing new items. If you have overdue materials, you cannot borrow additional books until the fines are settled.', '2025-03-28 05:06:27', 0),
 (2, 'What library services are available in CHMSC Alijis Campus Library?', 'The CHMSC Alijis Campus Library offers a variety of services to its users. These include borrowing/check-out services for students, faculty, and staff with valid library cards, and the returning/check-in of borrowed materials at the counter. Overnight or home use of books is allowed under specific guidelines for different groups (undergraduate students, faculty, and administrative staff). The library also provides book renewals, allowing books to be renewed twice a semester. For researchers, the library offers internet and computer-aided research services, with access to databases like IGI Global and Phil.elib. Reference and information services include chat assistance with librarians, online document delivery, bibliographic requests, and telephone inquiries. The library also facilitates printing and scanning services for library users and offers free Wi-Fi (access code available upon request). Additionally, referral letters are provided for faculty and students who wish to conduct research in neighboring libraries. The library regularly conducts virtual library orientation sessions for freshmen, transferees, and faculty. Lastly, library updates and announcements are shared via their Facebook page and email communications.', '2025-03-28 05:48:26', 1),
 (3, 'What is the penalty for overdue books?', 'The penalty for overdue books at the CHMSC Alijis Campus Library includes fines and restrictions on library access. For students, overdue books from the Circulation and Filipiniana sections are fined Php 1.00 per hour for each book returned after 10:00 A.M. on the due date (excluding holidays, Saturdays, and Sundays), while overdue fiction books incur a fine of Php 1.00 per day. Students are given a maximum of three (3) working days to return overdue books; if the books are not returned within this time, the student will be banned from library services for the rest of the semester, even if the book is returned or the fine is paid during the ban period. For researchers (outsiders), an overdue fine of Php 30.00 per day is charged, provided they have a referral letter from their home institution’s librarian.', '2025-03-28 05:49:48', 1),
-(6, 'Does the CHMSC Alijis Campus Library have a scanner?', 'Yes, the CHMSU Alijis Campus Library provides scanning services to its users. Library users, including faculty and students, can request assistance with scanning reading materials, research references, and other books available in the library.', '2025-03-31 01:55:58', 1);
+(6, 'Does the CHMSC Alijis Campus Library have a scanner?', 'Yes, the CHMSU Alijis Campus Library provides scanning services to its users. Library users, including faculty and students, can request assistance with scanning reading materials, research references, and other books available in the library.', '2025-03-31 01:55:58', 1),
+(7, 'asda', 'sdasdad', '2025-05-13 02:02:39', 0);
 
 -- --------------------------------------------------------
 
@@ -301,6 +297,22 @@ CREATE TABLE `gallery` (
   `status` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `gallery`
+--
+
+INSERT INTO `gallery` (`id`, `gallery_path`, `gallery_date`, `status`) VALUES
+(1, './assets/img/galleryImg/0e9c4f94-4fdc-4734-a72b-37323475c5a9.jpg', '2025-05-13 01:29:29', 0),
+(2, './assets/img/galleryImg/abstract-background-drawing-a-flag-and-ribbon-transparent-vector-illustration-free-png.png', '2025-05-13 01:29:29', 0),
+(3, './assets/img/galleryImg/images (1)sa - Copy.jpg', '2025-05-13 01:29:29', 0),
+(4, './assets/img/galleryImg/images (1)sa.jpg', '2025-05-13 01:29:29', 0),
+(5, './assets/img/galleryImg/a_carnival_themed_poster_with_text_victorias (6) - Copy.jpeg', '2025-05-13 01:29:29', 0),
+(6, './assets/img/galleryImg/a_carnival_themed_poster_with_text_victorias (6).jpeg', '2025-05-13 01:29:50', 0),
+(7, './assets/img/galleryImg/a_carnival_themed_poster_with_text_victorias (5) - Copy - Copy.jpeg', '2025-05-13 01:29:50', 0),
+(8, './assets/img/galleryImg/a_carnival_themed_poster_with_text_victorias (5) - Copy.jpeg', '2025-05-13 01:29:50', 0),
+(9, './assets/img/galleryImg/a_carnival_themed_poster_with_text_victorias (5).jpeg', '2025-05-13 01:29:50', 0),
+(10, './assets/img/galleryImg/a_carnival_themed_poster_with_text_victorias (4).jpeg', '2025-05-13 01:29:50', 0);
+
 -- --------------------------------------------------------
 
 --
@@ -318,23 +330,15 @@ CREATE TABLE `guidelines` (
 --
 
 INSERT INTO `guidelines` (`id`, `guidelineName`, `guidelines_date`) VALUES
-(1, 'Library Access & Identification', '2025-03-27 08:04:01'),
-(2, 'Personal Belongings & Responsibility', '2025-03-27 08:08:57'),
-(3, 'Entrance & Exit Procedures', '2025-03-27 08:09:23'),
-(4, 'Library Conduct & Behavior', '2025-03-27 08:09:58'),
-(5, 'Library Materials Usage & Care', '2025-03-27 08:10:45'),
-(6, 'Borrowing, Overdue, and Fines', '2025-03-27 08:11:25'),
-(7, 'Special Conditions', '2025-03-27 08:11:52'),
-(8, 'Library Access & Identification', '2025-03-28 01:16:12'),
-(9, 'Library Access & Identification', '2025-03-28 01:16:12'),
-(10, 'Library Access & Identification', '2025-03-28 01:16:12'),
-(11, 'Library Access & Identification', '2025-03-28 01:16:35'),
-(12, 'Library Access & Identification', '2025-03-28 01:16:46'),
-(13, 'Library Access & Identification', '2025-03-28 01:18:08'),
-(14, 'Special Conditions', '2025-03-28 01:18:17'),
-(15, 'Library Access & Identification', '2025-03-28 01:49:45'),
-(16, 'Library Access & Identification', '2025-04-06 01:03:47'),
-(17, 'Borrowing, Overdue, and Fines', '2025-04-21 01:28:58');
+(1, 'Borrowing, Overdue, and Fines', '2025-05-13 01:50:55'),
+(2, 'Entrance & Exit Procedures', '2025-05-13 01:56:48'),
+(3, 'Entrance & Exit Procedures', '2025-05-13 01:57:06'),
+(4, 'Entrance & Exit Procedures', '2025-05-13 01:57:51'),
+(5, 'Library Access & Identification', '2025-05-13 01:58:08'),
+(6, 'Library Conduct & Behavior', '2025-05-13 01:58:41'),
+(7, 'Library Materials Usage & Care', '2025-05-13 02:00:48'),
+(8, 'Personal Belongings & Responsibility', '2025-05-13 02:01:09'),
+(9, 'Special Conditions', '2025-05-13 02:01:30');
 
 -- --------------------------------------------------------
 
@@ -354,36 +358,30 @@ CREATE TABLE `guideline_rules` (
 --
 
 INSERT INTO `guideline_rules` (`id`, `guideline_id`, `guideline_rules_txt`, `status`) VALUES
-(2, 1, 'A visitor must present an Identification card and visitor’s I.D. issued by the College Security Guard. ', 1),
-(3, 2, 'Valuable things such as cell phones, money, laptops, jewelry, etc., should not be left in the depository area. The person in charge is not accountable for the loss of these items.', 1),
-(4, 2, 'Personal book/s may be brought inside the library provided that permission is first sought from the person assigned at the entrance.', 1),
-(5, 3, 'Customers must log in their library card number in the computer at the entrance upon entering the library.', 1),
+(1, 1, 'Students are given a maximum of three (3) working days to return overdue books, or else they will be banned from library services for the rest of the current semester. The ban is not lifted even if the book is returned or the fine is paid during the ban period. ', 1),
+(2, 1, 'Students who borrowed books for home use and who cannot return on the due date can make use of the borrower’s entry slip to avail of library services but for three (3) working days only, as far as policy in banning is concerned.', 1),
+(3, 1, 'A fine slip is issued to students who have overdue fines and is valid for three (3) working days only. It can be used to avail of library services provided a student is not yet banned.', 1),
+(4, 1, 'Payment of fines for overdue library materials and library card replacement should be made at the cashier’s office.', 1),
+(5, 2, 'Customers must log in their library card number in the computer at the entrance upon entering the library.', 1),
 (6, 3, 'Appropriate ways should be utilized for entrance to and exit from the library.', 1),
-(7, 3, 'Customers going in and out of the library are required to have their things checked and inspected before leaving.', 1),
-(8, 4, 'Silence should be observed at all times.', 1),
-(9, 4, 'Eating, sleeping, smoking, and project making are strictly prohibited.', 1),
-(10, 4, 'Orderly and proper use of library furniture and equipment must be observed.', 1),
-(11, 4, 'Cell phones should be set in silent mode.', 1),
-(12, 4, 'Taking pictures of unpublished materials is prohibited.', 1),
-(13, 5, 'Books and other reading materials should be handled with care.', 1),
-(14, 5, 'Books taken from the open shelves area should be placed on the designated shelves or area for easy return by the library staff to appropriate shelves.', 1),
-(15, 5, 'Library material reported lost or damaged must be replaced by the borrower with the latest edition of the same title. If such material is not available in the market, replacement of any current library material of the same subject is allowed, provided the value is not less than the actual amount of the lost or damaged one.', 1),
-(16, 5, 'All library materials must be properly processed before taken out of the library. Anybody caught stealing any library materials shall be subjected to disciplinary action.', 1),
-(17, 5, 'Customers (students, faculty, and staff) are not allowed to borrow any library materials for use by other customers.', 1),
-(18, 5, 'Library card should be used to borrow books and other reading materials.', 1),
-(19, 6, 'Students are given a maximum of three (3) working days to return overdue books, or else they will be banned from library services for the rest of the current semester. The ban is not lifted even if the book is returned or the fine is paid during the ban period.', 1),
-(20, 6, 'Students who borrowed books for home use and who cannot return on the due date can make use of the borrower’s entry slip to avail of library services but for three (3) working days only, as far as policy in banning is concerned.', 1),
-(21, 6, 'A fine slip is issued to students who have overdue fines and is valid for three (3) working days only. It can be used to avail of library services provided a student is not yet banned.', 1),
-(22, 6, 'Payment of fines for overdue library materials and library card replacement should be made at the cashier’s office.', 1),
-(23, 7, 'Charging of cell phones is strictly prohibited.', 1),
-(24, 7, 'Home use of books is not allowed three days before the mid-term and final examinations as well as during the said examinations. It will resume on the last date of mid-term examination. Moreover, during and after signing of clearance, photocopying is allowed provided the clearance form is attached with the library card.', 1),
-(35, 15, 'Library customers with valid identification cards are allowed entrance to the library. For CHMSC students, they must be in proper uniform, with school I.D. and library card. ', 1),
-(38, 17, 'dasdasdas', 0),
-(39, 17, 'sdasdasd', 0),
-(40, 17, 'sadfaerbtewrtwer', 0),
-(41, 17, 'ewbtrbwetrwet', 0),
-(42, 17, 'ewbtrbwetbwe', 0),
-(43, 17, 'webtrewbtwt', 0);
+(7, 4, 'Customers going in and out of the library are required to have their things checked and inspected before leaving.', 1),
+(8, 5, 'Library customers with valid identification cards are allowed entrance to the library. For CHMSC students, they must be in proper uniform, with school I.D. and library card.', 1),
+(9, 5, 'A visitor must present an Identification card and visitor’s I.D. issued by the College Security Guard.', 1),
+(10, 6, 'Silence should be observed at all times.', 1),
+(11, 6, 'Eating, sleeping, smoking, and project making are strictly prohibited.', 1),
+(12, 6, 'Orderly and proper use of library furniture and equipment must be observed.', 1),
+(13, 6, 'Cell phones should be set in silent mode.', 1),
+(14, 6, 'Taking pictures of unpublished materials is prohibited.', 1),
+(15, 7, 'Books and other reading materials should be handled with care.', 1),
+(16, 7, 'Books taken from the open shelves area should be placed on the designated shelves or area for easy return by the library staff to appropriate shelves.', 1),
+(17, 7, 'Library material reported lost or damaged must be replaced by the borrower with the latest edition of the same title. If such material is not available in the market, replacement of any current library material of the same subject is allowed, provided the value is not less than the actual amount of the lost or damaged one.', 1),
+(18, 7, 'All library materials must be properly processed before taken out of the library. Anybody caught stealing any library materials shall be subjected to disciplinary action.', 1),
+(19, 7, 'Customers (students, faculty, and staff) are not allowed to borrow any library materials for use by other customers.', 1),
+(20, 7, 'Library card should be used to borrow books and other reading materials.', 1),
+(21, 8, 'Valuable things such as cell phones, money, laptops, jewelry, etc., should not be left in the depository area. The person in charge is not accountable for the loss of these items.', 1),
+(22, 8, 'Personal book/s may be brought inside the library provided that permission is first sought from the person assigned at the entrance.', 1),
+(23, 9, 'Charging of cell phones is strictly prohibited.', 1),
+(24, 9, 'Home use of books is not allowed three days before the mid-term and final examinations as well as during the said examinations. It will resume on the last date of mid-term examination. Moreover, during and after signing of clearance, photocopying is allowed provided the clearance form is attached with the library card.', 1);
 
 -- --------------------------------------------------------
 
@@ -478,7 +476,8 @@ INSERT INTO `library_news` (`id`, `library_news_subject`, `library_news_txt`, `l
 (2, 'Library Maintenance Notice', 'The library will be closed on May 10 for scheduled maintenance. This is to ensure that all our facilities are in top shape for your comfort and convenience. Please plan your visit accordingly and we apologize for any inconvenience caused.', '2025-05-04 09:09:53', 1),
 (3, 'Extended Library Hours', '<p>During exam week, the library will be open until 10 PM to accommodate students needing extra study time. Our quiet zones, study rooms, and Wi-Fi will be available, so you can focus on your exams without any disruptions. Take advantage of these extended hours!</p>', '2025-05-04 09:09:53', 1),
 (4, 'Reading Contest 2025', 'Join our Summer Reading Contest and get a chance to win exciting prizes! Read books from any genre, submit your entries, and earn points for every book you finish. The contest runs from June 1 to August 31, 2025. Don\'t miss this chance to win while enjoying great books!', '2025-05-04 09:09:53', 1),
-(5, 'Free Research Workshop', '<p>We are hosting a free workshop on academic research skills this Friday at 3 PM. The workshop will cover topics such as citation, how to use databases, and effective research techniques. It is open to all students, so feel free to join and enhance your academic skills!</p>', '2025-05-04 09:09:53', 1);
+(5, 'Free Research Workshop', '<p>We are hosting a free workshop on academic research skills this Friday at 3 PM. The workshop will cover topics such as citation, how to use databases, and effective research techniques. It is open to all students, so feel free to join and enhance your academic skills!</p>', '2025-05-04 09:09:53', 1),
+(6, 'etst asdasd', '<p>test asda asdasd</p>', '2025-05-13 01:02:26', 0);
 
 -- --------------------------------------------------------
 
@@ -492,6 +491,22 @@ CREATE TABLE `library_news_img` (
   `library_news_img_path` varchar(100) NOT NULL,
   `status` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `library_news_img`
+--
+
+INSERT INTO `library_news_img` (`id`, `library_news_id`, `library_news_img_path`, `status`) VALUES
+(4, 6, './assets/img/libraryNews/a_carnival_themed_poster_with_text_victorias (6).jpeg', 0),
+(5, 6, './assets/img/libraryNews/a_carnival_themed_poster_with_text_victorias (5) - Copy - Copy.jpeg', 1),
+(6, 6, './assets/img/libraryNews/a_carnival_themed_poster_with_text_victorias (6).jpeg', 1),
+(7, 6, './assets/img/libraryNews/a_carnival_themed_poster_with_text_victorias (5) - Copy - Copy.jpeg', 1),
+(8, 6, './assets/img/libraryNews/a_carnival_themed_poster_with_text_victorias (5) - Copy.jpeg', 1),
+(9, 6, './assets/img/libraryNews/a_carnival_themed_poster_with_text_victorias (5).jpeg', 1),
+(10, 6, './assets/img/libraryNews/a_carnival_themed_poster_with_text_victorias (4).jpeg', 1),
+(11, 6, './assets/img/libraryNews/a_carnival_themed_poster_with_text_victorias (3).jpeg', 1),
+(12, 6, './assets/img/libraryNews/a_carnival_themed_poster_with_text_victorias (2).jpeg', 1),
+(13, 6, './assets/img/libraryNews/a_carnival_themed_poster_with_text_victorias (1).jpeg', 1);
 
 -- --------------------------------------------------------
 
@@ -532,14 +547,6 @@ CREATE TABLE `login_history` (
   `account_id` int(11) NOT NULL,
   `loginDate` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `login_history`
---
-
-INSERT INTO `login_history` (`id`, `account_id`, `loginDate`) VALUES
-(1, 1, '2025-05-09 06:04:46'),
-(2, 1, '2025-05-09 06:35:25');
 
 -- --------------------------------------------------------
 
@@ -596,7 +603,8 @@ INSERT INTO `online_reference` (`id`, `online_reference_path`, `online_reference
 (9, './assets/img/onlineReferenceTools/reference10.png', 'Maps', 'World Atlas', 'A complete atlas of the world featuring several thousand place names and colorful, accurate maps.', 'https://www.worldatlas.com/', '2025-03-31 03:01:56', 1),
 (10, './assets/img/onlineReferenceTools/reference11.png', 'Maps', 'MapQuest', 'Find directions and explore towns and cities worldwide. Users can display addresses on a map, view nearby businesses, get driving directions and maps, and plan a trip with city information.', 'https://www.mapquest.com/', '2025-03-31 03:06:46', 1),
 (11, './assets/img/onlineReferenceTools/reference1.png', 'General References', 'The World Fact Book', 'Provides basic intelligence on the history, people, government, economy, energy, geography, communications, transportation, military, terrorism, and transnational issues for 266 world entities.', 'https://www.cia.gov/the-world-factbook/', '2025-03-31 03:07:25', 1),
-(13, './assets/img/onlineReferenceTools/reference2.png', 'General References', 'Information Please Almanac', 'It allows searching or browsing in sports, entertainment, US, world, people, living, society, business & economy & technology.', 'https://www.infoplease.com/almanacs', '2025-03-31 06:52:04', 0);
+(13, './assets/img/onlineReferenceTools/reference2.png', 'General References', 'Information Please Almanac', 'It allows searching or browsing in sports, entertainment, US, world, people, living, society, business & economy & technology.', 'https://www.infoplease.com/almanacs', '2025-03-31 06:52:04', 0),
+(14, './assets/img/onlineReferenceTools/images (1)sa - Copy.jpg', 'Dictionaries', 'test', 'test', 'https://sadad.com', '2025-05-13 01:25:28', 0);
 
 -- --------------------------------------------------------
 
@@ -641,7 +649,8 @@ CREATE TABLE `opensource_databases` (
 INSERT INTO `opensource_databases` (`id`, `opensource_databases_img`, `opensource_databases_link`, `opensource_databases_date`, `status`) VALUES
 (1, './assets/img/openSourceDatabase/doablogo.png', 'https://www.doabooks.org/', '2025-04-08 05:25:15', 1),
 (2, './assets/img/openSourceDatabase/doaj-logo.png', 'https://doaj.org/', '2025-04-08 06:18:10', 1),
-(3, './assets/img/openSourceDatabase/google-scholar.jpg', 'https://scholar.google.com/', '2025-04-10 00:49:37', 1);
+(3, './assets/img/openSourceDatabase/google-scholar.jpg', 'https://scholar.google.com/', '2025-04-10 00:49:37', 1),
+(4, './assets/img/openSourceDatabase/a_carnival_themed_poster_with_text_victorias (5) - Copy.jpeg', 'https://asdas.com', '2025-05-13 01:26:27', 0);
 
 -- --------------------------------------------------------
 
@@ -666,7 +675,8 @@ CREATE TABLE `periodicals` (
 
 INSERT INTO `periodicals` (`id`, `periodicalsTitle`, `periodicalsType`, `periodicalsCategory`, `periodicalsAuthor`, `periodicalsDesc`, `periodicalsDate`, `status`) VALUES
 (1, 'Art+ Magazine Issue 77: Jomike Tejido', 'Magazine', 'Arts & Culture', 'Jomike Tejido', 'Sense of Wonder: In pursuing the fruitful life of an artist, Jomike Tejido creates works that hark back to the simple joys of art-making and creating.', '2025-05-04 09:03:06', 1),
-(2, 'Art+ Magazine Issue 78: Patrick Esmao', 'Magazine', 'Arts & Culture', 'Patrick Esmao', 'Inside this issue:\r\n\r\nElmer Borlongan\r\nAlfredo Roces\r\nPaul Eric Roca\r\nMark Nicdao\r\nPio Abad\r\n', '2025-05-04 09:05:36', 1);
+(2, 'Art+ Magazine Issue 78: Patrick Esmao', 'Magazine', 'Arts & Culture', 'Patrick Esmao', 'Inside this issue:\r\n\r\nElmer Borlongan\r\nAlfredo Roces\r\nPaul Eric Roca\r\nMark Nicdao\r\nPio Abad\r\n', '2025-05-04 09:05:36', 1),
+(3, 'test', 'Magazine', 'Health & Wellness', 'test', 'test', '2025-05-13 01:40:13', 0);
 
 -- --------------------------------------------------------
 
@@ -687,7 +697,12 @@ CREATE TABLE `periodical_images` (
 
 INSERT INTO `periodical_images` (`id`, `periodical_id`, `image_url`, `status`) VALUES
 (1, 1, './assets/img/magazine&journal/Screenshot 2025-05-04 170241.png', 1),
-(2, 2, './assets/img/magazine&journal/Screenshot 2025-05-04 170529.png', 1);
+(2, 2, './assets/img/magazine&journal/Screenshot 2025-05-04 170529.png', 1),
+(3, 3, './assets/img/magazine&journal/0e9c4f94-4fdc-4734-a72b-37323475c5a9.jpg', 1),
+(4, 3, './assets/img/magazine&journal/a_carnival_themed_poster_with_text_victorias (5) - Copy - Copy.jpeg', 1),
+(5, 3, './assets/img/magazine&journal/a_carnival_themed_poster_with_text_victorias (5) - Copy.jpeg', 1),
+(6, 3, './assets/img/magazine&journal/a_carnival_themed_poster_with_text_victorias (5).jpeg', 1),
+(7, 3, './assets/img/magazine&journal/a_carnival_themed_poster_with_text_victorias (4).jpeg', 1);
 
 -- --------------------------------------------------------
 
@@ -701,19 +716,21 @@ CREATE TABLE `personnel` (
   `personnelRole` varchar(100) NOT NULL,
   `personnelName` varchar(100) NOT NULL,
   `personnelDateAdded` timestamp NOT NULL DEFAULT current_timestamp(),
-  `personnelDateUpdated` timestamp NULL DEFAULT NULL
+  `personnelDateUpdated` timestamp NULL DEFAULT NULL,
+  `status` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `personnel`
 --
 
-INSERT INTO `personnel` (`id`, `personnelImg`, `personnelRole`, `personnelName`, `personnelDateAdded`, `personnelDateUpdated`) VALUES
-(1, './assets/img/personnel/librarian1.png', 'Head Librarian', 'Ms. Ma Loreta J. Santes RL, MSLS ', '2025-04-22 02:03:03', '2025-04-22 04:03:03'),
-(2, './assets/img/personnel/librarian2.png', 'Librarian for Library Service', 'Ms. Maricel S. Sanoria RL, MSLS', '2025-04-22 02:03:49', NULL),
-(3, './assets/img/personnel/librarian3.png', 'Library Clerk', 'Ms. Rhinalyn S. Gela', '2025-04-22 02:04:31', NULL),
-(4, './assets/img/personnel/librarian4.png', 'Library Clerk', 'Ms. Estarlyn M. Vendero', '2025-04-22 02:04:47', NULL),
-(5, './assets/img/personnel/librarian5.png', 'Library Clerk', 'Mr. Anthony J. Espinosa', '2025-04-22 02:05:01', NULL);
+INSERT INTO `personnel` (`id`, `personnelImg`, `personnelRole`, `personnelName`, `personnelDateAdded`, `personnelDateUpdated`, `status`) VALUES
+(1, './assets/img/personnel/librarian1.png', 'Head Librarian', 'Ms. Ma Loreta J. Santes RL, MSLS ', '2025-04-22 02:03:03', '2025-04-22 04:03:03', 1),
+(2, './assets/img/personnel/librarian2.png', 'Librarian for Library Service', 'Ms. Maricel S. Sanoria RL, MSLS', '2025-04-22 02:03:49', NULL, 1),
+(3, './assets/img/personnel/librarian3.png', 'Library Clerk', 'Ms. Rhinalyn S. Gela', '2025-04-22 02:04:31', NULL, 1),
+(4, './assets/img/personnel/librarian4.png', 'Library Clerk', 'Ms. Estarlyn M. Vendero', '2025-04-22 02:04:47', NULL, 1),
+(5, './assets/img/personnel/librarian5.png', 'Library Clerk', 'Mr. Anthony J. Espinosa', '2025-04-22 02:05:01', '2025-05-13 02:16:31', 1),
+(6, './assets/img/personnel/books1.png', 'Director asdas', 'testdasdasd', '2025-05-13 02:16:43', '2025-05-13 02:22:24', 0);
 
 -- --------------------------------------------------------
 
@@ -739,7 +756,8 @@ INSERT INTO `sections` (`id`, `sectionsImg`, `sectionsTitle`, `sectionsTxt`, `se
 (2, './assets/img/sections/c6b76d23-da9a-4f99-b1fe-0c20d09ed6f5.jpg', 'Baggage Counter', '<p>Secure your belongings with ease! The Baggage Counter is provided for students and visitors to safely store their bags and personal items while using the library. Please claim your number tag and ensure all items are properly placed before entering. The library is not liable for unclaimed or misplaced items after closing hours.</p>', '2025-04-29 08:41:23', 1),
 (3, './assets/img/sections/2120cee5-503c-4b64-8c8e-7dfd17119284.jpg', 'Circulation Section', '<p class=\"\" data-start=\"119\" data-end=\"418\">This is the main hub for borrowing and returning library materials. Library users can check out books, renew loans, and settle overdue fines at the Circulation Section. Please present a valid library ID when borrowing. For assistance or inquiries about your account, our staff will be happy to help.</p>', '2025-04-29 08:43:00', 1),
 (5, './assets/img/sections/periodicals-section.jpg', 'Periodicals Section', '<p>The Periodicals Section houses newspapers, magazines, journals, and other regularly published materials. These resources are available for reading inside the library and provide up-to-date information on a variety of subjects. Materials in this section are for room use only and cannot be borrowed.</p>', '2025-04-29 08:45:29', 1),
-(7, './assets/img/sections/journals-section.jpg', 'Journals Section', '<p class=\"\" data-start=\"91\" data-end=\"396\">This section contains academic and scholarly journals that support research and in-depth study. Journals are organized by subject and publication date, and are available for room use only. Whether for thesis work or advanced learning, this section provides valuable resources for students and researchers.</p>', '2025-04-29 08:49:02', 1);
+(7, './assets/img/sections/journals-section.jpg', 'Journals Section', '<p class=\"\" data-start=\"91\" data-end=\"396\">This section contains academic and scholarly journals that support research and in-depth study. Journals are organized by subject and publication date, and are available for room use only. Whether for thesis work or advanced learning, this section provides valuable resources for students and researchers.</p>', '2025-04-29 08:49:02', 1),
+(8, './assets/img/sections/abstract-background-drawing-a-flag-and-ribbon-transparent-vector-illustration-free-png.png', 'test', '<p>test</p>', '2025-05-13 01:42:49', 0);
 
 -- --------------------------------------------------------
 
@@ -795,6 +813,13 @@ CREATE TABLE `visitor` (
   `visitor_type` varchar(50) NOT NULL,
   `visitor_date` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `visitor`
+--
+
+INSERT INTO `visitor` (`id`, `visitor_type`, `visitor_date`) VALUES
+(1, 'Alumni', '2025-05-13 01:01:55');
 
 --
 -- Indexes for dumped tables
@@ -1024,19 +1049,19 @@ ALTER TABLE `accounts`
 -- AUTO_INCREMENT for table `activity_logs`
 --
 ALTER TABLE `activity_logs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `archive`
 --
 ALTER TABLE `archive`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `automated_circulation`
 --
 ALTER TABLE `automated_circulation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `contacts`
@@ -1048,7 +1073,7 @@ ALTER TABLE `contacts`
 -- AUTO_INCREMENT for table `downloads`
 --
 ALTER TABLE `downloads`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `ejournal`
@@ -1060,7 +1085,7 @@ ALTER TABLE `ejournal`
 -- AUTO_INCREMENT for table `faq`
 --
 ALTER TABLE `faq`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `feedbacks`
@@ -1084,19 +1109,19 @@ ALTER TABLE `foundation`
 -- AUTO_INCREMENT for table `gallery`
 --
 ALTER TABLE `gallery`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `guidelines`
 --
 ALTER TABLE `guidelines`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `guideline_rules`
 --
 ALTER TABLE `guideline_rules`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `information_dissemination`
@@ -1120,13 +1145,13 @@ ALTER TABLE `library_hours`
 -- AUTO_INCREMENT for table `library_news`
 --
 ALTER TABLE `library_news`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `library_news_img`
 --
 ALTER TABLE `library_news_img`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `library_objectives`
@@ -1138,7 +1163,7 @@ ALTER TABLE `library_objectives`
 -- AUTO_INCREMENT for table `login_history`
 --
 ALTER TABLE `login_history`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `news_current_events`
@@ -1150,7 +1175,7 @@ ALTER TABLE `news_current_events`
 -- AUTO_INCREMENT for table `online_reference`
 --
 ALTER TABLE `online_reference`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `online_subscription_databases`
@@ -1162,31 +1187,31 @@ ALTER TABLE `online_subscription_databases`
 -- AUTO_INCREMENT for table `opensource_databases`
 --
 ALTER TABLE `opensource_databases`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `periodicals`
 --
 ALTER TABLE `periodicals`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `periodical_images`
 --
 ALTER TABLE `periodical_images`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `personnel`
 --
 ALTER TABLE `personnel`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `sections`
 --
 ALTER TABLE `sections`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `socials`
@@ -1204,7 +1229,7 @@ ALTER TABLE `virtual_library_orientation`
 -- AUTO_INCREMENT for table `visitor`
 --
 ALTER TABLE `visitor`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables

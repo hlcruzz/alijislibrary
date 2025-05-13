@@ -75,17 +75,26 @@
                         <a class="m-link text-decoration-none fs-5 d-flex align-items-center"
                             href="./?page=contacts">Contacts
                             <span class="material-symbols-outlined" style="font-size: 35px"> chevron_right </span></a>
+
+                        <a class="m-link text-decoration-none fs-5 d-flex align-items-center"
+                            href="./?page=library-news">Library News
+                            <span class="material-symbols-outlined" style="font-size: 35px"> chevron_right </span></a>
+                        <a class="m-link text-decoration-none fs-5 d-flex align-items-center"
+                            href="./?page=gallery">Gallery
+                            <span class="material-symbols-outlined" style="font-size: 35px"> chevron_right </span></a>
+                        <a class="m-link text-decoration-none fs-5 d-flex align-items-center"
+                            href="./?page=periodicals">New Arrival: Periodicals
+                            <span class="material-symbols-outlined" style="font-size: 35px"> chevron_right </span></a>
+                        <a class="m-link text-decoration-none fs-5 d-flex align-items-center"
+                            href="./?page=sections">Library Sections
+                            <span class="material-symbols-outlined" style="font-size: 35px"> chevron_right </span></a>
                     </div>
                 </div>
                 <div class="contaier-lg">
                     <div class="mt-5 ms-3">
-                        <div class="d-flex justify-content-center align-items-center gap-4 mt-5">
-                            <a href="https://www.facebook.com/LIBRARYALIJIS/" target="_blank" class="text-white"><i
-                                    class="m-icons fa-brands fa-facebook-f fs-3"></i></a>
-                            <a href="https://www.youtube.com/@chmsualijislibrary4548" target="_blank"
-                                class="text-white"><i class=" m-icons fa-brands fa-youtube fs-3"></i></a>
-                            <a href="https://x.com/chmsu_library" target="_blank" class="text-white"><i
-                                    class="m-icons fa-brands fa-x-twitter fs-3"></i></a>
+                        <div class="d-flex justify-content-center align-items-center gap-4 mt-5"
+                            id="socialMediaContNavbar">
+
                         </div>
                     </div>
                 </div>

@@ -1253,6 +1253,23 @@ export function updatePersonnel(formData) {
     });
   });
 }
+export function deletePersonnel(id) {
+  return new Promise((resolve, reject) => {
+    $.ajax({
+      url: "./api/endpoint-deletePersonnel.php",
+      data: {
+        id: id,
+      },
+      method: "POST",
+      success: function (response) {
+        resolve(response);
+      },
+      error: function (response) {
+        reject(response);
+      },
+    });
+  });
+}
 
 export function fetchAbout() {
   return new Promise((resolve, reject) => {

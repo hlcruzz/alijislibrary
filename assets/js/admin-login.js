@@ -14,7 +14,6 @@ $("#adminForm").submit(function (event) {
 
   adminLogin(username, password).then((response) => {
     const data = JSON.parse(response);
-    console.log(data);
 
     if (data.status == "success") {
       window.location.href = "./?page=admin-dashboard";
