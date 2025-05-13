@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 13, 2025 at 04:57 AM
+-- Generation Time: May 13, 2025 at 06:39 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -51,18 +51,15 @@ CREATE TABLE `accounts` (
   `accountImg` varchar(100) DEFAULT NULL,
   `accountEmail` varchar(100) DEFAULT NULL,
   `accountUsername` varchar(100) NOT NULL,
-  `accountPassword` varchar(255) NOT NULL,
-  `accountDateAdded` timestamp NOT NULL DEFAULT current_timestamp(),
-  `accountDateUpdated` timestamp NULL DEFAULT NULL,
-  `status` tinyint(4) NOT NULL DEFAULT 1
+  `accountPassword` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `accounts`
 --
 
-INSERT INTO `accounts` (`id`, `accountImg`, `accountEmail`, `accountUsername`, `accountPassword`, `accountDateAdded`, `accountDateUpdated`, `status`) VALUES
-(1, NULL, 'harold.cruz0407@gmail.com', 'admin', '$2y$10$mstWkXUvlWnR8KlDl6sXkeaQiRytwQzW/2pthUFhqgV5dZpgVePBu', '2025-05-04 11:33:01', NULL, 1);
+INSERT INTO `accounts` (`id`, `accountImg`, `accountEmail`, `accountUsername`, `accountPassword`) VALUES
+(1, NULL, 'admin@gmail.com', 'admin', '$2y$10$Jt4hOFh7yvi5QafNOzuHIu/SigvsTVeE4sw2L0NoG0EEUO/UD2Nii');
 
 -- --------------------------------------------------------
 
@@ -547,6 +544,14 @@ CREATE TABLE `login_history` (
   `account_id` int(11) NOT NULL,
   `loginDate` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `login_history`
+--
+
+INSERT INTO `login_history` (`id`, `account_id`, `loginDate`) VALUES
+(1, 1, '2025-05-13 04:35:52'),
+(2, 1, '2025-05-13 04:39:36');
 
 -- --------------------------------------------------------
 
@@ -1163,7 +1168,7 @@ ALTER TABLE `library_objectives`
 -- AUTO_INCREMENT for table `login_history`
 --
 ALTER TABLE `login_history`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `news_current_events`
