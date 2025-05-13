@@ -57,7 +57,6 @@ import {
   fetchAllJournals,
   updateEjournal,
   deleteEjournal,
-  fetchJournalsByLimit,
   addSocial,
   fetchAllSocial,
   fetchSocialIcons,
@@ -91,7 +90,6 @@ import {
   fetchTotalRowGallery,
   fetchYearlyVisitors,
   fetchTotalVisitorByType,
-  fetchAllLoginHistory,
   addLibraryHours,
   fetchAllLibraryHours,
   updateLibraryHours,
@@ -4137,67 +4135,7 @@ function DataTable() {
       }
     });
   });
-  fetchAllLoginHistory().then((response) => {
-    const data = JSON.parse(response);
-    $("#table_login_history").DataTable({
-      data: data,
-      order: [[0, "desc"]],
-      columnDefs: [
-        {
-          targets: 0,
-          width: "10px",
-          className: "text-center",
-        },
-        {
-          targets: 1,
-          width: "200px",
-          className: "text-center",
-        },
-      ],
-      columns: [
-        {
-          data: "history_id",
-          title: "#",
-          render: function (data, type, row) {
-            return `<span class='badge bg-success'>${data}</span>`;
-          },
-        },
-        {
-          data: "image",
-          title: "Image",
-          render: function (data, type, row) {
-            return `
-                    <div>
-                        <img src="${data ?? "./assets/img/default.jpg"}" width="40px" height="40px"
-                            class="object-fit-cover" alt="">
-                    </div>
-                  `;
-          },
-        },
-        {
-          data: "email",
-          title: "Email",
-          render: function (data, type, row) {
-            return data;
-          },
-        },
-        {
-          data: "username",
-          title: "Username",
-          render: function (data, type, row) {
-            return data;
-          },
-        },
-        {
-          data: "history_date",
-          title: "Date",
-          render: function (data, type, row) {
-            return `${timeAgo(data)} ago`;
-          },
-        },
-      ],
-    });
-  });
+
   fetchAllActivityLogs().then((response) => {
     const data = JSON.parse(response);
     $("#table_logs").DataTable({

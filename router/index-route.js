@@ -1662,39 +1662,6 @@ export function fetchTotalVisitorByType() {
   });
 }
 
-export function addLoginHistory(id) {
-  return new Promise((resolve, reject) => {
-    $.ajax({
-      url: "./api/endpoint-addLoginHistory.php",
-      data: {
-        id: id,
-      },
-      method: "POST",
-      success: function (response) {
-        resolve(response);
-      },
-      error: function (response) {
-        reject(response);
-      },
-    });
-  });
-}
-
-export function fetchAllLoginHistory() {
-  return new Promise((resolve, reject) => {
-    $.ajax({
-      url: "./api/endpoint-fetchAllLoginHistory.php",
-      method: "GET",
-      success: function (response) {
-        resolve(response);
-      },
-      error: function (response) {
-        reject(response);
-      },
-    });
-  });
-}
-
 export function addLibraryHours(formData) {
   return new Promise((resolve, reject) => {
     $.ajax({
