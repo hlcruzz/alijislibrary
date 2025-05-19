@@ -1,4 +1,4 @@
-import { adminLogin, addLoginHistory, sendAuthCode, changePassword } from "../../router/index-route.js";
+import { adminLogin, sendAuthCode, changePassword } from "../../router/index-route.js";
 $(document).ready(function () {
   if ($.cookie("rememberMe")) {
     $("#username").val($.cookie("username"));

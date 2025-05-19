@@ -128,12 +128,11 @@ include "./components/admin/session.php";
                                 <div class="card h-100">
                                     <div
                                         class="card-header w-100 d-flex justify-content-between align-items-center p-4">
-                                        <h1 class="fs-4">Login History</h1>
+                                        <h1 class="fs-4">Activity Logs</h1>
 
                                     </div>
                                     <div class="card-body">
-                                        <table id="table_login_history"
-                                            class="table table-hover table-bordered data-table">
+                                        <table id="table_logs" class="table table-hover table-bordered data-table">
 
                                         </table>
                                     </div>
