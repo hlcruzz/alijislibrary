@@ -12,8 +12,8 @@
 <script src="./assets/js/admin-interval.js" type="module"></script>
 
 
-<link rel="stylesheet" href="./assets/library/DataTables/dataTables.css" />
-<script src="./assets/library/DataTables/dataTables.js"></script>
+<link rel="stylesheet" href="./assets/library/DataTables/datatables.css" />
+<script src="./assets/library/DataTables/datatables.js"></script>
 
 
 <link href="./assets/library/bootstrap/css/bootstrap.min.css" rel="stylesheet">
