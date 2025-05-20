@@ -1,5 +1,6 @@
 {
-    "require": {
-        "firebase/php-jwt": "^6.11"
-    }
+  "require": {
+    "php": "^8.0",
+    "firebase/php-jwt": "^6.0"
+  }
 }

@@ -783,17 +783,17 @@ function ClickEvents() {
     const sortType = $("#sortType").val();
     const sortCategory = $("#sortCategory").val();
     const sortBy = $("#sortBy").val();
-    $.cookie("sortTitle", sortTitle);
-    $.cookie("sortType", sortType);
-    $.cookie("sortCategory", sortCategory);
-    $.cookie("sortBy", sortBy);
+    localStorage.setItem("sortTitle", sortTitle);
+    localStorage.setItem("sortType", sortType);
+    localStorage.setItem("sortCategory", sortCategory);
+    localStorage.setItem("sortBy", sortBy);
     location.reload();
   });
   $("#sortForm").on("reset", function () {
-    $.removeCookie("sortTitle");
-    $.removeCookie("sortType");
-    $.removeCookie("sortCategory");
-    $.removeCookie("sortBy");
+    localStorage.removeItem("sortTitle");
+    localStorage.removeItem("sortType");
+    localStorage.removeItem("sortCategory");
+    localStorage.removeItem("sortBy");
     location.reload();
   });
   $(document).on("click", ".deleteSection", function () {
@@ -1515,14 +1515,14 @@ function FetchEvents() {
   });
 
   //PERIODICALS PAGE
-  $("#sortTitle").val($.cookie("sortTitle"));
-  $("#sortType").val($.cookie("sortType"));
-  $("#sortCategory").val($.cookie("sortCategory"));
-  $("#sortBy").val($.cookie("sortBy") ?? "DESC");
-  const sortTitle = $.cookie("sortTitle") ?? "";
-  const sortType = $.cookie("sortType") ?? "";
-  const sortCategory = $.cookie("sortCategory") ?? "";
-  const sortBy = $.cookie("sortBy") ?? "";
+  $("#sortTitle").val(localStorage.getItem("sortTitle"));
+  $("#sortType").val(localStorage.getItem("sortType"));
+  $("#sortCategory").val(localStorage.getItem("sortCategory"));
+  $("#sortBy").val(localStorage.getItem("sortBy") ?? "DESC");
+  const sortTitle = localStorage.getItem("sortTitle") ?? "";
+  const sortType = localStorage.getItem("sortType") ?? "";
+  const sortCategory = localStorage.getItem("sortCategory") ?? "";
+  const sortBy = localStorage.getItem("sortBy") ?? "";
   fetchAllPeriodicalByCondition(sortTitle, sortType, sortCategory, sortBy).then((response) => {
     const data = JSON.parse(response);
     if (data.length != 0) {

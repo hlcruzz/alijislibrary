@@ -1,6 +1,6 @@
 export function checkCookie() {
-  $("#admin-body").attr("data-bs-theme", $.cookie("theme"));
-  switch ($.cookie("theme")) {
+  $("#admin-body").attr("data-bs-theme", localStorage.getItem("theme"));
+  switch (localStorage.getItem("theme")) {
     case "dark":
       $("#theme-input").prop("checked", true);
       break;
@@ -11,7 +11,7 @@ export function checkCookie() {
       $("#admin-body").attr("data-bs-theme", "light");
   }
 
-  switch ($.cookie("menu")) {
+  switch (localStorage.getItem("menu")) {
     case "open":
       $(".menu-links").css("min-width", "250px");
       $(".navText").each(function () {
@@ -58,13 +58,13 @@ export function checkCookie() {
   }
 }
 export function darkTheme() {
-  $.cookie("theme", "dark");
+  localStorage.setItem("theme", "dark");
   $("#admin-body").attr("data-bs-theme", "dark");
 }
 export function lightTheme() {
   $("#admin-body").attr("data-bs-theme", "light");
   $.removeCookie("theme");
-  $.cookie("theme", "light");
+  localStorage.setItem("theme", "light");
 }
 export function sideMenu(menu) {
   if (menu == 1) {
@@ -80,7 +80,7 @@ export function sideMenu(menu) {
     $(".openCloseMenu").eq(0).show();
     $(".openCloseMenu").eq(1).hide();
     $.removeCookie("menu");
-    $.cookie("menu", "close");
+    localStorage.setItem("menu", "close");
   } else {
     $(".menu-links").css("min-width", "250px");
     $(".navText").each(function () {
@@ -93,10 +93,10 @@ export function sideMenu(menu) {
     $(".openCloseMenu").eq(0).hide();
     $(".openCloseMenu").eq(1).show();
     $.removeCookie("menu");
-    $.cookie("menu", "open");
+    localStorage.setItem("menu", "open");
     $.removeCookie("settingsNav");
   }
 }
 export function setCookie(name, value) {
-  $.cookie(name, value);
+  localStorage.setItem(name, value);
 }

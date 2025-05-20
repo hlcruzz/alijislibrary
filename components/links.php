@@ -18,6 +18,6 @@
 
 <link rel="stylesheet" href="./assets/library/DataTables/datatables.css" />
 <script src="./assets/library/DataTables/datatables.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>s
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="./assets/library/tinymce/tinymce.min.js"></script>
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>

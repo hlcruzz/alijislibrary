@@ -1,8 +1,8 @@
 import { adminLogin, sendAuthCode, changePassword } from "../../router/index-route.js";
 $(document).ready(function () {
-  if ($.cookie("rememberMe")) {
-    $("#username").val($.cookie("username"));
-    $("#password").val($.cookie("password"));
+  if (localStorage.getItem("rememberMe")) {
+    $("#username").val(localStorage.getItem("username"));
+    $("#password").val(localStorage.getItem("password"));
     $("#rememberCheck").prop("checked", true);
   }
 });
