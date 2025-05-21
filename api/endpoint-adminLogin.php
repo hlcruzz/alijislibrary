@@ -1,7 +1,5 @@
 <?php
-session_start();
 include "../lib/connection.php";
-
 require '../vendor/autoload.php';
 
 use Firebase\JWT\JWT;
