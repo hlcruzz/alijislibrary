@@ -1,4 +1,8 @@
 <?php
+header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+header("Cache-Control: post-check=0, pre-check=0", false);
+header("Pragma: no-cache");
+header("Expires: 0");
 include "../lib/connection.php";
 require '../vendor/autoload.php';
 
@@ -41,14 +45,21 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 'HS256'
             );
 
-            setcookie("token", $token, time() + 1800, "/", "", true, true);
+            setcookie("token", $token, [
+                'expires' => time() + 1800,
+                'path' => '/',
+                'domain' => 'alijis-library.chmsu.edu.ph',
+                'secure' => true,
+                'httponly' => true,
+                'samesite' => 'Strict'
+            ]);
 
-            echo json_encode(["status" => "success"]);
+            echo json_encode(["status" => true]);
         } else {
-            echo json_encode(["status" => "error", "message" => "Invalid Username or Password"]);
+            echo json_encode(["status" => false, "message" => "Invalid Username or Password"]);
         }
     } catch (Exception $e) {
-        echo json_encode(["status" => "error", "message" => $e->getMessage()]);
+        echo json_encode(["status" => false, "message" => $e->getMessage()]);
     }
 }
 ?>

@@ -9,12 +9,10 @@
     <link rel="icon" type="image/x-icon" href="./assets/img/logo.png" />
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
-        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/library/fontawesome/css/all.min.css" />
+    <script src="./assets/library/jquery/jquery-3.7.1.min.js"></script>
+    <script src="./assets/library/jquery-cookies/jquery.cookie.js"></script>
+    <link href="./assets/library/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <style>
         #main-cont {
             background-image: url(./assets/img/alijis-campus.png);
@@ -87,7 +85,7 @@
                         <img src="./assets/img/logo.png" class="" width="80px" alt="">
                         <h1 class="fs-4 fw-medium mt-2">Alijis Campus Library</h1>
                     </div>
-                    <form id="adminForgotForm" class="d-flex flex-column gap-3">
+                    <form id="adminForgotForm" class="d-flex flex-column gap-3" method="POST">
                         <p class="m-0 p-3 text-center text-danger fw-semibold" id="response"></p>
                         <div class="input-group">
                             <div class="d-flex align-items-center input-cont form-control" id="emailCont">

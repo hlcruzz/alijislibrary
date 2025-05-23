@@ -1,7 +1,12 @@
 <?php
-session_start();
+header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+header("Cache-Control: post-check=0, pre-check=0", false);
+header("Pragma: no-cache");
+header("Expires: 0");
 include "../lib/connection.php";
+require '../vendor/autoload.php';
 
+use Firebase\JWT\JWT;
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
     $visitorType = $_POST['visitorType'];
@@ -28,7 +33,27 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $stmt = $conn->prepare($query);
     $stmt->bindParam(":visitor_type", $visitorType);
     $stmt->execute();
-    $_SESSION['visitor'] = true;
+    $key = 'asdkcyn347y5cn37ywuercyn237ryccnQcwYCn9YCn3ycOW3Y5CO9w3y5owyOYCNW7YcwhwjmfiJWPECTwpct-wervWERVwoejrhwcmERHOWihcrCRIJRrORCOERMC832y823y4m';
+    $token = JWT::encode(
+        array(
+            'iat' => time(),
+            'nbf' => time(),
+            'exp' => time() + 3600,
+            'data' => array(
+                'visitor' => $visitorType,
+            )
+        ),
+        $key,
+        'HS256'
+    );
+    setcookie("visitor", $token, [
+        'expires' => time() + 604800,
+        'path' => '/',
+        'domain' => 'alijis-library.chmsu.edu.ph',
+        'secure' => true,
+        'httponly' => true,
+        'samesite' => 'Strict'
+    ]);
     echo 1;
 }
 ?>

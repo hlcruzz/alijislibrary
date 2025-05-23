@@ -7,7 +7,14 @@ $key = 'asdkcyn347y5cn37ywuercyn237ryccnQcwYCn9YCn3ycOW3Y5CO9w3y5owyOYCNW7Ycwhwj
 if (isset($_COOKIE['token'])) {
     $decoded = JWT::decode($_COOKIE['token'], new Key($key, 'HS256'));
 } else {
-    setcookie("token", "", time() - 3600, "/", "", true, true);
+    setcookie("token", "", [
+        'expires' => time() - 3600,
+        'path' => '/',
+        'domain' => 'alijis-library.chmsu.edu.ph',
+        'secure' => true,
+        'httponly' => true,
+        'samesite' => 'Strict'
+    ]);
     echo '
     <script>
     alert("Session Expired. Please login again");

@@ -55,7 +55,7 @@
 </div>
 
 <?php
-$visitor = $_SESSION['visitor'] ?? null;
+$visitor = $_COOKIE['visitor'] ?? null;
 if (!$visitor): ?>
     <div class="modal fade modal-xl" id="addVisitorModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-hidden="true">

@@ -98,7 +98,7 @@ import {
   fetchAllActivityLogs,
   checkRole,
 } from "./router/index-route.js";
-import { checkCookie, darkTheme, lightTheme, sideMenu, setCookie } from "./utils/cookies.js";
+import { checkCookie, darkTheme, lightTheme, sideMenu } from "./utils/cookies.js";
 import { setSession, checkSessionSettings } from "./utils/session.js";
 import { adminNotifCont, timeAgo, showLoading, sliceText, openNavigation, openFoundationWidget } from "./assets/js/admin.js";
 $(document).ready(function () {

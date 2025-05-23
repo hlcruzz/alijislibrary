@@ -1,9 +1,9 @@
 <?php
+header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+header("Cache-Control: post-check=0, pre-check=0", false);
+header("Pragma: no-cache");
+header("Expires: 0");
 include "../lib/connection.php";
-
-require '../vendor/autoload.php';
-
-use Firebase\JWT\JWT;
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
@@ -82,10 +82,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                     <p>You have requested access or an operation that requires verification. Please use the code below to proceed securely:</p>
                     <h1 style="background-color: #0a58ca; color: #ffffff; padding: 12px 25px; border-radius: 5px; display: inline-block; letter-spacing: 4px;">' . $code . '</h1>
                     <p>This code is confidential. Do not share it with unauthorized users.</p>
-                    <p style="color: #dc3545;"><strong>Note:</strong> This verification code will expire in 2 minutes.</p>
-                    <br>
-                    <p style="font-size: 13px; color: #888;">If you did not initiate this request, please secure your account immediately.</p>
-                    <p style="font-size: 13px; color: #888;">- Alijis Campus Library System</p>
                 </div>
             </body>
             </html>
@@ -111,22 +107,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             return openssl_decrypt($encrypted_data, 'aes-256-cbc', $encryption_key, 0, $iv);
         }
 
-        $token = JWT::encode(
-            array(
-                'iat' => time(),
-                'nbf' => time(),
-                'exp' => time() + 3600,
-                'data' => array(
-                    'code' => encryptthis($code, $key)
-                )
-            ),
-            $key,
-            'HS256'
-        );
 
-
-
-        setcookie("auth", $token, time() + 120, "/", "", true, true);
+        $stmt = $conn->prepare("UPDATE accounts SET authCode = ? WHERE accountEmail = ?;");
+        $stmt->execute([encryptthis($code, $key), $email]);
 
         echo json_encode([
             "status" => true,

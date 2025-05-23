@@ -9,7 +9,7 @@
                             <span class="material-symbols-outlined fs-1"> phone_in_talk </span>
                             <div class="">
                                 <p class="m-0 fw-light fs-6">Call us</p>
-                                <p class="m-0 fw-medium fs-6" id="footerTelNum">034-434-1429</p>
+                                <p class="m-0 fw-medium fs-6" id="footerTelNum"></p>
                             </div>
                         </a>
                     </div>
@@ -21,7 +21,7 @@
                             <span class="material-symbols-outlined fs-1"> email </span>
                             <div class="">
                                 <p class="m-0 fw-light fs-6">Email</p>
-                                <p class="m-0 fw-medium fs-6" id="footerEmail">chmsulibrary@gmail.com</p>
+                                <p class="m-0 fw-medium fs-6" id="footerEmail"></p>
                             </div>
                         </a>
                     </div>
@@ -35,8 +35,7 @@
                             </span>
                             <div class="">
                                 <p class="m-0 fw-light fs-6">Location</p>
-                                <p class="m-0 fw-medium fs-6" id="footerAddress">Brgy. Alijis, Bacolod City, <br> Negros
-                                    Occidental</p>
+                                <p class="m-0 fw-medium fs-6" id="footerAddress"></p>
                             </div>
                         </a>
                     </div>
@@ -48,7 +47,7 @@
                             <span class="material-symbols-outlined fs-1"> language </span>
                             <div class="">
                                 <p class="m-0 fw-light fs-6">Website</p>
-                                <p class="m-0 fw-medium fs-6" id="footerWebsite">alijislibrary.chmsu.edu.ph</p>
+                                <p class="m-0 fw-medium fs-6" id="footerWebsite"></p>
                             </div>
                         </a>
                     </div>

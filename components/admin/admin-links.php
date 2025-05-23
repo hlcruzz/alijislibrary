@@ -20,5 +20,4 @@
 <script src="./assets/library/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 <script src="./assets/library/tinymce/tinymce.min.js"></script>
-<!-- <script src="./assets/js/admin-cookie.js"></script> -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

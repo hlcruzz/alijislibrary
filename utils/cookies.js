@@ -97,6 +97,3 @@ export function sideMenu(menu) {
     $.removeCookie("settingsNav");
   }
 }
-export function setCookie(name, value) {
-  localStorage.setItem(name, value);
-}

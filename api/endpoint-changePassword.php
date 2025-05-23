@@ -1,11 +1,6 @@
 <?php
 include "../lib/connection.php";
 
-require '../vendor/autoload.php';
-
-use Firebase\JWT\JWT;
-use Firebase\JWT\Key;
-
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $email = filter_var(trim($_POST['email']), FILTER_SANITIZE_EMAIL);
     $code = htmlspecialchars(trim($_POST['code']), ENT_QUOTES, 'UTF-8');
@@ -21,24 +16,18 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             return openssl_decrypt($encrypted_data, 'aes-256-cbc', $encryption_key, 0, $iv);
         }
         $key = 'asdkcyn347y5cn37ywuercyn237ryccnQcwYCn9YCn3ycOW3Y5CO9w3y5owyOYCNW7YcwhwjmfiJWPECTwpct-wervWERVwoejrhwcmERHOWihcrCRIJRrORCOERMC832y823y4m';
-        if (isset($_COOKIE['auth'])) {
-            $decoded = JWT::decode($_COOKIE['auth'], new Key($key, 'HS256'));
 
-            $decCode = decryptthis($decoded->data->code, $key);
-            if ($decCode !== $code) {
-                echo json_encode([
-                    "status" => false,
-                    "auth" => true,
-                    "message" => "Incorrect Verification Code"
-                ]);
-                exit;
-            }
-        } else {
-            setcookie("token", "", time() - 3600, "/", "", true, true);
+        $checkQuery = "SELECT authCode FROM accounts WHERE accountEmail = ?;";
+        $stmtCheck = $conn->prepare($checkQuery);
+        $stmtCheck->execute([$email]);
+        $result = $stmtCheck->fetch(PDO::FETCH_ASSOC);
+
+        $dbCode = decryptthis($result['authCode'], $key);
+
+        if ($code !== $dbCode) {
             echo json_encode([
                 "status" => false,
-                "auth" => false,
-                "message" => "Verification Code Expired"
+                "message" => "Incorrect Verification Code"
             ]);
             exit;
         }
@@ -51,13 +40,11 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
         echo json_encode([
             "status" => true,
-            "auth" => true,
             "message" => "Account Password Changed"
         ]);
     } catch (Exception $e) {
         echo json_encode([
             "status" => false,
-            "auth" => false,
             "message" => $e->getMessage()
         ]);
     }

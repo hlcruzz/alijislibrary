@@ -77,6 +77,9 @@ switch ($_GET['page']) {
         require './admin/activity-logs.php';
         break;
     default:
+        if ($_REQUEST['URI'] == "/api") {
+            require './pages/404.php';
+        }
         require './pages/404.php';
         break;
 }

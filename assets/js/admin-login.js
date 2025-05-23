@@ -15,7 +15,7 @@ $("#adminForm").submit(function (event) {
   adminLogin(username, password).then((response) => {
     const data = JSON.parse(response);
 
-    if (data.status == "success") {
+    if (data.status) {
       window.location.href = "./?page=admin-dashboard";
     } else {
       $("#response").html(data.message);
@@ -41,11 +41,8 @@ $("#adminForgotForm").submit(function (e) {
   changePassword(formData).then((response) => {
     const data = JSON.parse(response);
 
-    if (!data.status && data.auth) {
+    if (!data.status) {
       alert(data.message);
-    } else if (!data.status && !data.auth) {
-      alert(data.message);
-      window.location.href = "./?page=admin-forgot-password";
     } else {
       alert(data.message);
       window.location.href = "./?page=admin-login";

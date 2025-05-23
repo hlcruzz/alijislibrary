@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 13, 2025 at 06:39 AM
+-- Generation Time: May 23, 2025 at 04:36 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -51,15 +51,16 @@ CREATE TABLE `accounts` (
   `accountImg` varchar(100) DEFAULT NULL,
   `accountEmail` varchar(100) DEFAULT NULL,
   `accountUsername` varchar(100) NOT NULL,
-  `accountPassword` varchar(255) NOT NULL
+  `accountPassword` varchar(255) NOT NULL,
+  `authCode` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `accounts`
 --
 
-INSERT INTO `accounts` (`id`, `accountImg`, `accountEmail`, `accountUsername`, `accountPassword`) VALUES
-(1, NULL, 'admin@gmail.com', 'admin', '$2y$10$Jt4hOFh7yvi5QafNOzuHIu/SigvsTVeE4sw2L0NoG0EEUO/UD2Nii');
+INSERT INTO `accounts` (`id`, `accountImg`, `accountEmail`, `accountUsername`, `accountPassword`, `authCode`) VALUES
+(1, NULL, 'admin@gmail.com', 'admin', '$2y$10$hSoW9rg7NQhNpdMvAsuBd.sgzpTI5lo7VEpfOfxcQIL3j721mZ9Ii', 'OVE2MGRuaVEwNzkxUU9RYlAxRkxidz09OjoRbgymsgllizsbKlINOan3');
 
 -- --------------------------------------------------------
 
@@ -75,6 +76,20 @@ CREATE TABLE `activity_logs` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `activity_logs`
+--
+
+INSERT INTO `activity_logs` (`id`, `admin_id`, `action`, `details`, `created_at`) VALUES
+(1, 1, 'CREATE', 'Added Gallery Image', '2025-05-13 04:52:44'),
+(2, 1, 'CREATE', 'Added Gallery Image', '2025-05-13 04:52:53'),
+(3, 1, 'CREATE', 'Added Gallery Image', '2025-05-13 04:53:03'),
+(4, 1, 'DELETE', 'Deleted Gallery Image', '2025-05-13 04:55:14'),
+(5, 1, 'DELETE', 'Deleted Library News', '2025-05-23 01:19:57'),
+(6, 1, 'RESTORE', 'Restored from Archive on table (library_news)', '2025-05-23 01:20:06'),
+(7, 1, 'UPDATE', 'Updated Reference Tools', '2025-05-23 01:47:05'),
+(8, 1, 'UPDATE', 'Updated Reference Tools', '2025-05-23 01:47:12');
+
 -- --------------------------------------------------------
 
 --
@@ -88,6 +103,17 @@ CREATE TABLE `archive` (
   `pageName` varchar(100) NOT NULL,
   `archiveDate` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `archive`
+--
+
+INSERT INTO `archive` (`id`, `fk_id`, `tableName`, `pageName`, `archiveDate`) VALUES
+(1, 25, 'gallery', 'Library Gallery', '2025-05-13 04:55:14'),
+(2, 24, 'gallery', 'Library Gallery', '2025-05-13 04:55:14'),
+(3, 23, 'gallery', 'Library Gallery', '2025-05-13 04:55:14'),
+(4, 22, 'gallery', 'Library Gallery', '2025-05-13 04:55:14'),
+(5, 21, 'gallery', 'Library Gallery', '2025-05-13 04:55:14');
 
 -- --------------------------------------------------------
 
@@ -308,7 +334,22 @@ INSERT INTO `gallery` (`id`, `gallery_path`, `gallery_date`, `status`) VALUES
 (7, './assets/img/galleryImg/a_carnival_themed_poster_with_text_victorias (5) - Copy - Copy.jpeg', '2025-05-13 01:29:50', 0),
 (8, './assets/img/galleryImg/a_carnival_themed_poster_with_text_victorias (5) - Copy.jpeg', '2025-05-13 01:29:50', 0),
 (9, './assets/img/galleryImg/a_carnival_themed_poster_with_text_victorias (5).jpeg', '2025-05-13 01:29:50', 0),
-(10, './assets/img/galleryImg/a_carnival_themed_poster_with_text_victorias (4).jpeg', '2025-05-13 01:29:50', 0);
+(10, './assets/img/galleryImg/a_carnival_themed_poster_with_text_victorias (4).jpeg', '2025-05-13 01:29:50', 0),
+(11, './assets/img/galleryImg/pexels-pixabay-315987.jpg', '2025-05-13 04:52:44', 1),
+(12, './assets/img/galleryImg/pexels-nuno-obey-34504-127160.jpg', '2025-05-13 04:52:44', 1),
+(13, './assets/img/galleryImg/pexels-samsilitongajr-848573.jpg', '2025-05-13 04:52:44', 1),
+(14, './assets/img/galleryImg/pexels-todd-trapani-488382-1420440.jpg', '2025-05-13 04:52:44', 1),
+(15, './assets/img/galleryImg/pexels-pixabay-159020.jpg', '2025-05-13 04:52:44', 1),
+(16, './assets/img/galleryImg/pexels-rakicevic-nenad-233369-801885.jpg', '2025-05-13 04:52:53', 1),
+(17, './assets/img/galleryImg/pexels-pixabay-57705.jpg', '2025-05-13 04:52:53', 1),
+(18, './assets/img/galleryImg/pexels-davidmceachan-92664.jpg', '2025-05-13 04:52:53', 1),
+(19, './assets/img/galleryImg/pexels-ithalu-907485.jpg', '2025-05-13 04:52:53', 1),
+(20, './assets/img/galleryImg/pexels-pixabay-206359.jpg', '2025-05-13 04:52:53', 1),
+(21, './assets/img/galleryImg/pexels-13nuance-561463.jpg', '2025-05-13 04:53:02', 0),
+(22, './assets/img/galleryImg/pexels-lazybird-1212600.jpg', '2025-05-13 04:53:02', 0),
+(23, './assets/img/galleryImg/pexels-nout-gons-80280-248159.jpg', '2025-05-13 04:53:02', 0),
+(24, './assets/img/galleryImg/pexels-no-name-14543-66997.jpg', '2025-05-13 04:53:02', 0),
+(25, './assets/img/galleryImg/pexels-thai-hu-nh-2335830-3998365.jpg', '2025-05-13 04:53:02', 0);
 
 -- --------------------------------------------------------
 
@@ -551,7 +592,49 @@ CREATE TABLE `login_history` (
 
 INSERT INTO `login_history` (`id`, `account_id`, `loginDate`) VALUES
 (1, 1, '2025-05-13 04:35:52'),
-(2, 1, '2025-05-13 04:39:36');
+(2, 1, '2025-05-13 04:39:36'),
+(3, 1, '2025-05-13 04:51:58'),
+(4, 1, '2025-05-19 02:11:52'),
+(5, 1, '2025-05-19 02:16:42'),
+(6, 1, '2025-05-20 01:52:46'),
+(7, 1, '2025-05-20 02:12:27'),
+(8, 1, '2025-05-20 07:39:19'),
+(9, 1, '2025-05-20 07:40:14'),
+(10, 1, '2025-05-20 07:42:56'),
+(11, 1, '2025-05-20 07:43:32'),
+(12, 1, '2025-05-20 07:45:58'),
+(13, 1, '2025-05-20 07:46:12'),
+(14, 1, '2025-05-20 07:46:21'),
+(15, 1, '2025-05-20 07:51:48'),
+(16, 1, '2025-05-20 08:42:49'),
+(17, 1, '2025-05-20 08:45:57'),
+(18, 1, '2025-05-20 08:52:43'),
+(19, 1, '2025-05-21 05:02:44'),
+(20, 1, '2025-05-21 05:03:14'),
+(21, 1, '2025-05-23 00:53:30'),
+(22, 1, '2025-05-23 00:56:33'),
+(23, 1, '2025-05-23 00:56:38'),
+(24, 1, '2025-05-23 01:17:47'),
+(25, 1, '2025-05-23 01:19:30'),
+(26, 1, '2025-05-23 01:22:10'),
+(27, 1, '2025-05-23 01:22:53'),
+(28, 1, '2025-05-23 01:31:46'),
+(29, 1, '2025-05-23 01:46:34'),
+(30, 1, '2025-05-23 02:00:29'),
+(31, 1, '2025-05-23 02:03:58'),
+(32, 1, '2025-05-23 02:11:33'),
+(33, 1, '2025-05-23 02:19:02'),
+(34, 1, '2025-05-23 02:20:47'),
+(35, 1, '2025-05-23 02:22:00'),
+(36, 1, '2025-05-23 02:23:17'),
+(37, 1, '2025-05-23 02:24:15'),
+(38, 1, '2025-05-23 02:24:37'),
+(39, 1, '2025-05-23 02:33:55'),
+(40, 1, '2025-05-23 02:34:16'),
+(41, 1, '2025-05-23 02:34:31'),
+(42, 1, '2025-05-23 02:35:05'),
+(43, 1, '2025-05-23 02:35:21'),
+(44, 1, '2025-05-23 02:35:39');
 
 -- --------------------------------------------------------
 
@@ -824,7 +907,14 @@ CREATE TABLE `visitor` (
 --
 
 INSERT INTO `visitor` (`id`, `visitor_type`, `visitor_date`) VALUES
-(1, 'Alumni', '2025-05-13 01:01:55');
+(1, 'Alumni', '2025-05-13 01:01:55'),
+(2, 'Guest', '2025-05-19 02:10:27'),
+(3, 'Guest', '2025-05-20 01:54:20'),
+(4, 'Student', '2025-05-20 02:11:52'),
+(5, 'Alumni', '2025-05-23 01:24:46'),
+(6, 'Guest', '2025-05-23 01:31:00'),
+(7, 'Alumni', '2025-05-23 01:32:24'),
+(8, 'Staff', '2025-05-23 02:21:19');
 
 --
 -- Indexes for dumped tables
@@ -1054,13 +1144,13 @@ ALTER TABLE `accounts`
 -- AUTO_INCREMENT for table `activity_logs`
 --
 ALTER TABLE `activity_logs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `archive`
 --
 ALTER TABLE `archive`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `automated_circulation`
@@ -1114,7 +1204,7 @@ ALTER TABLE `foundation`
 -- AUTO_INCREMENT for table `gallery`
 --
 ALTER TABLE `gallery`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `guidelines`
@@ -1168,7 +1258,7 @@ ALTER TABLE `library_objectives`
 -- AUTO_INCREMENT for table `login_history`
 --
 ALTER TABLE `login_history`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT for table `news_current_events`
@@ -1234,7 +1324,7 @@ ALTER TABLE `virtual_library_orientation`
 -- AUTO_INCREMENT for table `visitor`
 --
 ALTER TABLE `visitor`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Constraints for dumped tables
